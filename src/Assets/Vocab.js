@@ -38,6 +38,21 @@ class Verb {
     }
 }
 
+class Adjective {
+    constructor(eng) {
+        this.english = eng
+    }
+
+    set foreign(stem, group) {
+        this.foreignStem = stem;
+        this.foreignGroup = group; 
+    }
+
+    get foreign(stem, group) {
+        return [this.foreignStem, this.foreignGroup]
+    }
+}
+
 var beer = new Noun('beer');
 beer.foreign = 'pivo';
 var dog = new Noun('dog');
