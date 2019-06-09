@@ -18,7 +18,7 @@ const WordListDisplay = (props) =>  {
             wordList.push(props.words.adjectives[i].english)
         }
     }
-    wordList = wordList.sort().map(x => <li key='{x}'>{x}</li>)
+    wordList = wordList.sort().map(x => <li key={x}>{x}</li>)
     
     return (
         <div>
