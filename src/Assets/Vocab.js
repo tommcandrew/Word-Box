@@ -63,6 +63,15 @@ bed.foreign = 'postel';
 
 var toBe = new Verb('to be');
 toBe.present = ['am', 'are', 'is', 'are', 'are', 'are'];
+toBe.presentForeign = ['jsem', 'jsi', 'je', 'jsme', 'jste', 'jsou'];
+var toDo = new Verb('to do');
+toDo.present = ['do', 'do', 'does','do','do','do'];
+toDo.presentForeign = ['delam', 'delas', 'dela', 'delame', 'delate', 'delaji']
+
+
+var young = new Adjective('young');
+var old = new Adjective('old');
+
 
 export var wordList = {
     nouns : [beer, dog, bed],
