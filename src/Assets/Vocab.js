@@ -14,6 +14,14 @@ class Verb {
     constructor(eng) {
         this.english = eng;
     }
+    
+    set infinitive(f) {
+        this._infinitive = f
+    }
+    get infinitive() {
+        return this._infinitive
+    }
+
     set present(arr) {
         // the array will list the present tense in order [first, you, he, we, you2, they]
         if (arr.length === 6) {
@@ -62,9 +70,11 @@ var bed = new Noun('bed');
 bed.foreign = 'postel';
 
 var toBe = new Verb('to be');
+toBe.infinitive = 'byt';
 toBe.present = ['am', 'are', 'is', 'are', 'are', 'are'];
 toBe.presentForeign = ['jsem', 'jsi', 'je', 'jsme', 'jste', 'jsou'];
 var toDo = new Verb('to do');
+toDo.infinitive = 'delat';
 toDo.present = ['do', 'do', 'does','do','do','do'];
 toDo.presentForeign = ['delam', 'delas', 'dela', 'delame', 'delate', 'delaji']
 
