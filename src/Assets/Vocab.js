@@ -85,5 +85,6 @@ var old = new Adjective('old');
 
 export var wordList = {
     nouns : [beer, dog, bed],
-    verbs : [toBe] 
+    verbs : [toBe, toDo],
+    adjectives : [young, old] 
 }

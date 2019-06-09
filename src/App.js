@@ -6,7 +6,7 @@ import './App.css';
 class App extends React.Component {
   state = {
     knownWords : wordList,
-    typesToShow : ['Nouns']
+    typesToShow : ['Nouns', 'Verbs', 'Adjectives']
   }
 
   render() {
