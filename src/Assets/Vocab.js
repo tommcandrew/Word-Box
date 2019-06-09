@@ -14,19 +14,27 @@ class Verb {
     constructor(eng) {
         this.english = eng;
     }
-    set present([first, you, he, we, you2, they]) {
-        this.present1st = first;
-        this.presentYou = you;
-        this.presentHe = he;
-        this.presentWe = we;
-        this.presentYou2 = you2;
-        this.presentThey = they;
+    set present(arr) {
+        // the array will list the present tense in order [first, you, he, we, you2, they]
+        if (arr.length === 6) {
+            this.present = [...arr]
+        } else {/*need to throw an error */}
     }
     // this is untidy, but you get present tense 
     // you get the whole array of 6
-    // first person is oth element of array
+    // first person is zero-th element of array
     get present() {
         return this.present;
+    }
+
+    set presentForeign(arr) {
+        if (arr.length === 6) {
+            this.present = [...arr]
+        } else {/*need to throw an error */}
+    }
+
+    get presentForeign() {
+        return this.presentForeign
     }
 }
 
