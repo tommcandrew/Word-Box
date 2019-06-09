@@ -1,4 +1,5 @@
 import React from 'react';
+import WordListCheckbox from './WordListCheckbox';
 
 const WordListDisplay = (props) =>  {
     var wordList = [];
@@ -22,6 +23,7 @@ const WordListDisplay = (props) =>  {
     return (
         <div>
             <h1>Words you know</h1>
+            <WordListCheckbox />
             <ul>{wordList}</ul>
         </div>
     )
