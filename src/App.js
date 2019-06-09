@@ -10,7 +10,12 @@ class App extends React.Component {
   }
 
   changeToShow = (category) => {
-    console.log(category, ' was clicked')
+    var ttShow = Array.from(this.state.typesToShow);
+    if (ttShow.includes(category)) {
+      ttShow = ttShow.filter(x => x!==category)
+    } else {ttShow.push(category)}
+    this.setState({typesToShow: ttShow});
+    //console.log(category, ' was clicked', ttShow)
   }
 
   render() {
