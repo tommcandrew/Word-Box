@@ -23,7 +23,7 @@ const WordListDisplay = (props) =>  {
     return (
         <div>
             <h1>Words you know</h1>
-            <WordListCheckbox />
+            <WordListCheckbox selection={props.types} />
             <ul>{wordList}</ul>
         </div>
     )
