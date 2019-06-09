@@ -23,7 +23,10 @@ const WordListDisplay = (props) =>  {
     return (
         <div>
             <h1>Words you know</h1>
-            <WordListCheckbox selection={props.types} />
+            <WordListCheckbox 
+              selection={props.types} 
+              click={props.changeTypes}
+            />
             <ul>{wordList}</ul>
         </div>
     )

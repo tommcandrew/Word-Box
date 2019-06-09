@@ -9,6 +9,10 @@ class App extends React.Component {
     typesToShow : ['Nouns', 'Verbs', 'Adjectives']
   }
 
+  changeToShow = (category) => {
+    console.log(category, ' was clicked')
+  }
+
   render() {
 
     return (
@@ -18,6 +22,7 @@ class App extends React.Component {
         <WordListDisplay 
           words={this.state.knownWords} 
           types={this.state.typesToShow}
+          changeTypes={this.changeToShow}
         />
       </div>
     );

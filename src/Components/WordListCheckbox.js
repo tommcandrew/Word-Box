@@ -12,9 +12,9 @@ const WordListCheckbox = (props) => {
     return (
         <div>
             <h2>Types of words</h2>
-            <button className={nounsClass} >Nouns</button>
-            <button className={verbsClass} >Verbs</button>
-            <button className={adjClass} >Adjectives</button>
+            <button className={nounsClass} onClick={()=>props.click('Nouns')} >Nouns</button>
+            <button className={verbsClass} onClick={()=>props.click('Verbs')} >Verbs</button>
+            <button className={adjClass}  onClick={()=>props.click('Adjectives')}>Adjectives</button>
         </div>
     )
 }
