@@ -5,7 +5,8 @@ import './App.css';
 
 class App extends React.Component {
   state = {
-    knownWords : wordList
+    knownWords : wordList,
+    typesToShow : ['Nouns']
   }
 
   render() {
@@ -14,7 +15,10 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">Soon to be a language learning app
         </header>
-        <WordListDisplay words={this.state.knownWords} />
+        <WordListDisplay 
+          words={this.state.knownWords} 
+          types={this.state.typesToShow}
+        />
       </div>
     );
   } 
