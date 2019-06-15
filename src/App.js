@@ -1,5 +1,6 @@
 import React from 'react';
 import WordListDisplay from './Components/WordListDisplay';
+import TestPage from './Components/TestPage';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 
@@ -28,6 +29,9 @@ class App extends React.Component {
           words={this.state.knownWords} 
           types={this.state.typesToShow}
           changeTypes={this.changeToShow}
+        />
+        <TestPage 
+          words={this.state.knownWords}
         />
       </div>
     );
