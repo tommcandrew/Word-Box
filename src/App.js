@@ -1,6 +1,7 @@
 import React from 'react';
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
+import {rndSentence} from './Components/TestMaker';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 
@@ -9,7 +10,8 @@ class App extends React.Component {
     knownWords : wordList,
     typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
     translationMode : 'fromEng', 
-    userAnswer: ''
+    userAnswer: '',
+    sentences: rndSentence(wordList)
   }
 
   changeToShow = (category) => {
@@ -48,6 +50,7 @@ class App extends React.Component {
           transMode={this.state.translationMode}
           switchModeClick={this.switchModeHandler}
           userAns={this.state.userAnswer}
+          testQ={this.state.sentences}
           changeAns={this.ChangeAnswerHandler}
         />
       </div>
