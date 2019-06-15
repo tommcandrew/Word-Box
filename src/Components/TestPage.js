@@ -45,19 +45,19 @@ const TestPage = (props) => {
   }
 
   var answerWords = answerSentence.toLowerCase().split(' ');
-  var markedAns = props.userAns.split(' ').map((x, i) => {
-      if (x.toLowerCase() === answerWords[i]) {
-          return <span className='goodWord' key={i}>{x+' '}</span>
-      }
-      return <span className='badWord' key={i}>{x+' '}</span>
-  }) || <p>give an answer</p>
-    
-  console.log(markedAns)
+  var markedAns = props.userAns === '' ? <p>Give an Answer</p> 
+      : props.userAns.split(' ').map((x, i) => {
+        if (x.toLowerCase() === answerWords[i]) {
+            return <span className='goodWord' key={i}>{x+' '}</span>
+        }
+        return <span className='badWord' key={i}>{x+' '}</span>
+        })
+  
   return (
       <div id='testpage'>
         <h2>Translate the following</h2>
         <p id='question'>{questionSentence}</p>
-        <div id='answer'><p>{markedAns}</p></div>
+        <div id='answer'>{markedAns}</div>
         <input type='text' value={props.userAns} onChange={props.changeAns} />
         <p>{props.userAns}</p>
         <p>{answerSentence}</p>
