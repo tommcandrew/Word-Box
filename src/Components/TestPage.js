@@ -30,9 +30,9 @@ const TestPage = (props) => {
   //currently no use for verb in sentence
   //var verb1 = rndVerb(props.words.verbs, 'present', 2);
   var adj1 = rndAdj(props.words.adjectives, 0); //masculine because gender not currently defined
-  var englishSentence = 'The '+noun1.english +' is '+ adj1.english +'.' ;
+  var englishSentence = 'The '+noun1.english +' is '+ adj1.english;
   //NB: 'the' needs to match gender too
-  var foreignSentence = 'Ten '+noun1.foreign +' je '+ adj1.foreign +'.' ;
+  var foreignSentence = 'Ten '+noun1.foreign +' je '+ adj1.foreign;
   
   if (props.transMode === 'fromEng') {
       var questionSentence = englishSentence;
