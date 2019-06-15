@@ -66,6 +66,12 @@ var beer = new Noun('beer');
 beer.foreign = 'pivo';
 var dog = new Noun('dog');
 dog.foreign = 'pes';
+var table = new Noun('table');
+table.foreign = 'stul';
+var banana = new Noun('banana');
+banana.foreign = 'banan';
+var tree = new Noun('tree');
+tree.foreign = 'strom';
 var bed = new Noun('bed');
 bed.foreign = 'postel';
 
@@ -80,11 +86,15 @@ toDo.presentForeign = ['delam', 'delas', 'dela', 'delame', 'delate', 'delaji']
 
 
 var young = new Adjective('young');
+young.foreign = ['mlady', 'mlada', 'mlade'];
 var old = new Adjective('old');
+old.foreign = ['stary', 'stara', 'stare'];
+var small = new Adjective('small');
+small.foreign = ['maly', 'mala', 'male'];
 
 
 export var wordList = {
-    nouns : [beer, dog, bed],
+    nouns : [beer, dog, table, banana, tree, bed],
     verbs : [toBe, toDo],
-    adjectives : [young, old] 
+    adjectives : [young, old, small] 
 }
