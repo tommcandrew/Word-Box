@@ -35,7 +35,7 @@ class App extends React.Component {
       var ans = this.state.sentences.foreign
     } else {ans = this.state.sentences.english}
     console.log(ans, this.state.userAnswer)
-    if (event.target.value === ans) {
+    if (event.target.value.toLowerCase() === ans.toLowerCase()) {
       this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
     } else { this.setState({userAnswer:event.target.value}) }
   }
