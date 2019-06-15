@@ -1,4 +1,5 @@
 import React from 'react';
+import './TestPage.css'
 
 const rndNoun = (arr) => {
     var i = Math.floor(Math.random()*arr.length);
@@ -26,13 +27,24 @@ const TestPage = (props) => {
   var englishSentence = 'The '+noun1.english +' '+ verb1.english + ' ' + adj1.english +'.' ;
   //NB: 'the' needs to match gender too
   var foreignSentence = 'Ten '+noun1.foreign +' '+ verb1.foreign + ' ' + adj1.foreign +'.' ;
+  
+  if (props.transMode === 'fromEng') {
+      var questionSentence = englishSentence;
+      var answerSentence = foreignSentence;
+      var buttonRole = 'Switch to translating INTO English';
+    } else {
+        questionSentence = foreignSentence;
+        answerSentence = englishSentence;
+        buttonRole = 'Switch to translating FROM English';
+  }
+
     
   return (
-      <div>
+      <div id='testpage'>
         <h2>Translate the following</h2>
-        <p>{JSON.stringify(props.words)}</p>
-        <p>{englishSentence}</p>
-        <p>{foreignSentence}</p>
+        <p id='question'>{questionSentence}</p>
+        <p>{answerSentence}</p>
+        <button onClick={props.switchModeClick}>{buttonRole}</button>
       </div>
   )
 }

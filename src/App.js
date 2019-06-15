@@ -7,7 +7,8 @@ import './App.css';
 class App extends React.Component {
   state = {
     knownWords : wordList,
-    typesToShow : ['Nouns', 'Verbs', 'Adjectives']
+    typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
+    translationMode : 'fromEng'
   }
 
   changeToShow = (category) => {
@@ -17,6 +18,14 @@ class App extends React.Component {
     } else {ttShow.push(category)}
     this.setState({typesToShow: ttShow});
     //console.log(category, ' was clicked', ttShow)
+  }
+
+  switchModeHandler = () => {
+    console.log('switchmodeHandler called')
+    if (this.state.translationMode === 'fromEng') {
+      var newMode = 'toEng'
+    } else {newMode = 'fromEng'}
+    this.setState({translationMode: newMode})
   }
 
   render() {
@@ -32,6 +41,8 @@ class App extends React.Component {
         />
         <TestPage 
           words={this.state.knownWords}
+          transMode={this.state.translationMode}
+          switchModeClick={this.switchModeHandler}
         />
       </div>
     );
