@@ -31,11 +31,16 @@ class App extends React.Component {
   }
 
   ChangeAnswerHandler = (event) => {
-    this.setState({userAnswer:event.target.value})
+    if (this.state.translationMode === 'fromEng') {
+      var ans = this.state.sentences.foreign
+    } else {ans = this.state.sentences.english}
+    console.log(ans, this.state.userAnswer)
+    if (event.target.value === ans) {
+      this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
+    } else { this.setState({userAnswer:event.target.value}) }
   }
 
   render() {
-
     return (
       <div className="App">
         <header className="App-header">Soon to be a language learning app
