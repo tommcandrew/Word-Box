@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   switchModeHandler = () => {
-    console.log('switchmodeHandler called')
     if (this.state.translationMode === 'fromEng') {
       var newMode = 'toEng'
     } else {newMode = 'fromEng'}
