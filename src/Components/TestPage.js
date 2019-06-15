@@ -45,7 +45,7 @@ const TestPage = (props) => {
   }
 
   var answerWords = answerSentence.toLowerCase().split(' ');
-  var markedAns = props.userAns === '' ? <p>Give an Answer</p> 
+  var markedAns = props.userAns === '' ? <span>Give an Answer</span> 
       : props.userAns.split(' ').map((x, i) => {
         if (x.toLowerCase() === answerWords[i]) {
             return <span className='goodWord' key={i}>{x+' '}</span>
