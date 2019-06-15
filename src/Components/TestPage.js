@@ -23,6 +23,8 @@ const rndAdj = (arr, gender) => {
     return {english:arr[i].english, foreign:arr[i].foreign[gender]}  
 }
 
+
+
 const TestPage = (props) => {  
   var noun1 = rndNoun(props.words.nouns);
   //currently no use for verb in sentence
@@ -42,11 +44,22 @@ const TestPage = (props) => {
         buttonRole = 'Switch to translating FROM English';
   }
 
+  var answerWords = answerSentence.toLowerCase().split(' ');
+  var markedAns = props.userAns.split(' ').map((x, i) => {
+      if (x.toLowerCase() === answerWords[i]) {
+          return <span className='goodWord' key={i}>{x+' '}</span>
+      }
+      return <span className='badWord' key={i}>{x+' '}</span>
+  }) || <p>give an answer</p>
     
+  console.log(markedAns)
   return (
       <div id='testpage'>
         <h2>Translate the following</h2>
         <p id='question'>{questionSentence}</p>
+        <div id='answer'><p>{markedAns}</p></div>
+        <input type='text' value={props.userAns} onChange={props.changeAns} />
+        <p>{props.userAns}</p>
         <p>{answerSentence}</p>
         <button onClick={props.switchModeClick}>{buttonRole}</button>
       </div>

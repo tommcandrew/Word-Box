@@ -8,7 +8,8 @@ class App extends React.Component {
   state = {
     knownWords : wordList,
     typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
-    translationMode : 'fromEng'
+    translationMode : 'fromEng', 
+    userAnswer: ''
   }
 
   changeToShow = (category) => {
@@ -27,6 +28,10 @@ class App extends React.Component {
     this.setState({translationMode: newMode})
   }
 
+  ChangeAnswerHandler = (event) => {
+    this.setState({userAnswer:event.target.value})
+  }
+
   render() {
 
     return (
@@ -42,6 +47,8 @@ class App extends React.Component {
           words={this.state.knownWords}
           transMode={this.state.translationMode}
           switchModeClick={this.switchModeHandler}
+          userAns={this.state.userAnswer}
+          changeAns={this.ChangeAnswerHandler}
         />
       </div>
     );
