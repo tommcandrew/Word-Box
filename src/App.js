@@ -1,12 +1,17 @@
 import React from 'react';
 import WordListDisplay from './Components/WordListDisplay';
+import TestPage from './Components/TestPage';
+import {rndSentence} from './Components/TestMaker';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 
 class App extends React.Component {
   state = {
     knownWords : wordList,
-    typesToShow : ['Nouns', 'Verbs', 'Adjectives']
+    typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
+    translationMode : 'fromEng', 
+    userAnswer: '',
+    sentences: rndSentence(wordList)
   }
 
   changeToShow = (category) => {
@@ -18,8 +23,24 @@ class App extends React.Component {
     //console.log(category, ' was clicked', ttShow)
   }
 
-  render() {
+  switchModeHandler = () => {
+    if (this.state.translationMode === 'fromEng') {
+      var newMode = 'toEng'
+    } else {newMode = 'fromEng'}
+    this.setState({translationMode: newMode})
+  }
 
+  ChangeAnswerHandler = (event) => {
+    if (this.state.translationMode === 'fromEng') {
+      var ans = this.state.sentences.foreign
+    } else {ans = this.state.sentences.english}
+    console.log(ans, this.state.userAnswer)
+    if (event.target.value.toLowerCase() === ans.toLowerCase()) {
+      this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
+    } else { this.setState({userAnswer:event.target.value}) }
+  }
+
+  render() {
     return (
       <div className="App">
         <header className="App-header">Soon to be a language learning app
@@ -28,6 +49,14 @@ class App extends React.Component {
           words={this.state.knownWords} 
           types={this.state.typesToShow}
           changeTypes={this.changeToShow}
+        />
+        <TestPage 
+          words={this.state.knownWords}
+          transMode={this.state.translationMode}
+          switchModeClick={this.switchModeHandler}
+          userAns={this.state.userAnswer}
+          testQ={this.state.sentences}
+          changeAns={this.ChangeAnswerHandler}
         />
       </div>
     );
