@@ -8,6 +8,12 @@ class Noun {
     get foreign() {
         return this._foreign;
     }
+    set gender(g) {
+        this._gender = g;
+    }
+    get gender() {
+        return this._gender;
+    }
 }
 
 class Verb {
@@ -65,16 +71,22 @@ class Adjective {
 
 var beer = new Noun('beer');
 beer.foreign = 'pivo';
+beer.gender = 'neuter';
 var dog = new Noun('dog');
 dog.foreign = 'pes';
+dog.gender = 'male';
 var table = new Noun('table');
 table.foreign = 'stul';
+table.gender = 'male';
 var banana = new Noun('banana');
 banana.foreign = 'banan';
+banana.gender = 'male';
 var tree = new Noun('tree');
 tree.foreign = 'strom';
+tree.gender = 'male'
 var bed = new Noun('bed');
 bed.foreign = 'postel';
+bed.gender = 'female';
 
 var toBe = new Verb('to be');
 toBe.infinitive = 'byt';
