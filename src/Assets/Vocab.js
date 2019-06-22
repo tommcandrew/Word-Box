@@ -61,7 +61,9 @@ class Adjective {
         // eventually: I would like this to be [stem, group]
         // This will allow calculation of the foreign adjective for regular adjectives
         // but currently it is [male, female, neuter]
-        this._foreign = Array.from(arr)
+        // actually: using the same structure as the defArticle will simplify the creation of 
+        // a test sentence. So send an array to this method, it will create an object
+        this._foreign = {male:arr[0], female:arr[1], neuter:arr[2]}
     }
 
     get foreign() {
