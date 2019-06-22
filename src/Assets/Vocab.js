@@ -52,8 +52,9 @@ class Adjective {
     }
 
     set foreign(arr) {
-        // at the moment, this array will be [stem, group]
+        // eventually: I would like this to be [stem, group]
         // This will allow calculation of the foreign adjective for regular adjectives
+        // but currently it is [male, female, neuter]
         this._foreign = Array.from(arr)
     }
 
