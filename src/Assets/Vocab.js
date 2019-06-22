@@ -95,6 +95,7 @@ small.foreign = ['maly', 'mala', 'male'];
 
 
 export var wordList = {
+    defArticle : {english: 'The', foreign: {male:'Ten', female:'Ta', neuter:'To'}},
     nouns : [beer, dog, table, banana, tree, bed],
     verbs : [toBe, toDo],
     adjectives : [young, old, small] 
