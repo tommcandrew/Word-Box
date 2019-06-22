@@ -74,6 +74,9 @@ class Adjective {
 var beer = new Noun('beer');
 beer.foreign = 'pivo';
 beer.gender = 'neuter';
+var wine = new Noun('wine');
+wine.foreign = 'vino';
+wine.gender = 'neuter';
 var dog = new Noun('dog');
 dog.foreign = 'pes';
 dog.gender = 'male';
@@ -89,6 +92,24 @@ tree.gender = 'male'
 var bed = new Noun('bed');
 bed.foreign = 'postel';
 bed.gender = 'female';
+var woman = new Noun('woman');
+woman.foreign = 'zena';
+woman.gender = 'female';
+var man = new Noun('man');
+man.foreign = 'muz';
+man.gender = 'male';
+var car = new Noun('car');
+car.foreign = 'auto';
+car.gender = 'neuter';
+var gift = new Noun('gift');
+gift.foreign = 'darek';
+gift.gender = 'male';
+var hospital = new Noun('hospital');
+hospital.foreign = 'nemocnice';
+hospital.gender = 'female';
+var night = new Noun('night');
+night.foreign = 'noc';
+night.gender = 'female';
 
 var toBe = new Verb('to be');
 toBe.infinitive = 'byt';
@@ -106,11 +127,27 @@ var old = new Adjective('old');
 old.foreign = ['stary', 'stara', 'stare'];
 var small = new Adjective('small');
 small.foreign = ['maly', 'mala', 'male'];
+var large = new Adjective('large');
+large.foreign = ['velky', 'velka', 'velke']; 
+var blue = new Adjective('blue');
+blue.foreign = ['modry', 'modra', 'modre'];
+var green = new Adjective('green');
+green.foreign = ['zeleny', 'zelena', 'zelene'];
+var beautiful = new Adjective('beautfiul');
+beautiful.foreign = ['krasny', 'krasna', 'krasne'];
+var healthy = new Adjective('healthy');
+healthy.foreign = ['zdravy', 'zdrava', 'zdrave'];
+var strong = new Adjective('strong');
+strong.foreign = ['silny', 'silna', 'silne'];
+var cold = new Adjective('cold');
+cold.foreign = ['studeny', 'studena', 'studene'];
+var hot = new Adjective('hot');
+hot.foreign = ['horky', 'horka', 'horke'];
 
 
 export var wordList = {
     defArticle : {english: 'The', foreign: {male:'Ten', female:'Ta', neuter:'To'}},
-    nouns : [beer, dog, table, banana, tree, bed],
+    nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night],
     verbs : [toBe, toDo],
-    adjectives : [young, old, small] 
+    adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 
 }
