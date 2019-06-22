@@ -26,7 +26,7 @@ export const rndSentence = (wList) => {
     var noun1 = rndNoun(wList.nouns);      
     //currently no use for verb in sentence
     //var verb1 = rndVerb(wList.verbs, 'present', 2);
-    var adj1 = rndAdj(wList.adjectives, 0); //masculine because gender not currently defined
+    var adj1 = rndAdj(wList.adjectives, noun1.gender); //masculine because gender not currently defined
     var englishSentence = 'The '+noun1.english +' is '+ adj1.english;
     //NB: 'the' needs to match gender too
     var defArt = wList.defArticle.foreign[noun1.gender];
