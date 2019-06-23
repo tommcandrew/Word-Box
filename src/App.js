@@ -5,6 +5,8 @@ import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
 import {wordList} from './Assets/Vocab';
 import './App.css';
+import {Button} from  'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
   state = {
@@ -44,8 +46,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">Soon to be a language learning app
-        </header>
+        <header className="App-header">Word Box</header>
+        <Button variant='info'>Test</Button>
         <Reader />
         <WordListDisplay 
           words={this.state.knownWords} 
