@@ -5,7 +5,7 @@ import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
 import {wordList} from './Assets/Vocab';
 import './App.css';
-import {Button} from  'react-bootstrap';
+import {Tabs, Tab} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
@@ -14,7 +14,9 @@ class App extends React.Component {
     typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
     translationMode : 'fromEng', 
     userAnswer: '',
-    sentences: rndSentence(wordList)
+    sentences: rndSentence(wordList), 
+
+    tabToShow: 'WordList'
   }
 
   changeToShow = (category) => {
@@ -46,22 +48,34 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">Word Box</header>
-        <Button variant='info'>Test</Button>
-        <Reader />
-        <WordListDisplay 
-          words={this.state.knownWords} 
-          types={this.state.typesToShow}
-          changeTypes={this.changeToShow}
-        />
-        <TestPage 
-          words={this.state.knownWords}
-          transMode={this.state.translationMode}
-          switchModeClick={this.switchModeHandler}
-          userAns={this.state.userAnswer}
-          testQ={this.state.sentences}
-          changeAns={this.ChangeAnswerHandler}
-        />
+        <h1 className="App-header">Word Box</h1>
+        <Tabs
+          activeKey={this.state.tabToShow}
+          onSelect={key => this.setState({tabToShow:key})}
+          variant = 'pills'
+          fill
+        >
+        <Tab eventKey='Reader' title='Analayse text'>
+          <Reader />
+        </Tab>
+        <Tab eventKey='WordList' title='Known Words'>
+          <WordListDisplay 
+            words={this.state.knownWords} 
+            types={this.state.typesToShow}
+            changeTypes={this.changeToShow}
+          />          
+        </Tab>
+        <Tab eventKey='testPage' title='Test Your knowledge'>
+          <TestPage 
+            words={this.state.knownWords}
+            transMode={this.state.translationMode}
+            switchModeClick={this.switchModeHandler}
+            userAns={this.state.userAnswer}
+            testQ={this.state.sentences}
+            changeAns={this.ChangeAnswerHandler}
+          />          
+        </Tab>
+        </Tabs>
       </div>
     );
   } 
