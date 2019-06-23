@@ -1,4 +1,5 @@
 import React from 'react';
+import Reader from './Components/Reader';
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
@@ -45,6 +46,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">Soon to be a language learning app
         </header>
+        <Reader />
         <WordListDisplay 
           words={this.state.knownWords} 
           types={this.state.typesToShow}
