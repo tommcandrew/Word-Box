@@ -3,7 +3,7 @@ import GrabbedText from './GrabbedText'
 
 class Reader extends React.Component {
     constructor(props) {
-        super()
+        super(props)
 
         this.state = {
             mode: 'paste',
@@ -75,7 +75,7 @@ class Reader extends React.Component {
             return (
 
                 <div>
-                   <GrabbedText text={this.state.text}/>
+                   <GrabbedText text={this.state.text} knownWords={this.props}/>
                    <button style={buttonStyles} onClick={this.editText}>Edit</button>
                 </div>
             )
