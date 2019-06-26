@@ -56,7 +56,7 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analayse text'>
-          <Reader />
+          <Reader knownWords={this.state.knownWords}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 

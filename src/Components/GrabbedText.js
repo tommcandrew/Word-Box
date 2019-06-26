@@ -1,16 +1,27 @@
 import React from 'react'
 
-class GrabbedText extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+const GrabbedText = (props) => {
 
-        }
+    let knownNouns = []
+    for (let i = 0; i < props.knownWords.knownWords.nouns.length; i++) {
+        let foreignNoun = props.knownWords.knownWords.nouns[i].foreign
+        knownNouns.push(foreignNoun)
+    }
+    let knownVerbs = []
+    for (let i = 0; i < props.knownWords.knownWords.verbs.length; i++) {
+        let foreignInfinitive = props.knownWords.knownWords.verbs[i].infinitive
+        knownVerbs.push(foreignInfinitive)
+        let presentForeign = props.knownWords.knownWords.verbs[i].presentForeign
+        knownVerbs = knownVerbs.concat(presentForeign)
     }
 
-    render() {
-
-        const knownWords = ['Lorem', 'ipsum', 'fugiat', 'dolore', 'ullamco']
+    let knownAdjectives = []
+    for (let i = 0; i < props.knownWords.knownWords.adjectives.length; i++) {
+        let foreignAdjectiveFemale = props.knownWords.knownWords.adjectives[i].foreign.female
+        let foreignAdjectiveMale = props.knownWords.knownWords.adjectives[i].foreign.male
+        let foreignAdjectiveNeuter = props.knownWords.knownWords.adjectives[i].foreign.neuter
+        knownAdjectives.push(foreignAdjectiveFemale, foreignAdjectiveMale, foreignAdjectiveNeuter)
+    }
 
         const divStyle = {
             fontSize: 20,
@@ -28,11 +39,12 @@ class GrabbedText extends React.Component {
             color: 'red'
         }
 
-        let wordArray = this.props.text.split(' ')
+        let wordArray = props.text.split(/[\s.\s,]+/)
         let newWordArray = wordArray.map(function (word, index) {
+            word = word.toLowerCase()
 
-            if (knownWords.includes(word)) {
-
+            if (knownNouns.includes(word) || knownVerbs.includes(word) || knownAdjectives.includes(word)) {
+            
             return (
                 <span key={word+index} style = {knownWordStyle}>{word} </span>
             )
@@ -49,9 +61,8 @@ class GrabbedText extends React.Component {
             <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
         )
 
-    }
+       
 
 }
-
 
 export default GrabbedText
