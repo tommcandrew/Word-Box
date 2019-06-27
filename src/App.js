@@ -1,5 +1,6 @@
 import React from 'react';
 import Reader from './Components/Reader';
+import TextCatalogue from './Components/TextCatalogue'
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
@@ -15,8 +16,8 @@ class App extends React.Component {
     translationMode : 'fromEng', 
     userAnswer: '',
     sentences: rndSentence(wordList), 
-
-    tabToShow: 'WordList'
+    tabToShow: 'WordList',
+    savedTexts: ''
   }
 
   changeToShow = (category) => {
@@ -45,6 +46,44 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
+  saveText = (date, title, text) => {
+
+    var newTextObj = {
+      date: date,
+      title: title,
+      text: text
+    }
+  
+    this.saveToLocalStorage(newTextObj)
+  }
+
+  saveToLocalStorage = (textObj) => {
+    let savedTexts
+  
+    if (localStorage.getItem('savedTexts') != null) {
+      savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      savedTexts.push(textObj);
+    } else {
+      savedTexts = []
+      savedTexts.push(textObj);
+    }
+    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+    this.componentWillMount()
+  }
+
+  componentWillMount = () => {
+    if (localStorage.getItem('savedTexts') != null) {
+      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      this.setState(
+        {savedTexts: savedTexts}
+      )
+    } else {
+        this.setState(
+          {savedTexts: ''}
+        )
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -56,7 +95,8 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analayse text'>
-          <Reader knownWords={this.state.knownWords}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText}/>
+          <TextCatalogue savedTexts={this.state.savedTexts}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 

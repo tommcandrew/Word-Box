@@ -8,22 +8,25 @@ class Reader extends React.Component {
         this.state = {
             mode: 'paste',
             userInput: '',
-            text: ''
+            text: '',
+            title: ''
         }
-
-    this.grabText = this.grabText.bind(this)
-    this.editText = this.editText.bind(this)
-    this.handleChange = this.handleChange.bind(this)
 
     }
 
-    handleChange(event) {
+    handleChangeText = (event) => {
         this.setState(
             {userInput: event.target.value}
         )
     }
 
-    grabText() {
+    handleChangeTitle = (event) => {
+        this.setState(
+            {textTitle: event.target.value}
+        )
+    }
+
+    grabText = () => {
 
         let pastedText = this.refs.myTextArea.value
         this.setState({
@@ -32,10 +35,16 @@ class Reader extends React.Component {
         })
     }
 
-    editText() {
+    editText = () => {
         this.setState(
             {mode: 'paste'}
         )
+    }
+
+    saveText = () => {
+        var d = new Date()
+        var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
+        this.props.saveText(dateString, this.state.textTitle, this.state.text)
     }
    
     render() {
@@ -66,7 +75,8 @@ class Reader extends React.Component {
         return (
 
             <div id='main-area' style={mainAreaStyles}>
-                <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userInput} style={textAreaStyles} onChange={this.handleChange}></textarea>
+                <input placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle}></input>
+                <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
                 <button onClick={this.grabText} style={buttonStyles}>Go!</button>
             </div>
 
@@ -77,6 +87,7 @@ class Reader extends React.Component {
                 <div>
                    <GrabbedText text={this.state.text} knownWords={this.props}/>
                    <button style={buttonStyles} onClick={this.editText}>Edit</button>
+                   <button style={buttonStyles} onClick={this.saveText}>Save</button>
                 </div>
             )
         }
