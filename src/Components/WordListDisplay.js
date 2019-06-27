@@ -1,5 +1,7 @@
 import React from 'react';
 import WordListCheckbox from './WordListCheckbox';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
     var wordList = [];
@@ -22,12 +24,19 @@ const WordListDisplay = (props) =>  {
     
     return (
         <div>
-            <h1>Words you know</h1>
-            <WordListCheckbox 
-              selection={props.types} 
-              click={props.changeTypes}
-            />
-            <ul>{wordList}</ul>
+            <Container>
+                <Row>
+                  <Col>
+                     <WordListCheckbox 
+                       selection={props.types} 
+                       click={props.changeTypes}
+                     />
+                  </Col>
+                  <Col>
+                     <div id="wordList"><ul>{wordList}</ul></div>
+                  </Col>
+                </Row>
+            </Container>
         </div>
     )
 }
