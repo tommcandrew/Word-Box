@@ -6,45 +6,44 @@ class Reader extends React.Component {
         super(props)
 
         this.state = {
-            mode: 'paste',
-            userInput: '',
-            text: '',
-            title: ''
+            mode: this.props.mode,
+            userTitleInput: '',
+            userTextInput: '',
+            title: '',
+            text: props.text
         }
-
     }
 
     handleChangeText = (event) => {
         this.setState(
-            {userInput: event.target.value}
+            {userTextInput: event.target.value}
         )
     }
 
     handleChangeTitle = (event) => {
         this.setState(
-            {textTitle: event.target.value}
+            {userTitleInput: event.target.value}
         )
     }
 
     grabText = () => {
 
         let pastedText = this.refs.myTextArea.value
-        this.setState({
-            mode: 'read',
-            text: pastedText
-        })
+        let newTitle = this.refs.myTitleArea.value
+        this.props.updateText(pastedText)
+        this.props.updateTitle(newTitle)
+        this.props.updateMode('read')
     }
 
     editText = () => {
-        this.setState(
-            {mode: 'paste'}
-        )
+        this.props.updateMode('paste')
     }
 
     saveText = () => {
         var d = new Date()
         var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
-        this.props.saveText(dateString, this.state.textTitle, this.state.text)
+        this.props.saveText(dateString, this.props.title, this.props.text)
+        this.props.updateMode('saved')
     }
    
     render() {
@@ -58,7 +57,7 @@ class Reader extends React.Component {
         }
         
         const buttonStyles = {
-            display: 'block',
+            display: 'inline-block',
             fontSize: '25px',
             margin: '0 auto',
             marginBottom: '100px',
@@ -70,25 +69,47 @@ class Reader extends React.Component {
             display: 'block'
         }
 
-        if (this.state.mode === 'paste'){
+        const textBoxStyle = {
+            border: '2px solid black',
+            fontSize: 20,
+            marginBottom: '20px',
+            marginTop: '100px',
+            margin: 'auto',
+            display: 'block',
+            width: '60%',
+            textAlign: 'left'
+            
+        }
+
+        const savedMessageStyle = {
+            paddingTop: '50px'
+        }
+
+        if (this.props.mode === 'paste'){
 
         return (
 
             <div id='main-area' style={mainAreaStyles}>
-                <input placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle}></input>
-                <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
+                <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.userTitleInput}></input>
+                <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
                 <button onClick={this.grabText} style={buttonStyles}>Go!</button>
             </div>
 
-        )} else {
+        )} else if (this.props.mode === 'read') {
 
             return (
 
                 <div>
-                   <GrabbedText text={this.state.text} knownWords={this.props}/>
+                    <div style={textBoxStyle}>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords}/>
+                    </div>
                    <button style={buttonStyles} onClick={this.editText}>Edit</button>
                    <button style={buttonStyles} onClick={this.saveText}>Save</button>
                 </div>
+            )
+        } else if (this.props.mode === 'saved') {
+            return (
+            <h2 style={savedMessageStyle}>Saved!</h2>
             )
         }
     }

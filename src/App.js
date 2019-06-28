@@ -17,7 +17,10 @@ class App extends React.Component {
     userAnswer: '',
     sentences: rndSentence(wordList), 
     tabToShow: 'WordList',
-    savedTexts: ''
+    savedTexts: '',
+    text: '',
+    title: '',
+    readerMode: 'paste'
   }
 
   changeToShow = (category) => {
@@ -84,6 +87,32 @@ class App extends React.Component {
     }
   }
 
+  goToReader = (e) => {
+    var textTitle = e.target.id
+    var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
+    var matchingText = matchingTextArray[0].text
+    this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
+    e.preventDefault()
+  }
+
+  updateReaderMode = (mode) => {
+    this.setState(
+      {readerMode: mode}
+    )
+  }
+
+  updateText = (text) => {
+    this.setState(
+      {text: text}
+    )
+  }
+
+  updateTitle = (title) => {
+    this.setState(
+      {title: title}
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -95,8 +124,10 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analayse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText}/>
-          <TextCatalogue savedTexts={this.state.savedTexts}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
+        </Tab>
+        <Tab eventKey='TextCatalogue' title='Saved Texts'>
+          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 
