@@ -15,6 +15,8 @@ class App extends React.Component {
     translationMode : 'fromEng', 
     userAnswer: '',
     sentences: rndSentence(wordList), 
+    wordToSearchFor: '',
+    searchAtStart: false,
 
     tabToShow: 'WordList'
   }
@@ -25,7 +27,6 @@ class App extends React.Component {
       ttShow = ttShow.filter(x => x!==category)
     } else {ttShow.push(category)}
     this.setState({typesToShow: ttShow});
-    //console.log(category, ' was clicked', ttShow)
   }
 
   switchModeHandler = () => {
@@ -45,6 +46,11 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
+  changeSearchWord = (event) => {
+    console.log('was searching for', this.state.wordToSearchFor);
+    this.setState({wordToSearchFor:event.target.value})
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,7 +61,7 @@ class App extends React.Component {
           variant = 'pills'
           fill
         >
-        <Tab eventKey='Reader' title='Analayse text'>
+        <Tab eventKey='Reader' title='Analyse text'>
           <Reader knownWords={this.state.knownWords}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
@@ -63,6 +69,8 @@ class App extends React.Component {
             words={this.state.knownWords} 
             types={this.state.typesToShow}
             changeTypes={this.changeToShow}
+            searchFor={this.state.wordToSearchFor}
+            changeSearch={this.changeSearchWord}
           />          
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>

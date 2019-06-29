@@ -20,7 +20,7 @@ const WordListDisplay = (props) =>  {
             wordList.push(props.words.adjectives[i].english)
         }
     }
-    wordList = wordList.sort().map(x => <li key={x}>{x}</li>)
+    wordList = wordList.filter(x=>x.includes(props.searchFor)).sort().map(x => <li key={x}>{x}</li>);
     
     return (
         <div>
@@ -30,6 +30,7 @@ const WordListDisplay = (props) =>  {
                      <WordListCheckbox 
                        selection={props.types} 
                        click={props.changeTypes}
+                       changeSearch={props.changeSearch}
                      />
                   </Col>
                   <Col>

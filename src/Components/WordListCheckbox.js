@@ -22,7 +22,7 @@ const WordListCheckbox = (props) => {
             </ButtonGroup>
             <Form>
               <Form.Group>
-                <Form.Control type='text' placeholder='search for' />
+                <Form.Control type='text' placeholder='search for' onChange={props.changeSearch} />
               </Form.Group>
               <Form.Group>
                 <Form.Check type='checkbox' label='Must be at start of word' />
