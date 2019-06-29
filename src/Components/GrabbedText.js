@@ -52,23 +52,29 @@ const GrabbedText = (props) => {
             color: 'red'
         }
 
-        let wordArray = props.text.split(/[\s.\s,]+/)
-        let newWordArray = wordArray.map(function (word, index) {
-            word = word.toLowerCase()
+        var splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
+        console.log(splitText)
+
+        let newWordArray = splitText.map(function (word, index) {
+            if (!word.match(/\w+/g)) {
+                return word
+            } else {
+                word = word.toLowerCase()
             
             if (knownNouns.includes(word) || knownDefArticles.includes(word) || knownVerbs.includes(word) || knownAdjectives.includes(word)) {
             
             return (
-                <span key={word+index} style = {knownWordStyle}>{word} </span>
+                <span key={word+index} style = {knownWordStyle}>{word}</span>
             )
 
         } else {
             return (
-                <span key={word+index} style={unknownWordStyle}>{word} </span>
+                <span key={word+index} style={unknownWordStyle}>{word}</span>
             )
         }
-        }
-        )
+    }
+    }
+    )
 
         return (
             <div>
