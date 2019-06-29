@@ -20,6 +20,7 @@ const WordListCheckbox = (props) => {
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
               <Button variant={adjBtn}  onClick={()=>props.click('Adjectives')}>Adjectives</Button>
             </ButtonGroup>
+            <p></p>
             <Form>
               <Form.Group>
                 <Form.Control type='text' placeholder='search for' onChange={props.changeSearch} />
