@@ -51,7 +51,6 @@ class App extends React.Component {
   }
 
   changeStartChecked = (event) => {
-    console.log(event.target.value)
     this.setState({searchFromStart:!this.state.searchFromStart})
   }
 
