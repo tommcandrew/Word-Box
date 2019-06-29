@@ -16,18 +16,13 @@ class App extends React.Component {
     translationMode : 'fromEng', 
     userAnswer: '',
     sentences: rndSentence(wordList), 
-<<<<<<< HEAD
     tabToShow: 'WordList',
     savedTexts: '',
     text: '',
     title: '',
-    readerMode: 'paste'
-=======
+    readerMode: 'paste',
     wordToSearchFor: '',
     searchFromStart: false,
-
-    tabToShow: 'WordList'
->>>>>>> development
   }
 
   changeToShow = (category) => {
@@ -55,7 +50,6 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
-<<<<<<< HEAD
   saveText = (date, title, text) => {
 
     var newTextObj = {
@@ -118,14 +112,13 @@ class App extends React.Component {
     this.setState(
       {title: title}
     )
-=======
+  }
   changeSearchWord = (event) => {
     this.setState({wordToSearchFor:event.target.value})
   }
 
   changeStartChecked = (event) => {
     this.setState({searchFromStart:!this.state.searchFromStart})
->>>>>>> development
   }
 
   render() {
@@ -138,16 +131,11 @@ class App extends React.Component {
           variant = 'pills'
           fill
         >
-<<<<<<< HEAD
         <Tab eventKey='Reader' title='Analayse text'>
           <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
-=======
-        <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords}/>
->>>>>>> development
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 

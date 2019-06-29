@@ -30,7 +30,7 @@ var textsArray = props.savedTexts.map(function(item, index){
         <div key={item.date} style={linkDivStyle}>
             <ul style={listStyle}>
                 <li>{item.date}</li>
-                <li><a style={linkStyle} href='' onClick={props.goToReader} id={item.title}>{item.title}</a></li>
+                <li><a style={linkStyle} href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></li>
             </ul>
         </div>
     )
