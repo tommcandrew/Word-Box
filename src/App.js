@@ -16,7 +16,7 @@ class App extends React.Component {
     userAnswer: '',
     sentences: rndSentence(wordList), 
     wordToSearchFor: '',
-    searchAtStart: false,
+    searchFromStart: false,
 
     tabToShow: 'WordList'
   }
@@ -47,8 +47,12 @@ class App extends React.Component {
   }
 
   changeSearchWord = (event) => {
-    console.log('was searching for', this.state.wordToSearchFor);
     this.setState({wordToSearchFor:event.target.value})
+  }
+
+  changeStartChecked = (event) => {
+    console.log(event.target.value)
+    this.setState({searchFromStart:!this.state.searchFromStart})
   }
 
   render() {
@@ -71,6 +75,8 @@ class App extends React.Component {
             changeTypes={this.changeToShow}
             searchFor={this.state.wordToSearchFor}
             changeSearch={this.changeSearchWord}
+            searchFromStart={this.state.searchFromStart}
+            changeCheckBox={this.changeStartChecked}
           />          
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>
