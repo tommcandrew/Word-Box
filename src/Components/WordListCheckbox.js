@@ -1,6 +1,6 @@
 import React from 'react';
 import './Wordlist.css';
-import {Button, ButtonGroup} from  'react-bootstrap';
+import {Button, ButtonGroup, Form} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListCheckbox = (props) => {
@@ -20,6 +20,14 @@ const WordListCheckbox = (props) => {
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
               <Button variant={adjBtn}  onClick={()=>props.click('Adjectives')}>Adjectives</Button>
             </ButtonGroup>
+            <Form>
+              <Form.Group>
+                <Form.Control type='text' placeholder='search for' />
+              </Form.Group>
+              <Form.Group>
+                <Form.Check type='checkbox' label='Must be at start of word' />
+              </Form.Group>
+            </Form>
         </div>
     )
 }
