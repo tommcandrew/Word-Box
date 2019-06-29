@@ -1,8 +1,10 @@
 import React from 'react';
 import WordListCheckbox from './WordListCheckbox';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
-    var wordList = [];
+    var wordList = ['the'];
     if (props.types.includes('Nouns')) {
         for (var i in props.words.nouns) {
             wordList.push(props.words.nouns[i].english)
@@ -18,16 +20,27 @@ const WordListDisplay = (props) =>  {
             wordList.push(props.words.adjectives[i].english)
         }
     }
-    wordList = wordList.sort().map(x => <li key={x}>{x}</li>)
+    wordList = wordList.filter(x=>props.searchFromStart?
+        x.indexOf(props.searchFor)===0 :x.includes(props.searchFor))
+       .sort().map(x => <span key={x}>{x}<br /></span>);
     
     return (
         <div>
-            <h1>Words you know</h1>
-            <WordListCheckbox 
-              selection={props.types} 
-              click={props.changeTypes}
-            />
-            <ul>{wordList}</ul>
+            <Container>
+                <Row>
+                  <Col>
+                     <WordListCheckbox 
+                       selection={props.types} 
+                       click={props.changeTypes}
+                       changeSearch={props.changeSearch}
+                       changeCheckBox={props.changeCheckBox}
+                     />
+                  </Col>
+                  <Col>
+                     <div id="wordList"><p>{wordList}</p></div>
+                  </Col>
+                </Row>
+            </Container>
         </div>
     )
 }
