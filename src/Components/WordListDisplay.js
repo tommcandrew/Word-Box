@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
-    var wordList = [];
+    var wordList = ['the'];
     if (props.types.includes('Nouns')) {
         for (var i in props.words.nouns) {
             wordList.push(props.words.nouns[i].english)
