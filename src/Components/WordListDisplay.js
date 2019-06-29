@@ -22,7 +22,7 @@ const WordListDisplay = (props) =>  {
     }
     wordList = wordList.filter(x=>props.searchFromStart?
         x.indexOf(props.searchFor)===0 :x.includes(props.searchFor))
-       .sort().map(x => <li key={x}>{x}</li>);
+       .sort().map(x => <span key={x}>{x}<br /></span>);
     
     return (
         <div>
@@ -37,7 +37,7 @@ const WordListDisplay = (props) =>  {
                      />
                   </Col>
                   <Col>
-                     <div id="wordList"><ul>{wordList}</ul></div>
+                     <div id="wordList"><p>{wordList}</p></div>
                   </Col>
                 </Row>
             </Container>
