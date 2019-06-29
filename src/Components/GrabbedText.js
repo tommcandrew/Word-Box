@@ -29,6 +29,18 @@ const GrabbedText = (props) => {
     knownDefArticles.push(props.knownWords.defArticle.foreign.female.toLowerCase())
     knownDefArticles.push(props.knownWords.defArticle.foreign.neuter.toLowerCase())
 
+    let allKnownWords = []
+
+    allKnownWords = allKnownWords.concat(knownNouns, knownVerbs, knownAdjectives, knownDefArticles)
+
+    let allKnownWordsUpperFirstChar = allKnownWords.map(function(word, index) {
+        return word.charAt(0).toUpperCase() + word.slice(1)
+    })
+
+    let allKnownWordsUpperAll = allKnownWords.map(function(word, index) {
+        return word.toUpperCase()
+    })
+
         const divStyle = {
             fontSize: 20,
             marginBottom: '20px',
@@ -53,15 +65,13 @@ const GrabbedText = (props) => {
         }
 
         var splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
-        console.log(splitText)
 
         let newWordArray = splitText.map(function (word, index) {
             if (!word.match(/\w+/g)) {
                 return word
             } else {
-                word = word.toLowerCase()
-            
-            if (knownNouns.includes(word) || knownDefArticles.includes(word) || knownVerbs.includes(word) || knownAdjectives.includes(word)) {
+                
+            if (allKnownWords.includes(word) || allKnownWordsUpperFirstChar.includes(word) || allKnownWordsUpperAll.includes(word)) {
             
             return (
                 <span key={word+index} style = {knownWordStyle}>{word}</span>
