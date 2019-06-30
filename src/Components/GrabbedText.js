@@ -94,7 +94,7 @@ const GrabbedText = (props) => {
 
         return (
             <div>
-                <h2 style={titleStyle}>{grabbedTitle}</h2>
+                <input type='text' style={titleStyle} value={grabbedTitle}></input>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
             </div>
         )
