@@ -2,7 +2,6 @@ import React from 'react'
 
 class GrabbedText extends React.Component {
     constructor(props) {
-        console.log('constructor, props.title: ' + props.title)
         super(props)
         this.state = {
             grabbedTitle: 'This is the default title'
@@ -17,6 +16,17 @@ class GrabbedText extends React.Component {
         }
     }
 
+    editText = () => {
+        this.props.updateMode('paste')
+    }
+
+    saveText = () => {
+        this.props.updateTitle(this.state.grabbedTitle)
+        var d = new Date()
+        var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
+        this.props.saveText(dateString, this.state.grabbedTitle, this.props.text)
+        this.props.updateMode('saved')
+    }
 
     render() {
 
@@ -74,6 +84,15 @@ class GrabbedText extends React.Component {
             paddingTop: 20
         }
 
+        const buttonStyles = {
+            display: 'inline-block',
+            fontSize: '25px',
+            margin: '0 auto',
+            marginBottom: '100px',
+            marginTop: '20px',
+            width: '100px'
+        }
+
         const knownWordStyle = {
             color: 'green'
         }
@@ -108,6 +127,8 @@ class GrabbedText extends React.Component {
             <div>
                 <input type='text' style={titleStyle} value={this.state.grabbedTitle}></input>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
+                <button style={buttonStyles} onClick={this.editText}>Edit</button>
+                <button style={buttonStyles} onClick={this.saveText}>Save</button>
             </div>
         )
     }

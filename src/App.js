@@ -108,9 +108,9 @@ class App extends React.Component {
     )
   }
 
-  updateTitle = (title) => {
+  updateTitle = (updatedTitle) => {
     this.setState(
-      {title: title}
+      {title: updatedTitle}
     )
   }
   changeSearchWord = (event) => {
