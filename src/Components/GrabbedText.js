@@ -1,39 +1,47 @@
 import React from 'react'
 
-const GrabbedText = (props) => {
+class GrabbedText extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
 
-    if (props.title !== '') {
-        var grabbedTitle = props.title
+        }
+    }
+
+    render() {
+
+    if (this.props.title !== '') {
+        var grabbedTitle = this.props.title
     } else {
         var grabbedTitle = 'This is the default title'
     }
 
     let knownNouns = []
-    for (let i = 0; i < props.knownWords.nouns.length; i++) {
-        let foreignNoun = props.knownWords.nouns[i].foreign
+    for (let i = 0; i < this.props.knownWords.nouns.length; i++) {
+        let foreignNoun = this.props.knownWords.nouns[i].foreign
         knownNouns.push(foreignNoun)
     }
 
     let knownVerbs = []
-    for (let i = 0; i < props.knownWords.verbs.length; i++) {
-        let foreignInfinitive = props.knownWords.verbs[i].infinitive
+    for (let i = 0; i < this.props.knownWords.verbs.length; i++) {
+        let foreignInfinitive = this.props.knownWords.verbs[i].infinitive
         knownVerbs.push(foreignInfinitive)
-        let presentForeign = props.knownWords.verbs[i].presentForeign
+        let presentForeign = this.props.knownWords.verbs[i].presentForeign
         knownVerbs = knownVerbs.concat(presentForeign)
     }
 
     let knownAdjectives = []
-    for (let i = 0; i < props.knownWords.adjectives.length; i++) {
-        let foreignAdjectiveFemale = props.knownWords.adjectives[i].foreign.female
-        let foreignAdjectiveMale = props.knownWords.adjectives[i].foreign.male
-        let foreignAdjectiveNeuter = props.knownWords.adjectives[i].foreign.neuter
+    for (let i = 0; i < this.props.knownWords.adjectives.length; i++) {
+        let foreignAdjectiveFemale = this.props.knownWords.adjectives[i].foreign.female
+        let foreignAdjectiveMale = this.props.knownWords.adjectives[i].foreign.male
+        let foreignAdjectiveNeuter = this.props.knownWords.adjectives[i].foreign.neuter
         knownAdjectives.push(foreignAdjectiveFemale, foreignAdjectiveMale, foreignAdjectiveNeuter)
     }
 
     let knownDefArticles = []
-    knownDefArticles.push(props.knownWords.defArticle.foreign.male.toLowerCase())
-    knownDefArticles.push(props.knownWords.defArticle.foreign.female.toLowerCase())
-    knownDefArticles.push(props.knownWords.defArticle.foreign.neuter.toLowerCase())
+    knownDefArticles.push(this.props.knownWords.defArticle.foreign.male.toLowerCase())
+    knownDefArticles.push(this.props.knownWords.defArticle.foreign.female.toLowerCase())
+    knownDefArticles.push(this.props.knownWords.defArticle.foreign.neuter.toLowerCase())
 
     let allKnownWords = []
 
@@ -70,7 +78,7 @@ const GrabbedText = (props) => {
             color: 'red'
         }
 
-        var splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
+        var splitText = this.props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         let newWordArray = splitText.map(function (word, index) {
             if (!word.match(/\w+/g)) {
@@ -98,6 +106,7 @@ const GrabbedText = (props) => {
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
             </div>
         )
+    }
 }
 
 export default GrabbedText
