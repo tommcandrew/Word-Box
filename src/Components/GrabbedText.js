@@ -4,8 +4,15 @@ class GrabbedText extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            newTitleInput: '',
             grabbedTitle: 'This is the default title'
         }
+    }
+
+    changeDefaultTitle = (event) => {
+        this.setState(
+            {grabbedTitle: event.target.value}
+        )
     }
 
     componentDidMount = () => {
@@ -125,7 +132,7 @@ class GrabbedText extends React.Component {
 
         return (
             <div>
-                <input type='text' style={titleStyle} value={this.state.grabbedTitle}></input>
+                <input type='text' style={titleStyle} value={this.state.grabbedTitle} onChange={this.changeDefaultTitle}></input>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
                 <button style={buttonStyles} onClick={this.editText}>Edit</button>
                 <button style={buttonStyles} onClick={this.saveText}>Save</button>
