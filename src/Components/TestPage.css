@@ -1,0 +1,30 @@
+#chooseMode {
+    margin: auto;
+    width: 70vmin;
+}
+
+#question {
+    background: gray;
+    color: white;
+    font-size: 20px;
+    margin: auto;
+    width: 70vmin;
+    border: 2px solid black;
+    border-radius: 25%;
+}
+
+#answer {
+    background: lightgray;
+    font-size: 20px;
+    margin: auto;
+    width: 70vmin;
+    border: 2px solid black;
+    border-radius: 25%;
+}
+
+.goodWord {
+    color:green;
+}
+.badWord {
+    color:red;
+}
