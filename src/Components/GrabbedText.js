@@ -20,6 +20,13 @@ class GrabbedText extends React.Component {
             this.setState(
                 {grabbedTitle: this.props.title}
             )
+        } else {
+            var splitUpText = this.props.text.split(' ')
+            var firstFiveWords = splitUpText.slice(0, 6)
+            var defaultTitle = firstFiveWords[0] + ' ' + firstFiveWords[1] + ' ' + firstFiveWords[2] + ' ' + firstFiveWords[3] + ' ' + firstFiveWords[4] + ' ' + firstFiveWords[5] + '...'
+            this.setState(
+                {grabbedTitle: defaultTitle}
+            ) 
         }
     }
 
@@ -88,7 +95,8 @@ class GrabbedText extends React.Component {
         const titleStyle = {
             fontSize: 30,
             textAlign: 'center',
-            paddingTop: 20
+            paddingTop: 20,
+            width: '100%'
         }
 
         const buttonStyles = {
