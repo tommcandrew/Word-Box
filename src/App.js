@@ -1,5 +1,6 @@
 import React from 'react';
 import Reader from './Components/Reader';
+import TextCatalogue from './Components/TextCatalogue'
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
@@ -15,10 +16,13 @@ class App extends React.Component {
     translationMode : 'fromEng', 
     userAnswer: '',
     sentences: rndSentence(wordList), 
+    tabToShow: 'WordList',
+    savedTexts: '',
+    text: '',
+    title: '',
+    readerMode: 'paste',
     wordToSearchFor: '',
     searchFromStart: false,
-
-    tabToShow: 'WordList'
   }
 
   changeToShow = (category) => {
@@ -46,6 +50,69 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
+  saveText = (date, title, text) => {
+
+    var newTextObj = {
+      date: date,
+      title: title,
+      text: text
+    }
+  
+    this.saveToLocalStorage(newTextObj)
+  }
+
+  saveToLocalStorage = (textObj) => {
+    let savedTexts
+  
+    if (localStorage.getItem('savedTexts') != null) {
+      savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      savedTexts.push(textObj);
+    } else {
+      savedTexts = []
+      savedTexts.push(textObj);
+    }
+    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+    this.componentWillMount()
+  }
+
+  componentWillMount = () => {
+    if (localStorage.getItem('savedTexts') != null) {
+      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      this.setState(
+        {savedTexts: savedTexts}
+      )
+    } else {
+        this.setState(
+          {savedTexts: ''}
+        )
+    }
+  }
+
+  goToReader = (e) => {
+    var textTitle = e.target.id
+    var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
+    var matchingText = matchingTextArray[0].text
+    this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
+    e.preventDefault()
+  }
+
+  updateReaderMode = (mode) => {
+    this.setState(
+      {readerMode: mode}
+    )
+  }
+
+  updateText = (text) => {
+    this.setState(
+      {text: text}
+    )
+  }
+
+  updateTitle = (title) => {
+    this.setState(
+      {title: title}
+    )
+  }
   changeSearchWord = (event) => {
     this.setState({wordToSearchFor:event.target.value})
   }
@@ -64,8 +131,11 @@ class App extends React.Component {
           variant = 'pills'
           fill
         >
-        <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords}/>
+        <Tab eventKey='Reader' title='Analayse text'>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
+        </Tab>
+        <Tab eventKey='TextCatalogue' title='Saved Texts'>
+          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 
