@@ -131,7 +131,7 @@ class App extends React.Component {
           variant = 'pills'
           fill
         >
-        <Tab eventKey='Reader' title='Analayse text'>
+        <Tab eventKey='Reader' title='Analyse text'>
           <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
