@@ -1,6 +1,7 @@
 {
   "name": "v9-geckos-team-09",
   "version": "0.1.0",
+  "homepage": "https://chingu-voyages.github.io/v9-geckos-team-09/",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -10,6 +11,8 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
