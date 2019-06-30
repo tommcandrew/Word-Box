@@ -35,11 +35,16 @@ class GrabbedText extends React.Component {
     }
 
     saveText = () => {
+        if (this.state.grabbedTitle === '') {
+            alert('Please add a title')
+            return
+        } else {
         this.props.updateTitle(this.state.grabbedTitle)
         var d = new Date()
         var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
         this.props.saveText(dateString, this.state.grabbedTitle, this.props.text)
         this.props.updateMode('saved')
+    }
     }
 
     render() {
