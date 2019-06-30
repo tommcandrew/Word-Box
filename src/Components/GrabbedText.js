@@ -2,19 +2,23 @@ import React from 'react'
 
 class GrabbedText extends React.Component {
     constructor(props) {
+        console.log('constructor, props.title: ' + props.title)
         super(props)
         this.state = {
-
+            grabbedTitle: 'This is the default title'
         }
     }
 
-    render() {
-
-    if (this.props.title !== '') {
-        var grabbedTitle = this.props.title
-    } else {
-        var grabbedTitle = 'This is the default title'
+    componentDidMount = () => {
+        if (this.props.title !== '') {
+            this.setState(
+                {grabbedTitle: this.props.title}
+            )
+        }
     }
+
+
+    render() {
 
     let knownNouns = []
     for (let i = 0; i < this.props.knownWords.nouns.length; i++) {
@@ -102,7 +106,7 @@ class GrabbedText extends React.Component {
 
         return (
             <div>
-                <input type='text' style={titleStyle} value={grabbedTitle}></input>
+                <input type='text' style={titleStyle} value={this.state.grabbedTitle}></input>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
             </div>
         )
