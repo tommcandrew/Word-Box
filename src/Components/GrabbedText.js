@@ -16,19 +16,40 @@ class GrabbedText extends React.Component {
     }
 
     componentDidMount = () => {
+
         if (this.props.title !== '') {
             this.setState(
                 {grabbedTitle: this.props.title}
             )
         } else {
+
             var splitUpText = this.props.text.split(' ')
-            var firstFiveWords = splitUpText.slice(0, 6)
-            var defaultTitle = firstFiveWords[0] + ' ' + firstFiveWords[1] + ' ' + firstFiveWords[2] + ' ' + firstFiveWords[3] + ' ' + firstFiveWords[4] + ' ' + firstFiveWords[5] + '...'
-            this.setState(
-                {grabbedTitle: defaultTitle}
-            ) 
-        }
+
+            if (splitUpText.length < 6) {
+                var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+                var defaultTitle = ''
+                for (var i = 0; i < splitUpText.length; i++){
+                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                    }
+                    defaultTitle = defaultTitle.slice(0, -1)
+                    defaultTitle = defaultTitle + '...'
+                this.setState(
+                    {grabbedTitle: defaultTitle}
+                    ) 
+                } else {
+                    var firstFiveWords = splitUpText.slice(0, 6) 
+                    var defaultTitle = ''
+                    for (var i = 0; i < 6; i++ ){
+                        defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                    }
+                    defaultTitle = defaultTitle.slice(0, -1)
+                    defaultTitle = defaultTitle + '...'
+                    this.setState(
+                        {grabbedTitle: defaultTitle}
+                        ) 
+                }
     }
+}
 
     editText = () => {
         this.props.updateMode('paste')
