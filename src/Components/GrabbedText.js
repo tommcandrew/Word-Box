@@ -140,7 +140,7 @@ class GrabbedText extends React.Component {
 
         return (
             <div>
-                <input type='text' style={titleStyle} value={this.state.grabbedTitle} onChange={this.changeDefaultTitle}></input>
+                <input type='text' autoFocus style={titleStyle} value={this.state.grabbedTitle} onChange={this.changeDefaultTitle}></input>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
                 <button style={buttonStyles} onClick={this.editText}>Edit</button>
                 <button style={buttonStyles} onClick={this.saveText}>Save</button>
