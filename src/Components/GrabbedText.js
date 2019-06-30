@@ -2,6 +2,12 @@ import React from 'react'
 
 const GrabbedText = (props) => {
 
+    if (props.title !== '') {
+        var grabbedTitle = props.title
+    } else {
+        var grabbedTitle = 'This is the default title'
+    }
+
     let knownNouns = []
     for (let i = 0; i < props.knownWords.nouns.length; i++) {
         let foreignNoun = props.knownWords.nouns[i].foreign
@@ -88,7 +94,7 @@ const GrabbedText = (props) => {
 
         return (
             <div>
-                <h2 style={titleStyle}>{props.title}</h2>
+                <h2 style={titleStyle}>{grabbedTitle}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
             </div>
         )
