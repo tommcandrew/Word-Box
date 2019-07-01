@@ -1,5 +1,7 @@
 import React from 'react';
-import './TestPage.css'
+import './TestPage.css';
+import {Button, Form} from  'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const TestPage = (props) => {  
     
@@ -27,7 +29,7 @@ const TestPage = (props) => {
         <p id='question'>{questionSentence}</p>
         <div id='answer'>{markedAns}</div>
         <input type='text' value={props.userAns} onChange={props.changeAns} />
-        <button onClick={props.switchModeClick}>Translate the other way</button>
+        <Button variant='primary' onClick={props.switchModeClick}>Translate the other way</Button>
       </div>
   )
 }
