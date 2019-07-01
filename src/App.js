@@ -22,7 +22,7 @@ class App extends React.Component {
     title: '',
     readerMode: 'paste',
     wordToSearchFor: '',
-    searchFromStart: false,
+    searchFromStart: false
   }
 
   changeToShow = (category) => {
@@ -61,6 +61,15 @@ class App extends React.Component {
     this.saveToLocalStorage(newTextObj)
   }
 
+  saveEditedText = (editedTitle, editedText) => {
+    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    let retrievedSavedTextObject = savedTexts.filter(text => text.title === this.state.title)
+    retrievedSavedTextObject.title = editedTitle
+    retrievedSavedTextObject.text = editedText
+    savedTexts.push(retrievedSavedTextObject)
+    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+  }
+
   saveToLocalStorage = (textObj) => {
     let savedTexts
   
@@ -93,8 +102,6 @@ class App extends React.Component {
     var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
     var matchingText = matchingTextArray[0].text
     this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
-    var myText = this.state.text
-    console.log(myText)
     e.preventDefault()
   }
 
@@ -134,7 +141,7 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>

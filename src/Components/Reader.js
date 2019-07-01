@@ -14,8 +14,21 @@ class Reader extends React.Component {
         }
     }
 
-    editText = () => {
-        this.props.updateMode('paste')
+   componentWillReceiveProps = (nextProps) => {
+       this.setState(
+           {
+               userTextInput: nextProps.text,
+               userTitleInput: nextProps.title
+        }
+       )
+   }
+
+   saveEditedText = () => {
+       this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
+   }
+
+    editSavedText = () => {
+        this.props.updateMode('edit-saved')
     }
 
     handleChangeText = (event) => {
@@ -109,8 +122,18 @@ class Reader extends React.Component {
                 <div>
                     <h2>{this.props.title}</h2>
                     <div style={textBoxStyle}>{this.props.text}</div>
-                    <button onClick={this.editText}>Edit</button>
+                    <button onClick={this.editSavedText}>Edit</button>
                 </div>
+            )
+
+        } else if (this.props.mode === 'edit-saved'){
+
+            return (
+                <div style={mainAreaStyles}>
+                <input style={textAreaStyles} value={this.state.userTitleInput} onChange={this.handleChangeTitle}></input>
+                <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
+                <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
+            </div>
             )
 
         } else if (this.props.mode === 'saved') {
