@@ -26,6 +26,10 @@ class Reader extends React.Component {
         )
     }
 
+    updateTitle = (updatedTitle) => {
+        this.props.updateTitle(updatedTitle)
+    }
+
     grabText = () => {
 
         let pastedText = this.refs.myTextArea.value
@@ -33,17 +37,6 @@ class Reader extends React.Component {
         this.props.updateText(pastedText)
         this.props.updateTitle(newTitle)
         this.props.updateMode('read')
-    }
-
-    editText = () => {
-        this.props.updateMode('paste')
-    }
-
-    saveText = () => {
-        var d = new Date()
-        var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
-        this.props.saveText(dateString, this.props.title, this.props.text)
-        this.props.updateMode('saved')
     }
    
     render() {
@@ -54,15 +47,6 @@ class Reader extends React.Component {
             margin: 'auto',
             display: 'block',
             width: '60%'
-        }
-        
-        const buttonStyles = {
-            display: 'inline-block',
-            fontSize: '25px',
-            margin: '0 auto',
-            marginBottom: '100px',
-            marginTop: '20px',
-            width: '100px'
         }
         
         const mainAreaStyles = {
@@ -78,7 +62,15 @@ class Reader extends React.Component {
             display: 'block',
             width: '60%',
             textAlign: 'left'
-            
+        }
+
+        const buttonStyles = {
+            display: 'inline-block',
+            fontSize: '25px',
+            margin: '0 auto',
+            marginBottom: '100px',
+            marginTop: '20px',
+            width: '100px'
         }
 
         const savedMessageStyle = {
@@ -101,10 +93,9 @@ class Reader extends React.Component {
 
                 <div>
                     <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords}/>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText}/>
                     </div>
-                   <button style={buttonStyles} onClick={this.editText}>Edit</button>
-                   <button style={buttonStyles} onClick={this.saveText}>Save</button>
+                   
                 </div>
             )
         } else if (this.props.mode === 'saved') {

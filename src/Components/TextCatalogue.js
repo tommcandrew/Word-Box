@@ -27,9 +27,9 @@ if (props.savedTexts !== '') {
 
 var textsArray = props.savedTexts.map(function(item, index){
     return (
-        <div key={item.date} style={linkDivStyle}>
+        <div key={item.timeAndDate} style={linkDivStyle}>
             <ul style={listStyle}>
-                <li>{item.date}</li>
+                <li>{item.timeAndDate}</li>
                 <li><a style={linkStyle} href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></li>
             </ul>
         </div>
