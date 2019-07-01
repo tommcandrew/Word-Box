@@ -16,7 +16,7 @@ const TestPage = (props) => {
   }   
 
   var answerWords = answerSentence.toLowerCase().split(' ');
-  var markedAns = props.userAns === '' ? <span>Give an Answer</span> 
+  var markedAns = props.userAns === '' ? <span>I'll mark your answer here</span> 
       : props.userAns.split(' ').map((x, i) => {
         if (x.toLowerCase() === answerWords[i]) {
             return <span className='goodWord' key={i}>{x+' '}</span>
@@ -39,7 +39,11 @@ const TestPage = (props) => {
           </Form.Group>
         </Form>
         <div id='answer'>{markedAns}</div>
+        <p></p>
         <Button variant='primary' onClick={props.switchModeClick}>Translate the other way</Button>
+        <p>If your translation matches what I'm thinking of, then your words will be green. 
+          If a word is red, then that is not what I am thinking of. 
+          If you get the complete sentence, I will reward you with a new question!</p>
       </div>
   )
 }
