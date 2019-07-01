@@ -29,11 +29,15 @@ const TestPage = (props) => {
       <div id='testpage'>
         <h2>Translate the following</h2>
         <p id='question'>{questionSentence}</p>
-        <input 
-          type='text' 
-          placeholder={placeHolderText}
-          value={props.userAns} 
-          onChange={props.changeAns} />
+        <Form>
+          <Form.Group>
+            <Form.Control 
+              type='text' 
+              placeholder={placeHolderText}
+              value={props.userAns} 
+              onChange={props.changeAns} />
+          </Form.Group>
+        </Form>
         <div id='answer'>{markedAns}</div>
         <Button variant='primary' onClick={props.switchModeClick}>Translate the other way</Button>
       </div>
