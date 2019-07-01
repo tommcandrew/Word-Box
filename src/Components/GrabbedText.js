@@ -61,9 +61,24 @@ class GrabbedText extends React.Component {
             return
         } else {
         this.props.updateTitle(this.state.grabbedTitle)
+
         var d = new Date()
-        var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
-        this.props.saveText(dateString, this.state.grabbedTitle, this.props.text)
+        var fullTime = d.toTimeString()
+        fullTime = fullTime.split(' ')[0]
+
+        var dd = d.getDate()
+        var mm = d.getMonth() + 1
+        var yy = d.getFullYear().toString().substr(-2)
+        if (dd < 10) {
+        dd = '0' + dd 
+        }
+        if (mm < 10) {
+        mm = '0' + mm
+        }
+        var fullDate = dd + '/' + mm + '/' + yy
+        var timeAndDate = fullTime + ' ' + fullDate
+
+        this.props.saveText(timeAndDate, this.state.grabbedTitle, this.props.text)
         this.props.updateMode('saved')
     }
     }

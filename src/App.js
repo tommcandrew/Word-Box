@@ -50,10 +50,10 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
-  saveText = (date, title, text) => {
+  saveText = (timeAndDate, title, text) => {
 
     var newTextObj = {
-      date: date,
+      timeAndDate: timeAndDate,
       title: title,
       text: text
     }
