@@ -28,7 +28,7 @@ class GrabbedText extends React.Component {
             if (splitUpText.length < 6) {
                 var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
                 var defaultTitle = ''
-                for (var i = 0; i < splitUpText.length; i++){
+                for (let i = 0; i < splitUpText.length; i++){
                     defaultTitle = defaultTitle + firstFiveWords[i] + ' '
                     }
                     defaultTitle = defaultTitle.slice(0, -1)
@@ -37,9 +37,9 @@ class GrabbedText extends React.Component {
                     {grabbedTitle: defaultTitle}
                     ) 
                 } else {
-                    var firstFiveWords = splitUpText.slice(0, 6) 
-                    var defaultTitle = ''
-                    for (var i = 0; i < 6; i++ ){
+                    firstFiveWords = splitUpText.slice(0, 6) 
+                    defaultTitle = ''
+                    for (let i = 0; i < 6; i++ ){
                         defaultTitle = defaultTitle + firstFiveWords[i] + ' '
                     }
                     defaultTitle = defaultTitle.slice(0, -1)
