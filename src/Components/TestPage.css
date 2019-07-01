@@ -1,6 +1,6 @@
 #chooseMode {
     margin: auto;
-    width: 70vmin;
+    width: 90vmin;
 }
 
 #question {
@@ -8,7 +8,7 @@
     color: white;
     font-size: 20px;
     margin: auto;
-    width: 70vmin;
+    width: 80vmin;
     border: 2px solid black;
     border-radius: 25%;
 }
@@ -17,7 +17,7 @@
     background: lightgray;
     font-size: 20px;
     margin: auto;
-    width: 70vmin;
+    width: 80vmin;
     border: 2px solid black;
     border-radius: 25%;
 }
