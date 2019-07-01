@@ -36,7 +36,7 @@ class Reader extends React.Component {
         let newTitle = this.refs.myTitleArea.value
         this.props.updateText(pastedText)
         this.props.updateTitle(newTitle)
-        this.props.updateMode('read')
+        this.props.updateMode('grabbed')
     }
    
     render() {
@@ -87,7 +87,7 @@ class Reader extends React.Component {
                 <button onClick={this.grabText} style={buttonStyles}>Go!</button>
             </div>
 
-        )} else if (this.props.mode === 'read') {
+        )} else if (this.props.mode === 'grabbed') {
 
             return (
 

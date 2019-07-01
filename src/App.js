@@ -92,7 +92,7 @@ class App extends React.Component {
     var textTitle = e.target.id
     var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
     var matchingText = matchingTextArray[0].text
-    this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
+    this.setState({tabToShow: 'Reader', readerMode: 'grabbed', text: matchingText, title: textTitle})
     e.preventDefault()
   }
 
