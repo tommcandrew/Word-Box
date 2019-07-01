@@ -150,7 +150,7 @@ class App extends React.Component {
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>
           <TestPage 
-            words={this.state.knownWords}
+            language={this.state.knownWords.foreignLang}
             transMode={this.state.translationMode}
             switchModeClick={this.switchModeHandler}
             userAns={this.state.userAnswer}

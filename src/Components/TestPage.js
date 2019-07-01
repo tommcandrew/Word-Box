@@ -8,9 +8,11 @@ const TestPage = (props) => {
   if (props.transMode === 'fromEng') {
       var questionSentence = props.testQ.english;
       var answerSentence = props.testQ.foreign;
+      var placeHolderText = 'Provide the '+props.language+' translation';
     } else {
         questionSentence = props.testQ.foreign;
         answerSentence = props.testQ.english;
+        placeHolderText = 'Provide the English translation';
   }   
 
   var answerWords = answerSentence.toLowerCase().split(' ');
@@ -27,8 +29,12 @@ const TestPage = (props) => {
       <div id='testpage'>
         <h2>Translate the following</h2>
         <p id='question'>{questionSentence}</p>
+        <input 
+          type='text' 
+          placeholder={placeHolderText}
+          value={props.userAns} 
+          onChange={props.changeAns} />
         <div id='answer'>{markedAns}</div>
-        <input type='text' value={props.userAns} onChange={props.changeAns} />
         <Button variant='primary' onClick={props.switchModeClick}>Translate the other way</Button>
       </div>
   )
