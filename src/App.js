@@ -16,7 +16,7 @@ class App extends React.Component {
     translationMode : 'fromEng', 
     userAnswer: '',
     sentences: rndSentence(wordList), 
-    tabToShow: 'WordList',
+    tabToShow: 'testPage',
     savedTexts: '',
     text: '',
     title: '',
