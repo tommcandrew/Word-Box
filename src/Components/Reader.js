@@ -14,6 +14,10 @@ class Reader extends React.Component {
         }
     }
 
+    editText = () => {
+        this.props.updateMode('paste')
+    }
+
     handleChangeText = (event) => {
         this.setState(
             {userTextInput: event.target.value}
@@ -59,6 +63,7 @@ class Reader extends React.Component {
             marginBottom: '20px',
             marginTop: '100px',
             margin: 'auto',
+            padding: 20,
             display: 'block',
             width: '60%',
             textAlign: 'left'
@@ -98,9 +103,22 @@ class Reader extends React.Component {
                    
                 </div>
             )
-        } else if (this.props.mode === 'saved') {
+        } else if (this.props.mode === 'read'){
+
             return (
+                <div>
+                    <h2>{this.props.title}</h2>
+                    <div style={textBoxStyle}>{this.props.text}</div>
+                    <button onClick={this.editText}>Edit</button>
+                </div>
+            )
+
+        } else if (this.props.mode === 'saved') {
+            
+            return (
+
             <h2 style={savedMessageStyle}>Saved!</h2>
+
             )
         }
     }
