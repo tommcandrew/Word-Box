@@ -62,12 +62,15 @@ class App extends React.Component {
   }
 
   saveEditedText = (editedTitle, editedText) => {
-    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-    let retrievedSavedTextObject = savedTexts.filter(text => text.title === this.state.title)
-    retrievedSavedTextObject.title = editedTitle
-    retrievedSavedTextObject.text = editedText
-    savedTexts.push(retrievedSavedTextObject)
-    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+    var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    for (let i = 0; i < savedTexts.length; i++) {
+      if (savedTexts[i].title === this.state.title) {
+        savedTexts[i].title = editedTitle
+        savedTexts[i].text = editedText
+        localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+        break
+      } 
+    }
   }
 
   saveToLocalStorage = (textObj) => {
