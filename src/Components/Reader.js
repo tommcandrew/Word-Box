@@ -25,6 +25,7 @@ class Reader extends React.Component {
 
    saveEditedText = () => {
        this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
+       this.props.updateMode('saved')
    }
 
     editSavedText = () => {

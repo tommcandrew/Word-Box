@@ -71,6 +71,7 @@ class App extends React.Component {
         break
       } 
     }
+    this.componentWillMount()
   }
 
   saveToLocalStorage = (textObj) => {
