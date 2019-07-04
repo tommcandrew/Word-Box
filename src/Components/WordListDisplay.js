@@ -21,7 +21,8 @@ const WordListDisplay = (props) =>  {
         }
     }
     wordList = wordList.filter(x=>props.searchFromStart?
-        x.indexOf(props.searchFor)===0 :x.includes(props.searchFor))
+        x.toLocaleLowerCase().indexOf(props.searchFor.toLowerCase())===0 
+        : x.toLowerCase().includes(props.searchFor.toLowerCase()))
        .sort().map(x => <span key={x}>{x}<br /></span>);
     
     return (
