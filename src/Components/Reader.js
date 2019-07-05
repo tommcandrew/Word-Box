@@ -4,7 +4,6 @@ import GrabbedText from './GrabbedText'
 class Reader extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             mode: this.props.mode,
             userTitleInput: '',
@@ -14,41 +13,41 @@ class Reader extends React.Component {
         }
     }
 
-   componentWillReceiveProps = (nextProps) => {
-       this.setState(
-           {
-               userTextInput: nextProps.text,
-               userTitleInput: nextProps.title
-        }
-       )
-   }
+// componentWillReceiveProps = (nextProps) => {
+//     debugger;
+//     this.setState(
+//     {
+//     userTextInput: nextProps.text,
+//     userTitleInput: nextProps.title
+//     }
+//     )
+//    }
 
- 
 
-    updateTitle = (updatedTitle) => {
-        this.props.updateTitle(updatedTitle)
+// grabText = () => {
+
+//     let pastedText = this.refs.myTextArea.value
+//     let newTitle = this.refs.myTitleArea.value
+//     this.props.updateText(pastedText)
+//     this.props.updateTitle(newTitle)
+//     this.props.updateMode('grabbed')
+// }
+
+    addNewText = () => {
+        this.props.updateMode('paste')
+        this.props.clearStateTextInfo()
     }
-
-    grabText = () => {
-
-        let pastedText = this.refs.myTextArea.value
-        let newTitle = this.refs.myTitleArea.value
-        this.props.updateText(pastedText)
-        this.props.updateTitle(newTitle)
-        this.props.updateMode('grabbed')
-    }
-
-
-
-
-
-
-
-
-
 
     deleteText = () => {
         this.props.deleteText()
+    }
+
+    editSavedText = () => {
+        this.props.updateMode('edit-saved')
+    }
+
+    goToStudyMode = () => {
+        this.props.updateMode('study')
     }
 
     handleChangeText = (event) => {
@@ -68,22 +67,40 @@ class Reader extends React.Component {
         this.props.updateMode('read')
     }
 
-    addNewText = () => {
-        this.props.updateMode('paste')
-        this.props.clearStateTextInfo()
-    }
-
-    goToStudyMode = () => {
-        this.props.updateMode('study')
-    }
-
-
-    editSavedText = () => {
-        this.props.updateMode('edit-saved')
-    }
-
     saveText = () => {
-        let newTitle = this.refs.myTitleArea.value
+        debugger;
+        var newTitle
+        if (this.refs.myTitleArea.value !== '') {
+            newTitle = this.refs.myTitleArea.value
+        } else {
+            let splitUpText = this.props.text.split(' ')
+
+        if (splitUpText.length < 6) {
+            var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+            var defaultTitle = ''
+            for (let i = 0; i < splitUpText.length; i++){
+                defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                }
+                defaultTitle = defaultTitle.slice(0, -1)
+                defaultTitle = defaultTitle + '...'
+            this.setState(
+                {userTitleInput: defaultTitle}
+                ) 
+            } else {
+                
+                firstFiveWords = splitUpText.slice(0, 6) 
+                defaultTitle = ''
+                for (let i = 0; i < 6; i++ ){
+                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                }
+                defaultTitle = defaultTitle.slice(0, -1)
+                defaultTitle = defaultTitle + '...'
+                this.setState(
+                    {userTitleInput: defaultTitle}
+                ) 
+            }
+        }
+
         let pastedText = this.refs.myTextArea.value
         let d = new Date()
         let fullTime = d.toTimeString()
@@ -101,12 +118,16 @@ class Reader extends React.Component {
         let fullDate = dd + '/' + mm + '/' + yy
         let timeAndDate = fullTime + ' ' + fullDate
 
-        this.props.updateTitle(newTitle)
+        // this.props.updateTitle(newTitle)
         this.props.updateText(pastedText)
         this.props.saveText(timeAndDate, this.state.userTitleInput, this.state.userTextInput)
         this.props.updateMode('read')
     }
-   
+
+    updateTitle = (updatedTitle) => {
+        this.props.updateTitle(updatedTitle)
+        }
+
     render() {
 
         const textAreaStyles = {
@@ -142,21 +163,21 @@ class Reader extends React.Component {
             width: '100px'
         }
 
-        const savedMessageStyle = {
-            paddingTop: '50px'
-        }
+        // const savedMessageStyle = {
+        //     paddingTop: '50px'
+        // }
 
         if (this.props.mode === 'paste'){
 
-        return (
+            return (
 
-            <div id='main-area' style={mainAreaStyles}>
-                <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.userTitleInput}></input>
-                <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
-                <button onClick={this.saveText} style={buttonStyles}>Save</button>
-            </div>
+                <div id='main-area' style={mainAreaStyles}>
+                    <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.userTitleInput}></input>
+                    <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
+                    <button onClick={this.saveText} style={buttonStyles}>Save</button>
+                </div>
 
-        )} else if (this.props.mode === 'read'){
+    )} else if (this.props.mode === 'read'){
 
             return (
                 <div>
@@ -169,37 +190,36 @@ class Reader extends React.Component {
                 </div>
             )
 
-        } else if (this.props.mode === 'edit-saved'){
+    } else if (this.props.mode === 'edit-saved'){
 
             return (
                 <div style={mainAreaStyles}>
-                <input style={textAreaStyles} value={this.state.userTitleInput} onChange={this.handleChangeTitle}></input>
-                <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
-                <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
-            </div>
-            )
+                    <input style={textAreaStyles} value={this.state.userTitleInput} onChange={this.handleChangeTitle}></input>
+                    <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
+                    <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
+                </div>
+                )
 
-        }else if (this.props.mode === 'study') {
+    } else if (this.props.mode === 'study') {
 
             return (
 
                 <div>
                     <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText} deleteText={this.deleteText}/>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} editText={this.editSavedText }saveText={this.props.saveText} deleteText={this.deleteText}/>
                     </div>
-                   
                 </div>
             )
 
-        }  else if (this.props.mode === 'saved') {
-            
-            return (
+    } 
+        // else if (this.props.mode === 'saved') {
+                
+        //         return (
 
-            <h2 style={savedMessageStyle}>Saved!</h2>
-
-            )
+        //             <h2 style={savedMessageStyle}>Saved!</h2>
+        //             )
+        //         }
         }
     }
-}
 
 export default Reader 

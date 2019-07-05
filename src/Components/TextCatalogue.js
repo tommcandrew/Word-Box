@@ -2,11 +2,11 @@ import React from 'react'
 
 const TextCatalogue = (props) => {
 
-var listStyle = {
+const listStyle = {
     listStyleType: 'none'
 }
 
-var textCatalogueStyle = {
+const textCatalogueStyle = {
     marginBottom: '50px'
 }
 

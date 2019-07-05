@@ -50,37 +50,6 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
-
-
-
-
-  saveToLocalStorage = (textObj) => {
-    let savedTexts
-  
-    if (localStorage.getItem('savedTexts') != null) {
-      savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-      savedTexts.push(textObj);
-    } else {
-      savedTexts = []
-      savedTexts.push(textObj);
-    }
-    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-    this.componentWillMount()
-  }
-
-
-
-  goToReader = (e) => {
-    var textTitle = e.target.id
-    var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
-    var matchingText = matchingTextArray[0].text
-    this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
-    e.preventDefault()
-  }
-
-
-
-
   changeSearchWord = (event) => {
     this.setState({wordToSearchFor:event.target.value})
   }
@@ -89,18 +58,28 @@ class App extends React.Component {
     this.setState({searchFromStart:!this.state.searchFromStart})
   }
 
+  //methods related to reader and text catalogue are below (in alphabetical order)
 
+  clearStateTextInfo = () => {
+    this.setState(
+      {title: '', text: ''}
+    )
+  }
+  
+  componentWillMount = () => {
+    if (localStorage.getItem('savedTexts') != null) {
+      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      this.setState(
+        {savedTexts: savedTexts}
+      )
+  } else {
+      this.setState(
+        {savedTexts: ''}
+        )
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-deleteText = () => {
+  deleteText = () => {
 
   let textTitle = this.state.title
   let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
@@ -118,74 +97,77 @@ deleteText = () => {
 }
 }
 
-saveEditedText = (editedTitle, editedText) => {
-    var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-    for (let i = 0; i < savedTexts.length; i++) {
-      if (savedTexts[i].title === this.state.title) {
-        savedTexts[i].title = editedTitle
-        savedTexts[i].text = editedText
-        localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-        break
-      } 
-    }
-    this.componentWillMount()
-  }
-
-  componentWillMount = () => {
-    if (localStorage.getItem('savedTexts') != null) {
-      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-      this.setState(
-        {savedTexts: savedTexts}
-      )
-    } else {
-        this.setState(
-          {savedTexts: ''}
-        )
-    }
-  }
-
-clearStateTextInfo = () => {
-  this.setState(
-    {title: '', text: ''}
-  )
+goToReader = (e) => {
+  var textTitle = e.target.id
+  var matchingTextArray = this.state.savedTexts.filter(text => text.title === textTitle)
+  var matchingText = matchingTextArray[0].text
+  this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
+  e.preventDefault()
 }
 
-  updateReaderMode = (mode) => {
-    this.setState(
-      {readerMode: mode}
-    )
+saveEditedText = (editedTitle, editedText) => {
+  var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+  for (let i = 0; i < savedTexts.length; i++) {
+    if (savedTexts[i].title === this.state.title) {
+      savedTexts[i].title = editedTitle
+      savedTexts[i].text = editedText
+      localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+      break
+    } 
   }
+  this.componentWillMount()
+}
 
-  saveText = (timeAndDate, title, text) => {
-    var newTextObj = {
-      timeAndDate: timeAndDate,
-      title: title,
-      text: text
+saveText = (timeAndDate, title, text) => {
+  var newTextObj = {
+    timeAndDate: timeAndDate,
+    title: title,
+    text: text
     }
     this.saveToLocalStorage(newTextObj)
   }
 
-  updateText = (text) => {
-    this.setState(
-      {text: text}
+saveToLocalStorage = (textObj) => {
+  let savedTexts
+  
+  if (localStorage.getItem('savedTexts') != null) {
+    savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    savedTexts.push(textObj);
+  } else {
+    savedTexts = []
+    savedTexts.push(textObj);
+    }
+    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+    this.componentWillMount()
+  }
+
+updateReaderMode = (mode) => {
+  this.setState(
+    {readerMode: mode}
     )
   }
 
-  updateTitle = (updatedTitle) => {
-    this.setState(
-      {title: updatedTitle}
+updateText = (text) => {
+  this.setState(
+    {text: text}
     )
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1 className="App-header">Word Box</h1>
-        <Tabs
-          activeKey={this.state.tabToShow}
-          onSelect={key => this.setState({tabToShow:key})}
-          variant = 'pills'
-          fill
+updateTitle = (updatedTitle) => {
+  this.setState(
+    {title: updatedTitle}
+    )
+  }
+
+render() {
+  return (
+    <div className="App">
+      <h1 className="App-header">Word Box</h1>
+      <Tabs
+        activeKey={this.state.tabToShow}
+        onSelect={key => this.setState({tabToShow:key})}
+        variant = 'pills'
+        fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
           <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText} clearStateTextInfo={this.clearStateTextInfo} deleteText={this.deleteText}/>
@@ -202,7 +184,7 @@ clearStateTextInfo = () => {
             changeSearch={this.changeSearchWord}
             searchFromStart={this.state.searchFromStart}
             changeCheckBox={this.changeStartChecked}
-          />          
+            />          
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>
           <TestPage 
@@ -212,13 +194,12 @@ clearStateTextInfo = () => {
             userAns={this.state.userAnswer}
             testQ={this.state.sentences}
             changeAns={this.ChangeAnswerHandler}
-          />          
+            />          
         </Tab>
-        </Tabs>
+    </Tabs>
       </div>
     );
   } 
-
 }
 
 export default App;
