@@ -23,17 +23,7 @@ class Reader extends React.Component {
        )
    }
 
-    handleChangeText = (event) => {
-        this.setState(
-            {userTextInput: event.target.value}
-        )
-    }
-
-    handleChangeTitle = (event) => {
-        this.setState(
-            {userTitleInput: event.target.value}
-        )
-    }
+ 
 
     updateTitle = (updatedTitle) => {
         this.props.updateTitle(updatedTitle)
@@ -53,6 +43,25 @@ class Reader extends React.Component {
 
 
 
+
+
+
+
+    deleteText = () => {
+        this.props.deleteText()
+    }
+
+    handleChangeText = (event) => {
+        this.setState(
+            {userTextInput: event.target.value}
+        )
+    }
+
+    handleChangeTitle = (event) => {
+        this.setState(
+            {userTitleInput: event.target.value}
+        )
+    }
 
     saveEditedText = () => {
         this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
@@ -156,6 +165,7 @@ class Reader extends React.Component {
                     <button onClick={this.editSavedText}>Edit</button>
                     <button onClick={this.goToStudyMode}>Study</button>
                     <button onClick={this.addNewText}>Add new text</button>
+                    <button onClick={this.deleteText}>Delete</button>
                 </div>
             )
 
@@ -175,7 +185,7 @@ class Reader extends React.Component {
 
                 <div>
                     <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText}/>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText} deleteText={this.deleteText}/>
                     </div>
                    
                 </div>

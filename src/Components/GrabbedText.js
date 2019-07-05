@@ -184,6 +184,7 @@ class GrabbedText extends React.Component {
                 <h2 style={titleStyle}>{this.props.title}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
                 <button style={buttonStyles} onClick={this.editText}>Edit</button>
+                <button onClick={this.props.deleteText}>Delete</button>
             </div>
         )
     }

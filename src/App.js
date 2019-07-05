@@ -52,18 +52,7 @@ class App extends React.Component {
 
 
 
-  saveEditedText = (editedTitle, editedText) => {
-    var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-    for (let i = 0; i < savedTexts.length; i++) {
-      if (savedTexts[i].title === this.state.title) {
-        savedTexts[i].title = editedTitle
-        savedTexts[i].text = editedText
-        localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-        break
-      } 
-    }
-    this.componentWillMount()
-  }
+
 
   saveToLocalStorage = (textObj) => {
     let savedTexts
@@ -79,18 +68,7 @@ class App extends React.Component {
     this.componentWillMount()
   }
 
-  componentWillMount = () => {
-    if (localStorage.getItem('savedTexts') != null) {
-      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-      this.setState(
-        {savedTexts: savedTexts}
-      )
-    } else {
-        this.setState(
-          {savedTexts: ''}
-        )
-    }
-  }
+
 
   goToReader = (e) => {
     var textTitle = e.target.id
@@ -117,6 +95,54 @@ class App extends React.Component {
 
 
 
+
+
+
+
+
+deleteText = () => {
+
+  let textTitle = this.state.title
+  let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+
+  for (let i = 0; i < savedTexts.length; i++) {
+    if (savedTexts[i].title === textTitle) {
+      savedTexts.splice(i, 1)
+    }
+    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+    this.componentWillMount()
+    this.clearStateTextInfo()
+    this.setState(
+      {readerMode: 'paste', tabToShow: 'TextCatalogue'}
+    )
+}
+}
+
+saveEditedText = (editedTitle, editedText) => {
+    var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    for (let i = 0; i < savedTexts.length; i++) {
+      if (savedTexts[i].title === this.state.title) {
+        savedTexts[i].title = editedTitle
+        savedTexts[i].text = editedText
+        localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+        break
+      } 
+    }
+    this.componentWillMount()
+  }
+
+  componentWillMount = () => {
+    if (localStorage.getItem('savedTexts') != null) {
+      var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+      this.setState(
+        {savedTexts: savedTexts}
+      )
+    } else {
+        this.setState(
+          {savedTexts: ''}
+        )
+    }
+  }
 
 clearStateTextInfo = () => {
   this.setState(
@@ -162,7 +188,7 @@ clearStateTextInfo = () => {
           fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText} clearStateTextInfo={this.clearStateTextInfo}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText} clearStateTextInfo={this.clearStateTextInfo} deleteText={this.deleteText}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
