@@ -23,15 +23,6 @@ class Reader extends React.Component {
        )
    }
 
-   saveEditedText = () => {
-       this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
-       this.props.updateMode('saved')
-   }
-
-    editSavedText = () => {
-        this.props.updateMode('edit-saved')
-    }
-
     handleChangeText = (event) => {
         this.setState(
             {userTextInput: event.target.value}
@@ -55,6 +46,56 @@ class Reader extends React.Component {
         this.props.updateText(pastedText)
         this.props.updateTitle(newTitle)
         this.props.updateMode('grabbed')
+    }
+
+
+
+
+
+
+
+    saveEditedText = () => {
+        this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
+        this.props.updateMode('read')
+    }
+
+    addNewText = () => {
+        this.props.updateMode('paste')
+        this.props.clearStateTextInfo()
+    }
+
+    goToStudyMode = () => {
+        this.props.updateMode('study')
+    }
+
+
+    editSavedText = () => {
+        this.props.updateMode('edit-saved')
+    }
+
+    saveText = () => {
+        let newTitle = this.refs.myTitleArea.value
+        let pastedText = this.refs.myTextArea.value
+        let d = new Date()
+        let fullTime = d.toTimeString()
+        fullTime = fullTime.split(' ')[0]
+
+        let dd = d.getDate()
+        let mm = d.getMonth() + 1
+        let yy = d.getFullYear().toString().substr(-2)
+        if (dd < 10) {
+        dd = '0' + dd 
+        }
+        if (mm < 10) {
+        mm = '0' + mm
+        }
+        let fullDate = dd + '/' + mm + '/' + yy
+        let timeAndDate = fullTime + ' ' + fullDate
+
+        this.props.updateTitle(newTitle)
+        this.props.updateText(pastedText)
+        this.props.saveText(timeAndDate, this.state.userTitleInput, this.state.userTextInput)
+        this.props.updateMode('read')
     }
    
     render() {
@@ -103,27 +144,18 @@ class Reader extends React.Component {
             <div id='main-area' style={mainAreaStyles}>
                 <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.userTitleInput}></input>
                 <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
-                <button onClick={this.grabText} style={buttonStyles}>Go!</button>
+                <button onClick={this.saveText} style={buttonStyles}>Save</button>
             </div>
 
-        )} else if (this.props.mode === 'grabbed') {
-
-            return (
-
-                <div>
-                    <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText}/>
-                    </div>
-                   
-                </div>
-            )
-        } else if (this.props.mode === 'read'){
+        )} else if (this.props.mode === 'read'){
 
             return (
                 <div>
                     <h2>{this.props.title}</h2>
                     <div style={textBoxStyle}>{this.props.text}</div>
                     <button onClick={this.editSavedText}>Edit</button>
+                    <button onClick={this.goToStudyMode}>Study</button>
+                    <button onClick={this.addNewText}>Add new text</button>
                 </div>
             )
 
@@ -137,7 +169,19 @@ class Reader extends React.Component {
             </div>
             )
 
-        } else if (this.props.mode === 'saved') {
+        }else if (this.props.mode === 'study') {
+
+            return (
+
+                <div>
+                    <div style={textBoxStyle}>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText}/>
+                    </div>
+                   
+                </div>
+            )
+
+        }  else if (this.props.mode === 'saved') {
             
             return (
 

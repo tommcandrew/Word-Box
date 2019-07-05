@@ -50,16 +50,7 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
-  saveText = (timeAndDate, title, text) => {
 
-    var newTextObj = {
-      timeAndDate: timeAndDate,
-      title: title,
-      text: text
-    }
-  
-    this.saveToLocalStorage(newTextObj)
-  }
 
   saveEditedText = (editedTitle, editedText) => {
     var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
@@ -109,10 +100,43 @@ class App extends React.Component {
     e.preventDefault()
   }
 
+
+
+
+  changeSearchWord = (event) => {
+    this.setState({wordToSearchFor:event.target.value})
+  }
+
+  changeStartChecked = (event) => {
+    this.setState({searchFromStart:!this.state.searchFromStart})
+  }
+
+
+
+
+
+
+
+
+clearStateTextInfo = () => {
+  this.setState(
+    {title: '', text: ''}
+  )
+}
+
   updateReaderMode = (mode) => {
     this.setState(
       {readerMode: mode}
     )
+  }
+
+  saveText = (timeAndDate, title, text) => {
+    var newTextObj = {
+      timeAndDate: timeAndDate,
+      title: title,
+      text: text
+    }
+    this.saveToLocalStorage(newTextObj)
   }
 
   updateText = (text) => {
@@ -126,13 +150,6 @@ class App extends React.Component {
       {title: updatedTitle}
     )
   }
-  changeSearchWord = (event) => {
-    this.setState({wordToSearchFor:event.target.value})
-  }
-
-  changeStartChecked = (event) => {
-    this.setState({searchFromStart:!this.state.searchFromStart})
-  }
 
   render() {
     return (
@@ -145,7 +162,7 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText} clearStateTextInfo={this.clearStateTextInfo}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
