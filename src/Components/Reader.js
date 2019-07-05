@@ -14,6 +14,24 @@ class Reader extends React.Component {
         }
     }
 
+   componentWillReceiveProps = (nextProps) => {
+       this.setState(
+           {
+               userTextInput: nextProps.text,
+               userTitleInput: nextProps.title
+        }
+       )
+   }
+
+   saveEditedText = () => {
+       this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
+       this.props.updateMode('saved')
+   }
+
+    editSavedText = () => {
+        this.props.updateMode('edit-saved')
+    }
+
     handleChangeText = (event) => {
         this.setState(
             {userTextInput: event.target.value}
@@ -26,24 +44,17 @@ class Reader extends React.Component {
         )
     }
 
+    updateTitle = (updatedTitle) => {
+        this.props.updateTitle(updatedTitle)
+    }
+
     grabText = () => {
 
         let pastedText = this.refs.myTextArea.value
         let newTitle = this.refs.myTitleArea.value
         this.props.updateText(pastedText)
         this.props.updateTitle(newTitle)
-        this.props.updateMode('read')
-    }
-
-    editText = () => {
-        this.props.updateMode('paste')
-    }
-
-    saveText = () => {
-        var d = new Date()
-        var dateString = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear().toString().substr(-2)
-        this.props.saveText(dateString, this.props.title, this.props.text)
-        this.props.updateMode('saved')
+        this.props.updateMode('grabbed')
     }
    
     render() {
@@ -56,15 +67,6 @@ class Reader extends React.Component {
             width: '60%'
         }
         
-        const buttonStyles = {
-            display: 'inline-block',
-            fontSize: '25px',
-            margin: '0 auto',
-            marginBottom: '100px',
-            marginTop: '20px',
-            width: '100px'
-        }
-        
         const mainAreaStyles = {
             display: 'block'
         }
@@ -75,10 +77,19 @@ class Reader extends React.Component {
             marginBottom: '20px',
             marginTop: '100px',
             margin: 'auto',
+            padding: 20,
             display: 'block',
             width: '60%',
             textAlign: 'left'
-            
+        }
+
+        const buttonStyles = {
+            display: 'inline-block',
+            fontSize: '25px',
+            margin: '0 auto',
+            marginBottom: '100px',
+            marginTop: '20px',
+            width: '100px'
         }
 
         const savedMessageStyle = {
@@ -95,21 +106,43 @@ class Reader extends React.Component {
                 <button onClick={this.grabText} style={buttonStyles}>Go!</button>
             </div>
 
-        )} else if (this.props.mode === 'read') {
+        )} else if (this.props.mode === 'grabbed') {
 
             return (
 
                 <div>
                     <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords}/>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} saveText={this.props.saveText}/>
                     </div>
-                   <button style={buttonStyles} onClick={this.editText}>Edit</button>
-                   <button style={buttonStyles} onClick={this.saveText}>Save</button>
+                   
                 </div>
             )
-        } else if (this.props.mode === 'saved') {
+        } else if (this.props.mode === 'read'){
+
             return (
+                <div>
+                    <h2>{this.props.title}</h2>
+                    <div style={textBoxStyle}>{this.props.text}</div>
+                    <button onClick={this.editSavedText}>Edit</button>
+                </div>
+            )
+
+        } else if (this.props.mode === 'edit-saved'){
+
+            return (
+                <div style={mainAreaStyles}>
+                <input style={textAreaStyles} value={this.state.userTitleInput} onChange={this.handleChangeTitle}></input>
+                <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
+                <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
+            </div>
+            )
+
+        } else if (this.props.mode === 'saved') {
+            
+            return (
+
             <h2 style={savedMessageStyle}>Saved!</h2>
+
             )
         }
     }
