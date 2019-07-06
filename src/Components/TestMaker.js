@@ -29,7 +29,7 @@ export const rndSentence = (wList) => {
     var adj1 = rndAdj(wList.adjectives, noun1.gender); //masculine because gender not currently defined
     var englishSentence = 'The '+noun1.english +' is '+ adj1.english;
     //NB: 'the' needs to match gender too
-    var defArt = wList.defArticle.foreign[noun1.gender];
+    var defArt = wList.defArticle.foreign[noun1.gender].replace(/^\w/, (c) => c.toUpperCase());
     var foreignSentence = defArt +' '+noun1.foreign +' je '+ adj1.foreign;
 
     return {english:englishSentence, foreign:foreignSentence}
