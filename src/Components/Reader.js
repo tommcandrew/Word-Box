@@ -8,7 +8,6 @@ class Reader extends React.Component {
             mode: this.props.mode,
             userTitleInput: '',
             userTextInput: '',
-            title: '',
             text: props.text
         }
     }
@@ -118,7 +117,7 @@ class Reader extends React.Component {
         let fullDate = dd + '/' + mm + '/' + yy
         let timeAndDate = fullTime + ' ' + fullDate
 
-        // this.props.updateTitle(newTitle)
+        this.props.updateTitle(newTitle)
         this.props.updateText(pastedText)
         this.props.saveText(timeAndDate, this.state.userTitleInput, this.state.userTextInput)
         this.props.updateMode('read')
