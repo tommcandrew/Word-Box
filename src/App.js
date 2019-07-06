@@ -7,7 +7,7 @@ import {rndSentence} from './Components/TestMaker';
 import WordModal from './Components/WordModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
-import {Tabs, Tab, Modal} from  'react-bootstrap';
+import {Tabs, Tab} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
