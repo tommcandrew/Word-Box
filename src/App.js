@@ -119,6 +119,7 @@ saveEditedText = (editedTitle, editedText) => {
 }
 
 saveText = (timeAndDate) => {
+  console.log(this.state.title, this.state.text)
   var newTextObj = {
     timeAndDate: timeAndDate,
     title: this.state.title,
@@ -148,15 +149,14 @@ updateReaderMode = (mode) => {
   }
 
 updateText = (text) => {
-  debugger;
   this.setState(
     {text: text}
     )
   }
 
-updateTitle = (updatedTitle) => {
+updateTitle = (title) => {
   this.setState(
-    {title: updatedTitle}
+    {title: title}
     )
   }
 

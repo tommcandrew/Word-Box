@@ -7,14 +7,24 @@ class Reader extends React.Component {
         this.state = {
             mode: this.props.mode,
             currentTitle: '',
-            userTextInput: '',
-            text: props.text
+            userTextInput: ''
         }
     }
 
     addNewText = () => {
         this.props.updateMode('paste')
         this.props.clearStateTextInfo()
+    }
+
+    /*this is included for when edit-saved-text mode is opened and the initial values of the input fields need to be the 
+    same as the title and text values of App's state. They have to be in Reader's state to allow the user to use the input
+    elements on the page*/ 
+    componentWillReceiveProps = (nextProps) => {
+        this.setState(
+            {currentTitle: nextProps.title,
+            userTextInput: nextProps.text
+            }
+        )
     }
 
     deleteText = () => {
@@ -47,6 +57,7 @@ class Reader extends React.Component {
     }
 
     saveText = () => {
+        debugger;
         let pastedText = this.refs.myTextArea.value
         this.props.updateText(pastedText)
 
