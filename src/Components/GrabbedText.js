@@ -1,116 +1,33 @@
 import React from 'react'
 
-class GrabbedText extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            newTitleInput: '',
-            grabbedTitle: ''
-        }
-    }
-
-    // changeDefaultTitle = (event) => {
-    //     this.setState(
-    //         {grabbedTitle: event.target.value}
-    //     )
-    // }
-
-//     componentDidMount = () => {
-
-//         if (this.props.title !== '') {
-//             this.setState(
-//                 {grabbedTitle: this.props.title}
-//             )
-//         } else {
-
-//         let splitUpText = this.props.text.split(' ')
-
-//         if (splitUpText.length < 6) {
-//             var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
-//             var defaultTitle = ''
-//             for (let i = 0; i < splitUpText.length; i++){
-//                 defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-//                 }
-//                 defaultTitle = defaultTitle.slice(0, -1)
-//                 defaultTitle = defaultTitle + '...'
-//             this.setState(
-//                 {grabbedTitle: defaultTitle}
-//                 ) 
-//             } else {
-//                 firstFiveWords = splitUpText.slice(0, 6) 
-//                 defaultTitle = ''
-//                 for (let i = 0; i < 6; i++ ){
-//                     defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-//                 }
-//                 defaultTitle = defaultTitle.slice(0, -1)
-//                 defaultTitle = defaultTitle + '...'
-//                 this.setState(
-//                     {grabbedTitle: defaultTitle}
-//                 ) 
-//             }
-//     }
-// }
-
-    // editText = () => {
-    //     this.props.updateMode('paste')
-    // }
-
-    // saveText = () => {
-    //     if (this.state.grabbedTitle === '') {
-    //         alert('Please add a title')
-    //         return
-    //     } else {
-    //     this.props.updateTitle(this.state.grabbedTitle)
-
-    //     var d = new Date()
-    //     var fullTime = d.toTimeString()
-    //     fullTime = fullTime.split(' ')[0]
-
-    //     var dd = d.getDate()
-    //     var mm = d.getMonth() + 1
-    //     var yy = d.getFullYear().toString().substr(-2)
-    //     if (dd < 10) {
-    //     dd = '0' + dd 
-    //     }
-    //     if (mm < 10) {
-    //     mm = '0' + mm
-    //     }
-    //     var fullDate = dd + '/' + mm + '/' + yy
-    //     var timeAndDate = fullTime + ' ' + fullDate
-
-    //     this.props.saveText(timeAndDate, this.state.grabbedTitle, this.props.text)
-    //     this.props.updateMode('saved')
-    // }
-    // }
-
-    render() {
+const GrabbedText = (props) => {
 
         let knownNouns = []
-        for (let i = 0; i < this.props.knownWords.nouns.length; i++) {
-            let foreignNoun = this.props.knownWords.nouns[i].foreign
+        for (let i = 0; i < props.knownWords.nouns.length; i++) {
+            let foreignNoun = props.knownWords.nouns[i].foreign
             knownNouns.push(foreignNoun)
         }
 
         let knownVerbs = []
-        for (let i = 0; i < this.props.knownWords.verbs.length; i++) {
-            let foreignInfinitive = this.props.knownWords.verbs[i].infinitive
+        for (let i = 0; i < props.knownWords.verbs.length; i++) {
+            let foreignInfinitive = props.knownWords.verbs[i].infinitive
             knownVerbs.push(foreignInfinitive)
-            let presentForeign = this.props.knownWords.verbs[i].presentForeign
+            let presentForeign = props.knownWords.verbs[i].presentForeign
             knownVerbs = knownVerbs.concat(presentForeign)
         }
 
         let knownAdjectives = []
-        for (let i = 0; i < this.props.knownWords.adjectives.length; i++) {
-            let foreignAdjectiveFemale = this.props.knownWords.adjectives[i].foreign.female
-            let foreignAdjectiveMale = this.props.knownWords.adjectives[i].foreign.male
-            let foreignAdjectiveNeuter = this.props.knownWords.adjectives[i].foreign.neuter
+        for (let i = 0; i < props.knownWords.adjectives.length; i++) {
+            let foreignAdjectiveFemale = props.knownWords.adjectives[i].foreign.female
+            let foreignAdjectiveMale = props.knownWords.adjectives[i].foreign.male
+            let foreignAdjectiveNeuter = props.knownWords.adjectives[i].foreign.neuter
             knownAdjectives.push(foreignAdjectiveFemale, foreignAdjectiveMale, foreignAdjectiveNeuter)
         }
 
         let knownDefArticles = []
-        knownDefArticles.push(this.props.knownWords.defArticle.foreign.male.toLowerCase())
-        knownDefArticles.push(this.props.knownWords.defArticle.foreign.female.toLowerCase())
-        knownDefArticles.push(this.props.knownWords.defArticle.foreign.neuter.toLowerCase())
+        knownDefArticles.push(props.knownWords.defArticle.foreign.male.toLowerCase())
+        knownDefArticles.push(props.knownWords.defArticle.foreign.female.toLowerCase())
+        knownDefArticles.push(props.knownWords.defArticle.foreign.neuter.toLowerCase())
 
         let allKnownWords = []
 
@@ -157,7 +74,7 @@ class GrabbedText extends React.Component {
             color: 'red'
         }
 
-        let splitText = this.props.text.match(/\w+|\s+|[^\s\w]+/g)
+        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         let newWordArray = splitText.map(function (word, index) {
             if (!word.match(/\w+/g)) {
@@ -181,13 +98,12 @@ class GrabbedText extends React.Component {
 
         return (
             <div>
-                <h2 style={titleStyle}>{this.props.title}</h2>
+                <h2 style={titleStyle}>{props.title}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
-                <button style={buttonStyles} onClick={this.props.editText}>Edit</button>
-                <button onClick={this.props.deleteText}>Delete</button>
+                <button style={buttonStyles} onClick={props.editText}>Edit</button>
+                <button onClick={props.deleteText}>Delete</button>
             </div>
         )
-    }
 }
 
 export default GrabbedText

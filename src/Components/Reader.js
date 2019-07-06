@@ -12,26 +12,6 @@ class Reader extends React.Component {
         }
     }
 
-// componentWillReceiveProps = (nextProps) => {
-//     debugger;
-//     this.setState(
-//     {
-//     userTextInput: nextProps.text,
-//     userTitleInput: nextProps.title
-//     }
-//     )
-//    }
-
-
-// grabText = () => {
-
-//     let pastedText = this.refs.myTextArea.value
-//     let newTitle = this.refs.myTitleArea.value
-//     this.props.updateText(pastedText)
-//     this.props.updateTitle(newTitle)
-//     this.props.updateMode('grabbed')
-// }
-
     addNewText = () => {
         this.props.updateMode('paste')
         this.props.clearStateTextInfo()
@@ -155,10 +135,6 @@ class Reader extends React.Component {
             width: '100px'
         }
 
-        // const savedMessageStyle = {
-        //     paddingTop: '50px'
-        // }
-
         if (this.props.mode === 'paste'){
 
             return (
@@ -198,20 +174,12 @@ class Reader extends React.Component {
 
                 <div>
                     <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} updateTitle={this.updateTitle} updateMode={this.props.updateMode} editText={this.editSavedText }saveText={this.props.saveText} deleteText={this.deleteText}/>
+                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
                     </div>
                 </div>
             )
-
     } 
-        // else if (this.props.mode === 'saved') {
-                
-        //         return (
-
-        //             <h2 style={savedMessageStyle}>Saved!</h2>
-        //             )
-        //         }
-        }
+    }
     }
 
 export default Reader 
