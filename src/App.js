@@ -68,6 +68,19 @@ class App extends React.Component {
     this.saveToLocalStorage(newTextObj)
   }
 
+  saveEditedText = (editedTitle, editedText) => {
+    var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    for (let i = 0; i < savedTexts.length; i++) {
+      if (savedTexts[i].title === this.state.title) {
+        savedTexts[i].title = editedTitle
+        savedTexts[i].text = editedText
+        localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+        break
+      } 
+    }
+    this.componentWillMount()
+  }
+
   saveToLocalStorage = (textObj) => {
     let savedTexts
   
@@ -139,7 +152,7 @@ class App extends React.Component {
           fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title}/>
+          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText}/>
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
