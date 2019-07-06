@@ -21,9 +21,15 @@ const WordListDisplay = (props) =>  {
         }
     }
     wordList = wordList.filter(x=>props.searchFromStart?
-        x.toLocaleLowerCase().indexOf(props.searchFor.toLowerCase())===0 
+        x.toLowerCase().indexOf(props.searchFor.toLowerCase())===0 
         : x.toLowerCase().includes(props.searchFor.toLowerCase()))
        .sort().map(x => <span key={x}>{x}<br /></span>);
+
+    if (wordList.length === 0) {
+        var dictionaryLink = 'https://en.bab.la/dictionary/english-czech/'+props.searchFor;
+        var dictionaryJSX = <p>Try a <a 
+            href={dictionaryLink} target="_blank" rel="noopener noreferrer" >dictionary</a></p>; 
+    } 
     
     return (
         <div>
@@ -36,6 +42,7 @@ const WordListDisplay = (props) =>  {
                        changeSearch={props.changeSearch}
                        changeCheckBox={props.changeCheckBox}
                      />
+                     { dictionaryJSX }
                   </Col>
                   <Col>
                      <div id="wordList"><p>{wordList}</p></div>
