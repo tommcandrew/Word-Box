@@ -4,6 +4,7 @@ import TextCatalogue from './Components/TextCatalogue'
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
+import WordModal from './Components/WordModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 import {Tabs, Tab} from  'react-bootstrap';
@@ -22,7 +23,9 @@ class App extends React.Component {
     title: '',
     readerMode: 'paste',
     wordToSearchFor: '',
-    searchFromStart: false
+    searchFromStart: false,
+    showWordModal: false, 
+    modalWord: 'the'
   }
 
   changeToShow = (category) => {
@@ -44,11 +47,15 @@ class App extends React.Component {
     if (this.state.translationMode === 'fromEng') {
       var ans = this.state.sentences.foreign
     } else {ans = this.state.sentences.english}
-    console.log(ans, this.state.userAnswer)
+    
     if (event.target.value.toLowerCase() === ans.toLowerCase()) {
       this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
     } else { this.setState({userAnswer:event.target.value}) }
   }
+
+  wordClicked = (word) => this.setState({modalWord: word, showWordModal:true});
+
+  modalClose = () => this.setState({showWordModal:false});
 
   saveText = (timeAndDate, title, text) => {
 
@@ -159,6 +166,7 @@ class App extends React.Component {
             changeSearch={this.changeSearchWord}
             searchFromStart={this.state.searchFromStart}
             changeCheckBox={this.changeStartChecked}
+            wordClick={this.wordClicked}
           />          
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>
@@ -172,6 +180,11 @@ class App extends React.Component {
           />          
         </Tab>
         </Tabs>
+        <WordModal 
+          show={this.state.showWordModal}
+          onHide={this.modalClose}
+          word={this.state.modalWord}
+          wList={this.state.knownWords} />
       </div>
     );
   } 

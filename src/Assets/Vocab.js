@@ -1,7 +1,14 @@
+/*
+!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT
+When you add properties for plurals/other tenses/accusative etc
+Update the modals to include that data when a word is clicked in the wordlist
+*/
+
 class Noun {
     constructor(eng) {
         this.english = eng;
     }
+    wordType= 'noun';
     set foreign(f) {
         this._foreign = f;
     } 
@@ -20,6 +27,7 @@ class Verb {
     constructor(eng) {
         this.english = eng;
     }
+    wordType= 'verb';
     
     set infinitive(f) {
         this._infinitive = f
@@ -56,6 +64,7 @@ class Adjective {
     constructor(eng) {
         this.english = eng
     }
+    wordType= 'adjective';
 
     set foreign(arr) {
         // eventually: I would like this to be [stem, group]
@@ -110,6 +119,9 @@ hospital.gender = 'female';
 var night = new Noun('night');
 night.foreign = 'noc';
 night.gender = 'female';
+var dandelion = new Noun('dandelion');
+dandelion.foreign = 'pampeliska';
+dandelion.gender = 'female'
 
 var toBe = new Verb('to be');
 toBe.infinitive = 'byt';
@@ -133,7 +145,7 @@ var blue = new Adjective('blue');
 blue.foreign = ['modry', 'modra', 'modre'];
 var green = new Adjective('green');
 green.foreign = ['zeleny', 'zelena', 'zelene'];
-var beautiful = new Adjective('beautfiul');
+var beautiful = new Adjective('beautiful');
 beautiful.foreign = ['krasny', 'krasna', 'krasne'];
 var healthy = new Adjective('healthy');
 healthy.foreign = ['zdravy', 'zdrava', 'zdrave'];
@@ -147,8 +159,11 @@ hot.foreign = ['horky', 'horka', 'horke'];
 
 export var wordList = {
     foreignLang : 'Czech',
-    defArticle : {english: 'The', foreign: {male:'Ten', female:'Ta', neuter:'To'}},
-    nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night],
+    defArticle : {
+        english: 'the', 
+        foreign: {male:'ten', female:'ta', neuter:'to'}, 
+        wordType:'definite article'},
+    nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night, dandelion],
     verbs : [toBe, toDo],
     adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 
 }
