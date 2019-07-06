@@ -14,7 +14,7 @@ const MakeWordModal = (word, wordList) => {
 const WordModal = (props) => {
     MakeWordModal(props.word, props.wList);
     return (
-        <Modal show={props.show} onHide={props.onHide}>
+        <Modal show={props.show} onHide={props.onHide} centered>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
