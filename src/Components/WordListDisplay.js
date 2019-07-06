@@ -4,7 +4,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
-    var wordList = ['the'];
+    var wordList = ['the']; 
+    // you can add a random word to test word modal on unknown words in list, eg: 'surprise!'];
     if (props.types.includes('Nouns')) {
         for (var i in props.words.nouns) {
             wordList.push(props.words.nouns[i].english)
