@@ -75,14 +75,22 @@ const mfnBody = (word) => {
     var n = word.foreign.neuter ? word.foreign.neuter : '---';
 
     return (
-        <InputGroup>
-           <InputGroup.Prepend>
-              <InputGroup.Text>Male, Female and Neuter</InputGroup.Text>
-           </InputGroup.Prepend>
-           <FormControl value = {m} readOnly/>
-           <FormControl value = {f} readOnly/>
-           <FormControl value = {n} readOnly/>
-        </InputGroup>
+        <Table striped bordered hover responsive>
+            <thead>
+                <tr>
+                    <th>Male</th>
+                    <th>Female</th>
+                    <th>Neuter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{m}</td>
+                    <td>{f}</td>
+                    <td>{n}</td>
+                </tr>
+            </tbody>
+        </Table>
     )
 
 }
