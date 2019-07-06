@@ -2,6 +2,7 @@ class Noun {
     constructor(eng) {
         this.english = eng;
     }
+    wordType= 'noun';
     set foreign(f) {
         this._foreign = f;
     } 
@@ -20,6 +21,7 @@ class Verb {
     constructor(eng) {
         this.english = eng;
     }
+    wordType= 'verb';
     
     set infinitive(f) {
         this._infinitive = f
@@ -56,6 +58,7 @@ class Adjective {
     constructor(eng) {
         this.english = eng
     }
+    wordType= 'adjective';
 
     set foreign(arr) {
         // eventually: I would like this to be [stem, group]
@@ -150,7 +153,10 @@ hot.foreign = ['horky', 'horka', 'horke'];
 
 export var wordList = {
     foreignLang : 'Czech',
-    defArticle : {english: 'the', foreign: {male:'ten', female:'ta', neuter:'to'}},
+    defArticle : {
+        english: 'the', 
+        foreign: {male:'ten', female:'ta', neuter:'to'}, 
+        wordType:'Definite Article'},
     nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night, dandelion],
     verbs : [toBe, toDo],
     adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 
