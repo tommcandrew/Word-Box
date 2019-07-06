@@ -1,4 +1,6 @@
 import React from 'react'
+import {Button} from  'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const GrabbedText = (props) => {
 
@@ -59,11 +61,12 @@ const GrabbedText = (props) => {
 
         const buttonStyles = {
             display: 'inline-block',
-            fontSize: '25px',
+            fontSize: '20px',
             margin: '0 auto',
             marginBottom: '100px',
             marginTop: '20px',
-            width: '100px'
+            marginLeft: 5,
+            marginRight: 5
         }
 
         const knownWordStyle = {
@@ -100,8 +103,8 @@ const GrabbedText = (props) => {
             <div>
                 <h2 style={titleStyle}>{props.title}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
-                <button style={buttonStyles} onClick={props.editText}>Edit</button>
-                <button style={buttonStyles} onClick={props.deleteText}>Delete</button>
+                <Button style={buttonStyles} onClick={props.editText}>Edit</Button>
+                <Button style={buttonStyles} onClick={props.deleteText}>Delete</Button>
             </div>
         )
 }
