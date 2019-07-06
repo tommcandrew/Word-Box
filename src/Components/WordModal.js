@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import {Modal, Button, InputGroup, FormControl} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const FindWord = (word, wordList) => {
@@ -20,15 +20,40 @@ const FindWord = (word, wordList) => {
     return {english:'??'+word+'??', wordType:"I can't find that word"}
 }
 
+const MakeBody = (word) => {
+    switch (word.wordType) {
+        case 'definite article' : return defArtBody(word);
+        //case 'noun' : return nounBody(word);
+    }
+}
+
+const defArtBody = (word) => {
+    var m = word.foreign.male ? word.foreign.male : '---';
+    var f = word.foreign.female ? word.foreign.female : '---';
+    var n = word.foreign.neuter ? word.foreign.neuter : '---';
+
+    return (
+        <InputGroup>
+           <InputGroup.Prepend>
+              <InputGroup.Text>Male, Female and Neuter</InputGroup.Text>
+           </InputGroup.Prepend>
+           <FormControl value = {m} readOnly/>
+           <FormControl value = {f} readOnly/>
+           <FormControl value = {n} readOnly/>
+        </InputGroup>
+    )
+
+}
+
 const WordModal = (props) => {
     var word2Modal = FindWord(props.word, props.wList);
-    console.log(word2Modal);
+    var modalBody = MakeBody(word2Modal)
     return (
         <Modal show={props.show} onHide={props.onHide} centered>
           <Modal.Header closeButton>
             <Modal.Title>{word2Modal.english} -- {word2Modal.wordType}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body><p>{props.wList.foreignLang + ' uses:'}</p>{modalBody}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={props.onHide}>
               Close
