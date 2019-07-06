@@ -67,40 +67,35 @@ class Reader extends React.Component {
     }
 
     saveText = () => {
-        debugger;
-        var newTitle
-        if (this.refs.myTitleArea.value !== '') {
-            newTitle = this.refs.myTitleArea.value
-        } else {
-            let splitUpText = this.props.text.split(' ')
-
-        if (splitUpText.length < 6) {
-            var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
-            var defaultTitle = ''
-            for (let i = 0; i < splitUpText.length; i++){
-                defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-                }
-                defaultTitle = defaultTitle.slice(0, -1)
-                defaultTitle = defaultTitle + '...'
-            this.setState(
-                {userTitleInput: defaultTitle}
-                ) 
-            } else {
-                
-                firstFiveWords = splitUpText.slice(0, 6) 
-                defaultTitle = ''
-                for (let i = 0; i < 6; i++ ){
-                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-                }
-                defaultTitle = defaultTitle.slice(0, -1)
-                defaultTitle = defaultTitle + '...'
-                this.setState(
-                    {userTitleInput: defaultTitle}
-                ) 
-            }
-        }
-
         let pastedText = this.refs.myTextArea.value
+        this.props.updateText(pastedText)
+
+        if (this.refs.myTitleArea.value !== '') {
+            var newTitle = this.refs.myTitleArea.value
+            this.props.updateTitle(newTitle)
+        } else {
+            let splitUpText = this.refs.myTextArea.value.split(' ')
+            if (splitUpText.length < 6) {
+                var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+                var defaultTitle = ''
+                for (let i = 0; i < splitUpText.length; i++){
+                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                    }
+                    defaultTitle = defaultTitle.slice(0, -1)
+                    defaultTitle = defaultTitle + '...'
+                    this.props.updateTitle(defaultTitle)
+                } else {
+                    firstFiveWords = splitUpText.slice(0, 6) 
+                    defaultTitle = ''
+                    for (let i = 0; i < 6; i++ ){
+                        defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                    }
+                    defaultTitle = defaultTitle.slice(0, -1)
+                    defaultTitle = defaultTitle + '...'
+                    this.props.updateTitle(defaultTitle)
+                }
+            }
+
         let d = new Date()
         let fullTime = d.toTimeString()
         fullTime = fullTime.split(' ')[0]
@@ -116,10 +111,8 @@ class Reader extends React.Component {
         }
         let fullDate = dd + '/' + mm + '/' + yy
         let timeAndDate = fullTime + ' ' + fullDate
-
-        this.props.updateTitle(newTitle)
-        this.props.updateText(pastedText)
-        this.props.saveText(timeAndDate, this.state.userTitleInput, this.state.userTextInput)
+        
+        this.props.saveText(timeAndDate)
         this.props.updateMode('read')
     }
 

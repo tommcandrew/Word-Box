@@ -118,11 +118,11 @@ saveEditedText = (editedTitle, editedText) => {
   this.componentWillMount()
 }
 
-saveText = (timeAndDate, title, text) => {
+saveText = (timeAndDate) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
-    title: title,
-    text: text
+    title: this.state.title,
+    text: this.state.text
     }
     this.saveToLocalStorage(newTextObj)
   }
@@ -148,6 +148,7 @@ updateReaderMode = (mode) => {
   }
 
 updateText = (text) => {
+  debugger;
   this.setState(
     {text: text}
     )
