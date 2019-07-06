@@ -1,3 +1,9 @@
+/*
+!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT
+When you add properties for plurals/other tenses/accusative etc
+Update the modals to include that data when a word is clicked in the wordlist
+*/
+
 class Noun {
     constructor(eng) {
         this.english = eng;
