@@ -1,5 +1,7 @@
 import React from 'react'
 import GrabbedText from './GrabbedText'
+import {Button} from  'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Reader extends React.Component {
     constructor(props) {
@@ -173,7 +175,7 @@ class Reader extends React.Component {
                 <div id='main-area' style={mainAreaStyles}>
                     <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                     <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
-                    <button onClick={this.saveText} style={buttonStyles}>Save</button>
+                    <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
                 </div>
 
     )} else if (this.props.mode === 'read' && this.state.showSaveAlert === false){
