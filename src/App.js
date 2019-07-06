@@ -112,13 +112,16 @@ saveEditedText = (editedTitle, editedText) => {
       savedTexts[i].title = editedTitle
       savedTexts[i].text = editedText
       localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+      this.componentWillMount()
+      this.updateTitle(savedTexts[i].title)
+      this.updateText(savedTexts[i].text)
       break
     } 
   }
-  this.componentWillMount()
+  
 }
 
-//why does this method not work if I pass in App's state values (title & text) rather than variables from Reader?
+//why does this method not work if I pass App's state values (title & text) rather than the same as vars from Reader?
 saveText = (timeAndDate, title, text) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
