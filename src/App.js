@@ -118,12 +118,12 @@ saveEditedText = (editedTitle, editedText) => {
   this.componentWillMount()
 }
 
-saveText = (timeAndDate) => {
-  console.log(this.state.title, this.state.text)
+//why does this method not work if I pass in App's state values (title & text) rather than variables from Reader?
+saveText = (timeAndDate, title, text) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
-    title: this.state.title,
-    text: this.state.text
+    title: title,
+    text: text
     }
     this.saveToLocalStorage(newTextObj)
   }

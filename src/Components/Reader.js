@@ -57,13 +57,14 @@ class Reader extends React.Component {
     }
 
     saveText = () => {
-        debugger;
-        let pastedText = this.refs.myTextArea.value
+        var pastedText = this.refs.myTextArea.value
         this.props.updateText(pastedText)
 
+
+        var title
         if (this.refs.myTitleArea.value !== '') {
-            var newTitle = this.refs.myTitleArea.value
-            this.props.updateTitle(newTitle)
+            title = this.refs.myTitleArea.value
+            this.props.updateTitle(title)
         } else {
             let splitUpText = this.refs.myTextArea.value.split(' ')
             if (splitUpText.length < 6) {
@@ -74,7 +75,8 @@ class Reader extends React.Component {
                     }
                     defaultTitle = defaultTitle.slice(0, -1)
                     defaultTitle = defaultTitle + '...'
-                    this.props.updateTitle(defaultTitle)
+                    title = defaultTitle
+                    this.props.updateTitle(title)
                 } else {
                     firstFiveWords = splitUpText.slice(0, 6) 
                     defaultTitle = ''
@@ -83,7 +85,8 @@ class Reader extends React.Component {
                     }
                     defaultTitle = defaultTitle.slice(0, -1)
                     defaultTitle = defaultTitle + '...'
-                    this.props.updateTitle(defaultTitle)
+                    title = defaultTitle
+                    this.props.updateTitle(title)
                 }
             }
 
@@ -103,7 +106,7 @@ class Reader extends React.Component {
         let fullDate = dd + '/' + mm + '/' + yy
         let timeAndDate = fullTime + ' ' + fullDate
         
-        this.props.saveText(timeAndDate)
+        this.props.saveText(timeAndDate, title, pastedText)
         this.props.updateMode('read')
     }
 
