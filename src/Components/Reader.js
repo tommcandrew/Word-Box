@@ -6,7 +6,7 @@ class Reader extends React.Component {
         super(props)
         this.state = {
             mode: this.props.mode,
-            userTitleInput: '',
+            currentTitle: '',
             userTextInput: '',
             text: props.text
         }
@@ -57,12 +57,12 @@ class Reader extends React.Component {
 
     handleChangeTitle = (event) => {
         this.setState(
-            {userTitleInput: event.target.value}
+            {currentTitle: event.target.value}
         )
     }
 
     saveEditedText = () => {
-        this.props.saveEditedText(this.state.userTitleInput, this.state.userTextInput)
+        this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
         this.props.updateMode('read')
     }
 
@@ -164,7 +164,7 @@ class Reader extends React.Component {
             return (
 
                 <div id='main-area' style={mainAreaStyles}>
-                    <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.userTitleInput}></input>
+                    <input ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                     <textarea id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
                     <button onClick={this.saveText} style={buttonStyles}>Save</button>
                 </div>
@@ -186,7 +186,7 @@ class Reader extends React.Component {
 
             return (
                 <div style={mainAreaStyles}>
-                    <input style={textAreaStyles} value={this.state.userTitleInput} onChange={this.handleChangeTitle}></input>
+                    <input style={textAreaStyles} value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
                     <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
                     <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
                 </div>
