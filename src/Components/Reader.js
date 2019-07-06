@@ -7,7 +7,8 @@ class Reader extends React.Component {
         this.state = {
             mode: this.props.mode,
             currentTitle: '',
-            userTextInput: ''
+            userTextInput: '',
+            showSaveAlert: false
         }
     }
 
@@ -107,6 +108,9 @@ class Reader extends React.Component {
         let timeAndDate = fullTime + ' ' + fullDate
         
         this.props.saveText(timeAndDate, title, pastedText)
+        this.setState(
+            {showSaveAlert: true}
+        )
         this.props.updateMode('read')
     }
 
@@ -149,6 +153,13 @@ class Reader extends React.Component {
             width: '100px'
         }
 
+        const alertStyle = {
+                position: 'fixed',
+                bottom: '5px',
+                left: '2%',
+                width: '96%'
+        }
+
         if (this.props.mode === 'paste'){
 
             return (
@@ -159,7 +170,7 @@ class Reader extends React.Component {
                     <button onClick={this.saveText} style={buttonStyles}>Save</button>
                 </div>
 
-    )} else if (this.props.mode === 'read'){
+    )} else if (this.props.mode === 'read' && this.state.showSaveAlert === false){
 
             return (
                 <div>
@@ -172,7 +183,21 @@ class Reader extends React.Component {
                 </div>
             )
 
-    } else if (this.props.mode === 'edit-saved'){
+    } else if (this.props.mode === 'read' && this.state.showSaveAlert === true){
+
+        return (
+            <div>
+                <h2>{this.props.title}</h2>
+                <div style={textBoxStyle}>{this.props.text}</div>
+                <button onClick={this.editSavedText}>Edit</button>
+                <button onClick={this.goToStudyMode}>Study</button>
+                <button onClick={this.addNewText}>Add new text</button>
+                <button onClick={this.deleteText}>Delete</button>
+                <p style={alertStyle} class="alert alert-success text-center alert-dismissable fade show">Your text has been saved!<button onClick={this.hideSaveAlert} type="button" class="close" data-dismiss="alert">&times;</button></p>
+            </div>
+        )
+
+} else if (this.props.mode === 'edit-saved'){
 
             return (
                 <div style={mainAreaStyles}>

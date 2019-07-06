@@ -101,7 +101,7 @@ const GrabbedText = (props) => {
                 <h2 style={titleStyle}>{props.title}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
                 <button style={buttonStyles} onClick={props.editText}>Edit</button>
-                <button onClick={props.deleteText}>Delete</button>
+                <button style={buttonStyles} onClick={props.deleteText}>Delete</button>
             </div>
         )
 }
