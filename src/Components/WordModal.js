@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, InputGroup, FormControl, Table} from 'react-bootstrap';
+import {Modal, Button, Table} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const FindWord = (word, wordList) => {
