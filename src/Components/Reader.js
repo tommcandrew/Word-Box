@@ -154,11 +154,14 @@ class Reader extends React.Component {
 
         const buttonStyles = {
             display: 'inline-block',
-            fontSize: '25px',
+            fontSize: '20px',
             margin: '0 auto',
             marginBottom: '100px',
             marginTop: '20px',
-            width: '100px'
+            marginLeft: 5,
+            marginRight: 5
+
+           
         }
 
         const alertStyle = {
@@ -184,10 +187,10 @@ class Reader extends React.Component {
                 <div>
                     <h2>{this.props.title}</h2>
                     <div style={textBoxStyle}>{this.props.text}</div>
-                    <button onClick={this.editSavedText}>Edit</button>
-                    <button onClick={this.goToStudyMode}>Study</button>
-                    <button onClick={this.addNewText}>Add new text</button>
-                    <button onClick={this.deleteText}>Delete</button>
+                    <Button variant='primary' style={buttonStyles} onClick={this.editSavedText}>Edit</Button>
+                    <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
+                    <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
+                    <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
                 </div>
             )
 
@@ -197,10 +200,10 @@ class Reader extends React.Component {
             <div>
                 <h2>{this.props.title}</h2>
                 <div style={textBoxStyle}>{this.props.text}</div>
-                <button onClick={this.editSavedText}>Edit</button>
-                <button onClick={this.goToStudyMode}>Study</button>
-                <button onClick={this.addNewText}>Add new text</button>
-                <button onClick={this.deleteText}>Delete</button>
+                <Button variant='primary' style={buttonStyles} onClick={this.editSavedText}>Edit</Button>
+                <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
+                <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
+                <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
                 <p style={alertStyle} class="alert alert-success text-center alert-dismissable fade show">Your text has been saved!<button onClick={this.hideSaveAlert} type="button" class="close" data-dismiss="alert">&times;</button></p>
             </div>
         )
@@ -211,7 +214,7 @@ class Reader extends React.Component {
                 <div style={mainAreaStyles}>
                     <input style={textAreaStyles} value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
                     <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
-                    <button style={buttonStyles} onClick={this.saveEditedText}>Save</button>
+                    <Button variant='primary' style={buttonStyles} onClick={this.saveEditedText}>Save</Button>
                 </div>
                 )
 
