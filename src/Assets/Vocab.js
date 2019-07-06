@@ -150,7 +150,7 @@ hot.foreign = ['horky', 'horka', 'horke'];
 
 export var wordList = {
     foreignLang : 'Czech',
-    defArticle : {english: 'The', foreign: {male:'Ten', female:'Ta', neuter:'To'}},
+    defArticle : {english: 'the', foreign: {male:'ten', female:'ta', neuter:'to'}},
     nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night, dandelion],
     verbs : [toBe, toDo],
     adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 
