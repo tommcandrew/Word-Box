@@ -4,6 +4,7 @@ import TextCatalogue from './Components/TextCatalogue'
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
+import MakeWordModal from './Components/MakeWordModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 import {Tabs, Tab} from  'react-bootstrap';
@@ -48,6 +49,10 @@ class App extends React.Component {
     if (event.target.value.toLowerCase() === ans.toLowerCase()) {
       this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
     } else { this.setState({userAnswer:event.target.value}) }
+  }
+
+  wordClicked = (word) => {
+    MakeWordModal(word);
   }
 
   saveText = (timeAndDate, title, text) => {
@@ -146,6 +151,7 @@ class App extends React.Component {
             changeSearch={this.changeSearchWord}
             searchFromStart={this.state.searchFromStart}
             changeCheckBox={this.changeStartChecked}
+            wordClick={this.wordClicked}
           />          
         </Tab>
         <Tab eventKey='testPage' title='Test Your knowledge'>

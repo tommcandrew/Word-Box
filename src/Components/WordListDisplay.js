@@ -1,6 +1,6 @@
 import React from 'react';
 import WordListCheckbox from './WordListCheckbox';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
@@ -23,7 +23,7 @@ const WordListDisplay = (props) =>  {
     wordList = wordList.filter(x=>props.searchFromStart?
         x.toLowerCase().indexOf(props.searchFor.toLowerCase())===0 
         : x.toLowerCase().includes(props.searchFor.toLowerCase()))
-       .sort().map(x => <span key={x}>{x}<br /></span>);
+       .sort().map(x => <Button key={x} variant='link' onClick={()=>props.wordClick(x)} >{x}</Button>);
 
     if (wordList.length === 0) {
         var dictionaryLink = 'https://en.bab.la/dictionary/english-czech/'+props.searchFor;
