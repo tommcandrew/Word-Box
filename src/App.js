@@ -4,10 +4,10 @@ import TextCatalogue from './Components/TextCatalogue'
 import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
-import MakeWordModal from './Components/MakeWordModal';
+import WordModal from './Components/WordModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
-import {Tabs, Tab} from  'react-bootstrap';
+import {Tabs, Tab, Modal} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
@@ -24,6 +24,8 @@ class App extends React.Component {
     readerMode: 'paste',
     wordToSearchFor: '',
     searchFromStart: false,
+    showWordModal: false, 
+    modalWord: 'the'
   }
 
   changeToShow = (category) => {
@@ -51,9 +53,9 @@ class App extends React.Component {
     } else { this.setState({userAnswer:event.target.value}) }
   }
 
-  wordClicked = (word) => {
-    MakeWordModal(word);
-  }
+  wordClicked = (word) => this.setState({modalWord: word, showWordModal:true});
+
+  modalClose = () => this.setState({showWordModal:false});
 
   saveText = (timeAndDate, title, text) => {
 
@@ -165,6 +167,11 @@ class App extends React.Component {
           />          
         </Tab>
         </Tabs>
+        <WordModal 
+          show={this.state.showWordModal}
+          onHide={this.modalClose}
+          word={this.state.modalWord}
+          wList={this.state.knownWords} />
       </div>
     );
   } 
