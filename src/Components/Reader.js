@@ -52,6 +52,12 @@ class Reader extends React.Component {
         )
     }
 
+    hideSaveAlert = () => {
+        this.setState(
+            {showSaveAlert: false}
+        )
+    }
+
     saveEditedText = () => {
         this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
         this.props.updateMode('read')
