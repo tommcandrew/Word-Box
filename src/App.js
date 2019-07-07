@@ -56,6 +56,7 @@ class App extends React.Component {
 
   changeSearchWord = (event) => {
     this.setState({wordToSearchFor:event.target.value})
+  }
 
   wordClicked = (word) => this.setState({modalWord: word, showWordModal:true});
 
@@ -70,7 +71,6 @@ class App extends React.Component {
     }
   
     this.saveToLocalStorage(newTextObj)
-
   }
 
   changeStartChecked = (event) => {
@@ -91,7 +91,7 @@ class App extends React.Component {
       this.setState(
         {savedTexts: savedTexts}
       )
-  } else {
+    } else {
       this.setState(
         {savedTexts: ''}
         )
@@ -113,8 +113,8 @@ class App extends React.Component {
     this.setState(
       {readerMode: 'paste', tabToShow: 'TextCatalogue'}
     )
-}
-}
+  }
+  }
 
 goToReader = (e) => {
   var textTitle = e.target.id
