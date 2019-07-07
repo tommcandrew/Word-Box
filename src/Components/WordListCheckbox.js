@@ -15,6 +15,7 @@ const WordListCheckbox = (props) => {
     return (
         <div>
             <h2>Types of words</h2>
+            <p>Select which types of words you would like to include in the word list</p>
             <ButtonGroup vertical>            
               <Button variant={nounsBtn} onClick={()=>props.click('Nouns')} >Nouns</Button>
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
@@ -23,7 +24,7 @@ const WordListCheckbox = (props) => {
             <p></p>
             <Form>
               <Form.Group>
-                <Form.Control type='text' placeholder='search for' onChange={props.changeSearch} />
+                <Form.Control type='text' placeholder='Search for a word' onChange={props.changeSearch} />
               </Form.Group>
               <Form.Group>
                 <Form.Check 
