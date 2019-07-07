@@ -131,7 +131,8 @@ toDo.infinitive = 'delat';
 toDo.present = ['do', 'do', 'does','do','do','do'];
 toDo.presentForeign = ['delam', 'delas', 'dela', 'delame', 'delate', 'delaji']
 
-
+// remember: foreign adjectives don't stay as arrays
+// they are accessed by property name, eg: old.foreign.male
 var young = new Adjective('young');
 young.foreign = ['mlady', 'mlada', 'mlade'];
 var old = new Adjective('old');
