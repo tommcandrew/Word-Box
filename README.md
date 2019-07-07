@@ -11,8 +11,23 @@ geckos-team-09, on Chingu's voyage 9
 Team members: TomMac and [Samir70](https://github.com/Samir70)
 
 ## Technology
-HTML, CSS, React, JavaScript
+HTML, CSS, React, React Bootstrap and JavaScript
 (eventually) some way to save data someplace other than local storage.
+There is no database or backend, though we plan to look at this in the future.
+
+## Deploying your own Word Box
+This version is currently hosted on [github](https://chingu-voyages.github.io/v9-geckos-team-09/), via gh-pages.
+If you want to deploy one of your own, you can:
+- fork this repo
+- open a command line and change to a directory with the repo name
+- clone the repo
+- type this on the command line to install all the dependencies:
+> npm install
+(In case you don't know: you have to have installed node for that to work)
+- then, to use the App from your local copy:
+> npm start
+
+Make changes, push them to your repo and keep in touch. We would especially like help getting a backend to this project, so that the user can save new words. Or even switch languages.
 
 ## initial user story:
 * as a learner I should be able to see a list of the words I can translate between English and (Czech)
