@@ -162,6 +162,10 @@ export var wordList = {
         english: 'the', 
         foreign: {male:'ten', female:'ta', neuter:'to'}, 
         wordType:'definite article'},
+    pronouns : {
+        english: ['I', 'you', 'he', 'she', 'it', 'we','you','they'],
+        foreign: ['ja', 'ty', 'on', 'ona', 'ono', 'my', 'vy', 'oni']
+    },
     nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night, dandelion],
     verbs : [toBe, toDo],
     adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 
