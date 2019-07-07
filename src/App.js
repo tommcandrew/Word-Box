@@ -193,7 +193,18 @@ render() {
         fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
-          <Reader knownWords={this.state.knownWords} saveText={this.saveText} mode={this.state.readerMode} updateMode={this.updateReaderMode} updateText={this.updateText} updateTitle={this.updateTitle} text={this.state.text} title={this.state.title} saveEditedText={this.saveEditedText} clearStateTextInfo={this.clearStateTextInfo} deleteText={this.deleteText}/>
+          <Reader 
+            knownWords={this.state.knownWords} 
+            saveText={this.saveText} 
+            mode={this.state.readerMode} 
+            updateMode={this.updateReaderMode} 
+            updateText={this.updateText} 
+            updateTitle={this.updateTitle} 
+            text={this.state.text} 
+            title={this.state.title} 
+            saveEditedText={this.saveEditedText} 
+            clearStateTextInfo={this.clearStateTextInfo} 
+            deleteText={this.deleteText} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
