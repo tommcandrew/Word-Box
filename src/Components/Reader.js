@@ -63,6 +63,9 @@ class Reader extends React.Component {
 
     saveEditedText = () => {
         this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
+        this.setState(
+            {showSaveAlert: true}
+        )
         this.props.updateMode('read')
     }
 
@@ -119,11 +122,6 @@ class Reader extends React.Component {
         this.props.saveText(timeAndDate, title, pastedText)
         this.setState(
             {showSaveAlert: true}
-            // ,()=>{
-            //     window.setTimeout(()=>{
-            //       this.setState({showSaveAlert:false})
-            //     },3000)
-            //   }
         )
         this.props.updateMode('read')
     }
@@ -179,7 +177,7 @@ class Reader extends React.Component {
                 bottom: '5px',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                backgroundColor: '#5cb85c',
+                backgroundColor: '#28a745',
                 fontSize: 15
         }
 
