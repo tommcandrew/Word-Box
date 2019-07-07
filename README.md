@@ -1,6 +1,10 @@
 # Word Box
 A vocabulary builder, to help learn a new language.
-The app will maintain a list of words known to the user and, when a new piece of text is pasted in, the app will highlight known words in green and new words in red. 
+The app will maintain a list of words known to the user and, when a new piece of text is pasted in, the app will highlight known words in green and new words in red. You can save these texts (currently in local storage). 
+
+There is also a tab where you can look through the known words and click them to see a translation. And finally: there is a test page where the computer will generate random sentences from the words it knows and ask you for the translation.
+
+Please note: while there is no wish to recreate [Monty's Hungarian phrase book](http://www.montypython.net/scripts/phrasebk.php), I don't speak Czech that well. I have been as accurate as I can. The grammar may come up wrong, especially as we aim for harder sentences.
 
 ## Made by 
 geckos-team-09, on Chingu's voyage 9
