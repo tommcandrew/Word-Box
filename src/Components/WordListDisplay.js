@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListDisplay = (props) =>  {
     var wordList = ['the']; 
-    // you can add a random word to test word modal on unknown words in list, eg: 'surprise!'];
+    // you can add a random word in above to test word modal on unknown words in list, eg: 'surprise!'];
     if (props.types.includes('Nouns')) {
         for (var i in props.words.nouns) {
             wordList.push(props.words.nouns[i].english)
