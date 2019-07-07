@@ -21,7 +21,7 @@ HTML, CSS, React, React Bootstrap and JavaScript
 If you want to deploy one of your own, you can:
 - fork this repo
 - open a command line and change to a directory with the repo name
-- clone the repo
+- clone your fork of the repo
 - type this on the command line to install all the dependencies:
 > npm install
 
