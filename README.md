@@ -13,8 +13,8 @@ Team members: TomMac and [Samir70](https://github.com/Samir70)
 
 ## Technology
 HTML, CSS, React, React Bootstrap and JavaScript
-(eventually) some way to save data someplace other than local storage.
-There is no database or backend, though we plan to look at this in the future.
+
+(eventually) we will need some way to save data someplace other than local storage.There is no database or backend, though we plan to look at this in the future.
 
 ## Deploying your own Word Box
 [This version](https://chingu-voyages.github.io/v9-geckos-team-09/) is currently hosted on github, via gh-pages.
