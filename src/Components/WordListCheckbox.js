@@ -4,7 +4,7 @@ import {Button, ButtonGroup, Form} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListCheckbox = (props) => {
-    // these will be toggle buttons not checkboxes
+    // You can change the button types with the following variables
     var onBtn = "success",  offBtn='secondary';
     if (props.selection.includes('Nouns')) { var nounsBtn = onBtn }
       else {nounsBtn = offBtn}
