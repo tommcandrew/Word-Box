@@ -30,5 +30,20 @@ If you want to deploy one of your own, you can:
 
 Make changes, push them to your repo and keep in touch. We would especially like help getting a backend to this project, so that the user can save new words. Or even switch languages.
 
+## Adding words to vocab.js
+### Nouns
+Making a noun object for the word 'beer':
+> var beer = new Noun('beer');
+
+> beer.foreign = 'pivo';
+
+> beer.gender = 'neuter';
+
+Provide the english when first creating your noun. It is then accessed with
+> beer.english //returns the string 'beer'
+
+Gender needs to be: 'male', 'female' or 'neuter'
+Though Czech, and other languages, use noun cases (such as nominative and accusative) this has not been implemented yet.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
