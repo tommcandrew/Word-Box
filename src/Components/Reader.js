@@ -117,7 +117,11 @@ class Reader extends React.Component {
         
         this.props.saveText(timeAndDate, title, pastedText)
         this.setState(
-            {showSaveAlert: true}
+            {showSaveAlert: true},()=>{
+                window.setTimeout(()=>{
+                  this.setState({showSaveAlert:false})
+                },3000)
+              }
         )
         this.props.updateMode('read')
     }
@@ -160,8 +164,6 @@ class Reader extends React.Component {
             marginTop: '20px',
             marginLeft: 5,
             marginRight: 5
-
-           
         }
 
         const alertStyle = {
@@ -204,15 +206,7 @@ class Reader extends React.Component {
                 <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
                 <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
                 <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
-                <p style={alertStyle} 
-                   className="alert alert-success text-center alert-dismissable fade show"
-                   >Your text has been saved!
-                   <button 
-                     onClick={this.hideSaveAlert} 
-                     type="button" 
-                     className="close" 
-                     data-dismiss="alert">&times;</button>
-                </p>
+                <p style={alertStyle} class="alert alert-success text-center alert-dismissable fade show">Your text has been saved!<button onClick={this.hideSaveAlert} type="button" class="close" data-dismiss="alert">&times;</button></p>
             </div>
         )
 
