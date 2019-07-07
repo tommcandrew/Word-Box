@@ -43,10 +43,14 @@ const WordListDisplay = (props) =>  {
                        changeSearch={props.changeSearch}
                        changeCheckBox={props.changeCheckBox}
                      />
-                     { dictionaryJSX }
                   </Col>
                   <Col>
+                     <h2>Words I know</h2>
                      <div id="wordList"><p>{wordList}</p></div>
+                     { dictionaryJSX }
+                     <p>Click on a word to see its {props.words.foreignLang} translation</p>
+                     <p>Or I can test your ability to translate simple random sentences on the test page. <br />
+                        (Click the tab above)</p>
                   </Col>
                 </Row>
             </Container>
