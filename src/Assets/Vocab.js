@@ -67,9 +67,8 @@ class Adjective {
     wordType= 'adjective';
 
     set foreign(arr) {
-        // eventually: I would like this to be [stem, group]
-        // This will allow calculation of the foreign adjective for regular adjectives
-        // but currently it is [male, female, neuter]
+        // abandoning the idea that this would be [stem, group]
+        // the structure is [male, female, neuter]
         // actually: using the same structure as the defArticle will simplify the creation of 
         // a test sentence. So send an array to this method, it will create an object
         this._foreign = {male:arr[0], female:arr[1], neuter:arr[2]}
@@ -132,7 +131,8 @@ toDo.infinitive = 'delat';
 toDo.present = ['do', 'do', 'does','do','do','do'];
 toDo.presentForeign = ['delam', 'delas', 'dela', 'delame', 'delate', 'delaji']
 
-
+// remember: foreign adjectives don't stay as arrays
+// they are accessed by property name, eg: old.foreign.male
 var young = new Adjective('young');
 young.foreign = ['mlady', 'mlada', 'mlade'];
 var old = new Adjective('old');
@@ -163,6 +163,10 @@ export var wordList = {
         english: 'the', 
         foreign: {male:'ten', female:'ta', neuter:'to'}, 
         wordType:'definite article'},
+    pronouns : {
+        english: ['I', 'you', 'he', 'she', 'it', 'we','you','they'],
+        foreign: ['ja', 'ty', 'on', 'ona', 'ono', 'my', 'vy', 'oni']
+    },
     nouns : [beer, wine, dog, table, banana, woman, man, tree, bed, car, gift, hospital, night, dandelion],
     verbs : [toBe, toDo],
     adjectives : [young, old, small, large, blue, green, beautiful, healthy, strong, cold, hot] 

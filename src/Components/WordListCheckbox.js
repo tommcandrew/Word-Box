@@ -4,7 +4,7 @@ import {Button, ButtonGroup, Form} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const WordListCheckbox = (props) => {
-    // these will be toggle buttons not checkboxes
+    // You can change the button types with the following variables
     var onBtn = "success",  offBtn='secondary';
     if (props.selection.includes('Nouns')) { var nounsBtn = onBtn }
       else {nounsBtn = offBtn}
@@ -21,6 +21,7 @@ const WordListCheckbox = (props) => {
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
               <Button variant={adjBtn}  onClick={()=>props.click('Adjectives')}>Adjectives</Button>
             </ButtonGroup>
+            <p>Pronouns are not included. But, if you a click a verb, you will see them listed there</p>
             <p></p>
             <Form>
               <Form.Group>
