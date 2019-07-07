@@ -43,10 +43,10 @@ const WordListDisplay = (props) =>  {
                        changeSearch={props.changeSearch}
                        changeCheckBox={props.changeCheckBox}
                      />
-                     { dictionaryJSX }
                   </Col>
                   <Col>
                      <div id="wordList"><p>{wordList}</p></div>
+                     { dictionaryJSX }
                   </Col>
                 </Row>
             </Container>
