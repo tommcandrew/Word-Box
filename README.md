@@ -16,13 +16,14 @@ HTML, CSS, React, React Bootstrap and JavaScript
 There is no database or backend, though we plan to look at this in the future.
 
 ## Deploying your own Word Box
-This version is currently hosted on [github](https://chingu-voyages.github.io/v9-geckos-team-09/), via gh-pages.
+[This version](https://chingu-voyages.github.io/v9-geckos-team-09/) is currently hosted on github, via gh-pages.
 If you want to deploy one of your own, you can:
 - fork this repo
 - open a command line and change to a directory with the repo name
 - clone the repo
 - type this on the command line to install all the dependencies:
 > npm install
+
 (In case you don't know: you have to have installed node for that to work)
 - then, to use the App from your local copy:
 > npm start
