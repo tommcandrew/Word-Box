@@ -45,6 +45,7 @@ const WordListDisplay = (props) =>  {
                      />
                   </Col>
                   <Col>
+                     <h2>Words I know</h2>
                      <div id="wordList"><p>{wordList}</p></div>
                      { dictionaryJSX }
                   </Col>

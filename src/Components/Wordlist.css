@@ -1,7 +1,8 @@
 #wordList {
   display:block;
-  max-height: 80vh;
+  max-height: 40vh;
   overflow-y: scroll;
+  border: 2px solid rgb(76, 116, 224)
 }
 
 td {
