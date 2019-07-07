@@ -1,128 +1,47 @@
 import React from 'react'
+import {Button} from  'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
-class GrabbedText extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            newTitleInput: '',
-            grabbedTitle: 'This is the default title'
+const GrabbedText = (props) => {
+
+        let knownNouns = []
+        for (let i = 0; i < props.knownWords.nouns.length; i++) {
+            let foreignNoun = props.knownWords.nouns[i].foreign
+            knownNouns.push(foreignNoun)
         }
-    }
 
-    changeDefaultTitle = (event) => {
-        this.setState(
-            {grabbedTitle: event.target.value}
-        )
-    }
-
-    componentDidMount = () => {
-
-        if (this.props.title !== '') {
-            this.setState(
-                {grabbedTitle: this.props.title}
-            )
-        } else {
-
-            var splitUpText = this.props.text.split(' ')
-
-            if (splitUpText.length < 6) {
-                var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
-                var defaultTitle = ''
-                for (let i = 0; i < splitUpText.length; i++){
-                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-                    }
-                    defaultTitle = defaultTitle.slice(0, -1)
-                    defaultTitle = defaultTitle + '...'
-                this.setState(
-                    {grabbedTitle: defaultTitle}
-                    ) 
-                } else {
-                    firstFiveWords = splitUpText.slice(0, 6) 
-                    defaultTitle = ''
-                    for (let i = 0; i < 6; i++ ){
-                        defaultTitle = defaultTitle + firstFiveWords[i] + ' '
-                    }
-                    defaultTitle = defaultTitle.slice(0, -1)
-                    defaultTitle = defaultTitle + '...'
-                    this.setState(
-                        {grabbedTitle: defaultTitle}
-                        ) 
-                }
-    }
-}
-
-    editText = () => {
-        this.props.updateMode('paste')
-    }
-
-    saveText = () => {
-        if (this.state.grabbedTitle === '') {
-            alert('Please add a title')
-            return
-        } else {
-        this.props.updateTitle(this.state.grabbedTitle)
-
-        var d = new Date()
-        var fullTime = d.toTimeString()
-        fullTime = fullTime.split(' ')[0]
-
-        var dd = d.getDate()
-        var mm = d.getMonth() + 1
-        var yy = d.getFullYear().toString().substr(-2)
-        if (dd < 10) {
-        dd = '0' + dd 
+        let knownVerbs = []
+        for (let i = 0; i < props.knownWords.verbs.length; i++) {
+            let foreignInfinitive = props.knownWords.verbs[i].infinitive
+            knownVerbs.push(foreignInfinitive)
+            let presentForeign = props.knownWords.verbs[i].presentForeign
+            knownVerbs = knownVerbs.concat(presentForeign)
         }
-        if (mm < 10) {
-        mm = '0' + mm
+
+        let knownAdjectives = []
+        for (let i = 0; i < props.knownWords.adjectives.length; i++) {
+            let foreignAdjectiveFemale = props.knownWords.adjectives[i].foreign.female
+            let foreignAdjectiveMale = props.knownWords.adjectives[i].foreign.male
+            let foreignAdjectiveNeuter = props.knownWords.adjectives[i].foreign.neuter
+            knownAdjectives.push(foreignAdjectiveFemale, foreignAdjectiveMale, foreignAdjectiveNeuter)
         }
-        var fullDate = dd + '/' + mm + '/' + yy
-        var timeAndDate = fullTime + ' ' + fullDate
 
-        this.props.saveText(timeAndDate, this.state.grabbedTitle, this.props.text)
-        this.props.updateMode('saved')
-    }
-    }
+        let knownDefArticles = []
+        knownDefArticles.push(props.knownWords.defArticle.foreign.male.toLowerCase())
+        knownDefArticles.push(props.knownWords.defArticle.foreign.female.toLowerCase())
+        knownDefArticles.push(props.knownWords.defArticle.foreign.neuter.toLowerCase())
 
-    render() {
+        let allKnownWords = []
 
-    let knownNouns = []
-    for (let i = 0; i < this.props.knownWords.nouns.length; i++) {
-        let foreignNoun = this.props.knownWords.nouns[i].foreign
-        knownNouns.push(foreignNoun)
-    }
+        allKnownWords = allKnownWords.concat(knownNouns, knownVerbs, knownAdjectives, knownDefArticles)
 
-    let knownVerbs = []
-    for (let i = 0; i < this.props.knownWords.verbs.length; i++) {
-        let foreignInfinitive = this.props.knownWords.verbs[i].infinitive
-        knownVerbs.push(foreignInfinitive)
-        let presentForeign = this.props.knownWords.verbs[i].presentForeign
-        knownVerbs = knownVerbs.concat(presentForeign)
-    }
+        let allKnownWordsUpperFirstChar = allKnownWords.map(function(word, index) {
+            return word.charAt(0).toUpperCase() + word.slice(1)
+        })
 
-    let knownAdjectives = []
-    for (let i = 0; i < this.props.knownWords.adjectives.length; i++) {
-        let foreignAdjectiveFemale = this.props.knownWords.adjectives[i].foreign.female
-        let foreignAdjectiveMale = this.props.knownWords.adjectives[i].foreign.male
-        let foreignAdjectiveNeuter = this.props.knownWords.adjectives[i].foreign.neuter
-        knownAdjectives.push(foreignAdjectiveFemale, foreignAdjectiveMale, foreignAdjectiveNeuter)
-    }
-
-    let knownDefArticles = []
-    knownDefArticles.push(this.props.knownWords.defArticle.foreign.male.toLowerCase())
-    knownDefArticles.push(this.props.knownWords.defArticle.foreign.female.toLowerCase())
-    knownDefArticles.push(this.props.knownWords.defArticle.foreign.neuter.toLowerCase())
-
-    let allKnownWords = []
-
-    allKnownWords = allKnownWords.concat(knownNouns, knownVerbs, knownAdjectives, knownDefArticles)
-
-    let allKnownWordsUpperFirstChar = allKnownWords.map(function(word, index) {
-        return word.charAt(0).toUpperCase() + word.slice(1)
-    })
-
-    let allKnownWordsUpperAll = allKnownWords.map(function(word, index) {
-        return word.toUpperCase()
-    })
+        let allKnownWordsUpperAll = allKnownWords.map(function(word, index) {
+            return word.toUpperCase()
+        })
 
         const divStyle = {
             fontSize: 20,
@@ -142,11 +61,12 @@ class GrabbedText extends React.Component {
 
         const buttonStyles = {
             display: 'inline-block',
-            fontSize: '25px',
+            fontSize: '20px',
             margin: '0 auto',
             marginBottom: '100px',
             marginTop: '20px',
-            width: '100px'
+            marginLeft: 5,
+            marginRight: 5
         }
 
         const knownWordStyle = {
@@ -157,7 +77,7 @@ class GrabbedText extends React.Component {
             color: 'red'
         }
 
-        var splitText = this.props.text.match(/\w+|\s+|[^\s\w]+/g)
+        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         let newWordArray = splitText.map(function (word, index) {
             if (!word.match(/\w+/g)) {
@@ -181,13 +101,12 @@ class GrabbedText extends React.Component {
 
         return (
             <div>
-                <input type='text' autoFocus style={titleStyle} value={this.state.grabbedTitle} onChange={this.changeDefaultTitle}></input>
+                <h2 style={titleStyle}>{props.title}</h2>
                 <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
-                <button style={buttonStyles} onClick={this.editText}>Edit</button>
-                <button style={buttonStyles} onClick={this.saveText}>Save</button>
+                <Button style={buttonStyles} onClick={props.editText}>Edit</Button>
+                <Button style={buttonStyles} onClick={props.deleteText}>Delete</Button>
             </div>
         )
-    }
 }
 
 export default GrabbedText
