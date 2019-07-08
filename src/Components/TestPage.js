@@ -37,12 +37,12 @@ const TestPage = (props) => {
               value={props.userAns} 
               onChange={props.changeAns} />
           </Form.Group>
-        </Form>
-        <div id='answer'>{markedAns}</div>
-        <p></p>
         <Button variant='primary' onClick={props.switchModeClick}>Translate the other way</Button>
+        </Form>
+        <p></p>
+        <div id='answer'>{markedAns}</div>
         <p>If your translation matches what I'm thinking of, then your words will be green. 
-          If a word is red, then that is not what I am thinking of. 
+          If a word is red, then that is not what I am thinking of. <br />
           If you get the complete sentence, I will reward you with a new question!</p>
       </div>
   )

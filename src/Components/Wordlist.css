@@ -1,5 +1,14 @@
 #wordList {
   display:block;
-  height: 80vh;
+  max-height: 40vh;
   overflow-y: scroll;
+  border: 2px solid rgb(76, 116, 224)
+}
+
+td {
+  text-align: center;
+}
+
+th {
+  text-align: center !important;
 }
