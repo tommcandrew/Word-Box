@@ -80,7 +80,7 @@ const GrabbedText = (props) => {
         let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         let newWordArray = splitText.map(function (word, index) {
-            if (!word.match(/\w+/g)) {
+            if (!word.match(/\w+[^\0-9]/g)) {
                 return word
             } else {
                 
