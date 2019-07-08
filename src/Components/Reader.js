@@ -11,7 +11,8 @@ class Reader extends React.Component {
             mode: this.props.mode,
             currentTitle: '',
             userTextInput: '',
-            showSaveAlert: false
+            showSaveAlert: false,
+            showBlankAlert: false
         }
     }
 
@@ -55,6 +56,18 @@ class Reader extends React.Component {
         )
     }
 
+    handleClose = () => {
+        this.setState(
+            {showSaveAlert: false}
+        )
+    }
+
+    handleCloseBlankAlert = () => {
+        this.setState(
+            {showBlankAlert: false}
+        )
+    }
+
     hideSaveAlert = () => {
         this.setState(
             {showSaveAlert: false}
@@ -62,14 +75,31 @@ class Reader extends React.Component {
     }
 
     saveEditedText = () => {
-        this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
-        this.setState(
-            {showSaveAlert: true}
-        )
-        this.props.updateMode('read')
+        console.log(this.state.userTextInput)
+        if (this.state.userTextInput === '') {
+            this.setState(
+                {showBlankAlert: true}
+            )
+            return
+        } else {
+            this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
+            this.setState(
+                {showSaveAlert: true}
+            )
+            this.props.updateMode('read')
+    }
     }
 
     saveText = () => {
+        if (this.refs.myTextArea.value === '') {
+            this.setState(
+                {showBlankAlert: true}
+            )
+            return
+        } else {
+            this.setState(
+                {showBlankAlert: false}
+            )
         var pastedText = this.refs.myTextArea.value
         this.props.updateText(pastedText)
 
@@ -125,11 +155,6 @@ class Reader extends React.Component {
         )
         this.props.updateMode('read')
     }
-
-    handleClose = () => {
-        this.setState(
-            {showSaveAlert: false}
-        )
     }
 
     updateTitle = (updatedTitle) => {
@@ -181,7 +206,7 @@ class Reader extends React.Component {
                 fontSize: 15
         }
 
-        if (this.props.mode === 'paste'){
+        if (this.props.mode === 'paste' && this.state.showBlankAlert === false){
 
             return (
 
@@ -191,7 +216,21 @@ class Reader extends React.Component {
                     <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
                 </div>
 
-    )} else if (this.props.mode === 'read' && this.state.showSaveAlert === false){
+    )} else if (this.props.mode === 'paste' && this.state.showBlankAlert === true){
+
+        return (
+
+            <div id='main-area' style={mainAreaStyles} className="form-group">
+                <input className="form-control" ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
+                <textarea className="form-control" id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
+                <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
+                <Toast style={alertStyle} onClose={this.handleCloseBlankAlert} delay={3000} autohide>
+                    <Toast.Body>Enter some text!</Toast.Body>
+                </Toast>
+
+            </div>
+
+)} else if (this.props.mode === 'read' && this.state.showSaveAlert === false){
 
             return (
                 <div>
@@ -220,7 +259,7 @@ class Reader extends React.Component {
             </div>
         )
 
-} else if (this.props.mode === 'edit-saved'){
+} else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === false){
 
             return (
                 <div style={mainAreaStyles}>
@@ -230,7 +269,20 @@ class Reader extends React.Component {
                 </div>
                 )
 
-    } else if (this.props.mode === 'study') {
+    } else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === true){
+
+        return (
+            <div style={mainAreaStyles}>
+                <input style={textAreaStyles} value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
+                <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
+                <Button variant='primary' style={buttonStyles} onClick={this.saveEditedText}>Save</Button>
+                <Toast style={alertStyle} onClose={this.handleCloseBlankAlert} delay={3000} autohide>
+                    <Toast.Body>Enter some text!</Toast.Body>
+                </Toast>
+            </div>
+            )
+
+} else if (this.props.mode === 'study') {
 
             return (
 
