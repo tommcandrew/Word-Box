@@ -2,6 +2,7 @@ import React from 'react'
 import GrabbedText from './GrabbedText'
 import {Button} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import Toast from 'react-bootstrap/Toast'
 
 class Reader extends React.Component {
     constructor(props) {
@@ -62,6 +63,9 @@ class Reader extends React.Component {
 
     saveEditedText = () => {
         this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
+        this.setState(
+            {showSaveAlert: true}
+        )
         this.props.updateMode('read')
     }
 
@@ -122,6 +126,12 @@ class Reader extends React.Component {
         this.props.updateMode('read')
     }
 
+    handleClose = () => {
+        this.setState(
+            {showSaveAlert: false}
+        )
+    }
+
     updateTitle = (updatedTitle) => {
         this.props.updateTitle(updatedTitle)
         }
@@ -160,15 +170,15 @@ class Reader extends React.Component {
             marginTop: '20px',
             marginLeft: 5,
             marginRight: 5
-
-           
         }
 
         const alertStyle = {
                 position: 'fixed',
                 bottom: '5px',
-                left: '2%',
-                width: '96%'
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: '#28a745',
+                fontSize: 15
         }
 
         if (this.props.mode === 'paste'){
@@ -204,15 +214,9 @@ class Reader extends React.Component {
                 <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
                 <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
                 <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
-                <p style={alertStyle} 
-                   className="alert alert-success text-center alert-dismissable fade show"
-                   >Your text has been saved!
-                   <button 
-                     onClick={this.hideSaveAlert} 
-                     type="button" 
-                     className="close" 
-                     data-dismiss="alert">&times;</button>
-                </p>
+                <Toast style={alertStyle} onClose={this.handleClose} delay={3000} autohide>
+                    <Toast.Body>Your text has been saved!</Toast.Body>
+                </Toast>
             </div>
         )
 
