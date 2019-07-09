@@ -32,8 +32,16 @@ If you want to deploy one of your own, you can:
 Make changes, push them to your repo and keep in touch. We would especially like help getting a backend to this project, so that the user can save new words. Or even switch languages.
 
 ## Adding words to vocab.js
+The wordList object has several properties. 
+
+### ForeignLang
+This allows the app to use the name of the language in the placeholder for the answer sentence. And in the modals which provide the translations in the known words tab when a word is clicked.
+
+### defArticle
+This itself has the properties of male, female, neuter. If one or more of these is undefined, the modal will display --- for it. It also has the property of wordType, which returns 'definite article'.
+
 ### Nouns
-Making a noun object for the word 'beer':
+Make a noun object for the word 'beer':
 > var beer = new Noun('beer');
 
 > beer.foreign = 'pivo';
@@ -42,6 +50,9 @@ Making a noun object for the word 'beer':
 
 Provide the english when first creating your noun. It is then accessed with
 > beer.english //returns the string 'beer'
+
+The word then also gets the property:
+> beer.wordType // returns 'noun'
 
 Gender needs to be: 'male', 'female' or 'neuter'
 Though Czech, and other languages, use noun cases (such as nominative and accusative) this has not been implemented yet.
