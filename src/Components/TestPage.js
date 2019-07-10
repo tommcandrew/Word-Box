@@ -24,12 +24,17 @@ const TestPage = (props) => {
         return <span className='badWord' key={i}>{x+' '}</span>
         })
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
+  
+
   
   return (
       <div id='testpage'>
         <h2>Translate the following</h2>
         <p id='question'>{questionSentence}</p>
-        <Form>
+        <Form onSubmit={handleSubmit} >
           <Form.Group>
             <Form.Control 
               type='text' 
