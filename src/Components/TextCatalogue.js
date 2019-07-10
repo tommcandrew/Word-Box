@@ -3,13 +3,7 @@ import './TextCatalogue.css'
 
 const TextCatalogue = (props) => {
 
-const closeButtonStyle = {
-    fontSize: '20px',
-    color: 'red',
-    cursor: 'pointer'
-}
-
-var del = document.createElement("span");
+let del = document.createElement("span");
 	del.innerHTML = "x";
 	del.setAttribute("title", "Remove item")
 
@@ -23,7 +17,7 @@ if (props.savedTexts !== '') {
                 <th><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></th>
                 <th>{textDate}</th>
                 <th>{textTime}</th>
-                <th><span style={closeButtonStyle} onClick={props.deleteFromCatalogue} title='Delete'>      &times;</span></th>
+                <th><span onClick={props.deleteFromCatalogue} title='Delete' className='close-button'>      &times;</span></th>
             </tr>
         )
     })
