@@ -204,6 +204,7 @@ render() {
         activeKey={this.state.tabToShow}
         onSelect={key => this.setState({tabToShow:key})}
         variant = 'pills'
+        className='tabs'
         fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
