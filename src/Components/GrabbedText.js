@@ -1,6 +1,7 @@
 import React from 'react'
-import {Button} from  'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import {Button} from  'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
+import './Reader.css'
 
 const GrabbedText = (props) => {
 
@@ -99,13 +100,31 @@ const GrabbedText = (props) => {
     }
     )
 
+     
+
+     
+
         return (
-            <div>
-                <h2 style={titleStyle}>{props.title}</h2>
-                <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
-                <Button style={buttonStyles} onClick={props.editText}>Edit</Button>
-                <Button style={buttonStyles} onClick={props.deleteText}>Delete</Button>
-            </div>
+            
+            <div className='wrapper'>
+                    <div className='row flex-nowrap'> 
+                        <div className='col-lg-3 button-area'>
+                            <div className='btn-group-vertical'>
+                                <Button variant='primary' className='button btn-lg' onClick={props.editText}>Edit</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={props.deleteText}>Delete</Button>                             
+                            </div>
+                        </div>
+                        <div id='main-area' className="main-area col-lg-6">
+                        <h2 style={titleStyle}>{props.title}</h2>
+                            <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                    </div>
+                </div>
+ 
+  
         )
 }
 
