@@ -34,3 +34,18 @@ Form {
 .badWord {
     color:red;
 }
+
+#answerToast {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    min-width: 35vmin;
+    background: rgba(175, 219, 54, 0.95);
+
+}
+
+#answerHeader {
+    background: rgba(141, 175, 46, 0.95);
+    color: white;
+    justify-content: space-between;
+}

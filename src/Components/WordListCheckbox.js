@@ -21,7 +21,7 @@ const WordListCheckbox = (props) => {
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
               <Button variant={adjBtn}  onClick={()=>props.click('Adjectives')}>Adjectives</Button>
             </ButtonGroup>
-            <p>Pronouns are not included. But, if you a click a verb, you will see them listed there</p>
+            <p>Pronouns are not included. But, if you click a verb, you will see them listed there</p>
             <p></p>
             <Form>
               <Form.Group>

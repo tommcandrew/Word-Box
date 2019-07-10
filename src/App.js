@@ -16,6 +16,8 @@ class App extends React.Component {
     typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
     translationMode : 'fromEng', 
     userAnswer: '',
+    showAnswerToast: false,
+    correctAnswerCount: 0,
     sentences: rndSentence(wordList), 
     tabToShow: 'testPage',
     savedTexts: '',
@@ -49,8 +51,17 @@ class App extends React.Component {
     } else {ans = this.state.sentences.english}
     
     if (event.target.value.toLowerCase() === ans.toLowerCase()) {
-      this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
+      this.setState({
+        sentences: rndSentence(this.state.knownWords), 
+        userAnswer:'',
+        showAnswerToast: true,
+        correctAnswerCount: this.state.correctAnswerCount+1
+      })
     } else { this.setState({userAnswer:event.target.value}) }
+  }
+
+  closeToast = () => {
+    this.setState({showAnswerToast: false})
   }
 
 
@@ -246,6 +257,9 @@ render() {
             userAns={this.state.userAnswer}
             testQ={this.state.sentences}
             changeAns={this.ChangeAnswerHandler}
+            showAnswerToast={this.state.showAnswerToast}
+            correctAnswerCount={this.state.correctAnswerCount}
+            closeToast={this.closeToast}
             />          
         </Tab>
         </Tabs>
