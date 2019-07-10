@@ -2,46 +2,47 @@ import React from 'react'
 
 const TextCatalogue = (props) => {
 
-const listStyle = {
-    listStyleType: 'none'
+const closeButtonStyle = {
+    fontSize: '20px',
+    color: 'red',
+    cursor: 'pointer'
 }
 
-const textCatalogueStyle = {
-    marginBottom: '50px'
-}
-
-const headingStyle = {
-    paddingTop: '50px',
-    paddingBottom: '25px'
-}
-
-const linkStyle = {
-    fontSize: '30px'
-}
-
-const linkDivStyle = {
-    paddingBottom: '25px'
-}
+var del = document.createElement("span");
+	del.innerHTML = "x";
+	del.setAttribute("title", "Remove item")
 
 if (props.savedTexts !== '') {
 
-var textsArray = props.savedTexts.map(function(item, index){
-    return (
-        <div key={item.timeAndDate} style={linkDivStyle}>
-            <ul style={listStyle}>
-                <li>{item.timeAndDate}</li>
-                <li><a style={linkStyle} href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></li>
-            </ul>
-        </div>
-    )
-})
+    var textsArray = props.savedTexts.map(function(item, index){
+        let textDate = item.timeAndDate.substr(9)
+        let textTime = item.timeAndDate.slice(0, 8)
+        return (
+            <tr key={item.timeAndDate} id={item.timeAndDate}>
+                <th><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></th>
+                <th>{textDate}</th>
+                <th>{textTime}</th>
+                <th><span style={closeButtonStyle} onClick={props.deleteFromCatalogue} title='Delete'>      &times;</span></th>
+            </tr>
+        )
+    })
 }
 
 return (
-    <div style={textCatalogueStyle}>
-        <h2 style={headingStyle}>Your texts: </h2>
-        <div>{textsArray}</div>
-    </div>
+   
+    <table className='table'>
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {textsArray}
+        </tbody>
+    </table>
+
 )
 }
 

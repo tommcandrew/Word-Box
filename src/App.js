@@ -98,6 +98,18 @@ class App extends React.Component {
     }
   }
 
+  deleteFromCatalogue = (e) => {
+    let textId = e.target.parentElement.parentElement.id
+    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    for (let i = 0; i < savedTexts.length; i++) {
+      if (savedTexts[i].timeAndDate === textId) {
+        savedTexts.splice(i, 1)
+      }
+      localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+      this.componentWillMount()
+    }
+  }
+
   deleteText = () => {
 
   let textTitle = this.state.title
@@ -207,7 +219,7 @@ render() {
             deleteText={this.deleteText} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
+          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 
