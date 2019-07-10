@@ -38,8 +38,8 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: #28a745;
-    width: 10%;
-    height: 55px;
+    min-width: 70px;
+    min-height: 55px;
     padding: 5px;
-   
+    font-size: 15px;
 }
