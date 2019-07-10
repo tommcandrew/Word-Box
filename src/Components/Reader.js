@@ -3,6 +3,7 @@ import GrabbedText from './GrabbedText'
 import {Button} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Toast from 'react-bootstrap/Toast'
+import './Reader.css'
 
 class Reader extends React.Component {
     constructor(props) {
@@ -75,7 +76,6 @@ class Reader extends React.Component {
     }
 
     saveEditedText = () => {
-        console.log(this.state.userTextInput)
         if (this.state.userTextInput === '') {
             this.setState(
                 {showBlankAlert: true}
@@ -210,7 +210,7 @@ class Reader extends React.Component {
 
             return (
 
-                <div id='main-area' style={mainAreaStyles} className="form-group">
+                <div id='main-area' className="form-group main-area">
                     <input className="form-control" ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                     <textarea className="form-control" id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
                     <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
