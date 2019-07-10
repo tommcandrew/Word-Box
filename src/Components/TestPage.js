@@ -1,6 +1,6 @@
 import React from 'react';
 import './TestPage.css';
-import {Button, Form} from  'react-bootstrap';
+import {Button, Form, Toast} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const TestPage = (props) => {  
@@ -44,6 +44,20 @@ const TestPage = (props) => {
         <p>If your translation matches what I'm thinking of, then your words will be green. 
           If a word is red, then that is not what I am thinking of. <br />
           If you get the complete sentence, I will reward you with a new question!</p>
+        <Toast 
+          id='answerToast' 
+          show={props.showAnswerToast} 
+          onClose={props.closeToast} 
+          delay={2000}
+          autohide
+        >
+          <Toast.Header id='answerHeader'>
+            <h4>Correct!!</h4>
+          </Toast.Header>
+          <Toast.Body>
+            <p>You have translated {props.correctAnswerCount} sentences.</p>
+          </Toast.Body>
+        </Toast>
       </div>
   )
 }
