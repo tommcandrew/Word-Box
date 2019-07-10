@@ -109,6 +109,18 @@ class App extends React.Component {
     }
   }
 
+  deleteFromCatalogue = (e) => {
+    let textId = e.target.parentElement.parentElement.id
+    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+    for (let i = 0; i < savedTexts.length; i++) {
+      if (savedTexts[i].timeAndDate === textId) {
+        savedTexts.splice(i, 1)
+      }
+      localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+      this.componentWillMount()
+    }
+  }
+
   deleteText = () => {
 
   let textTitle = this.state.title
@@ -196,11 +208,14 @@ updateTitle = (title) => {
 render() {
   return (
     <div className="App">
-      <h1 className="App-header">Word Box</h1>
+      <div className='header'>
+        <h1 className="App-header">Word Box</h1>
+      </div>
       <Tabs
         activeKey={this.state.tabToShow}
         onSelect={key => this.setState({tabToShow:key})}
         variant = 'pills'
+        className='tabs'
         fill
         >
         <Tab eventKey='Reader' title='Analyse text'>
@@ -218,7 +233,7 @@ render() {
             deleteText={this.deleteText} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts'>
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
+          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words'>
           <WordListDisplay 

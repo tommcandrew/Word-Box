@@ -1,0 +1,15 @@
+.table {
+    width: 65%;
+    margin: auto;
+    font-size: 20px;
+}
+
+.wrapper {
+    margin-top: 20px;
+}
+
+.close-button {
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+}

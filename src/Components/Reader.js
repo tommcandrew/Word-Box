@@ -3,6 +3,7 @@ import GrabbedText from './GrabbedText'
 import {Button} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Toast from 'react-bootstrap/Toast'
+import './Reader.css'
 
 class Reader extends React.Component {
     constructor(props) {
@@ -75,7 +76,6 @@ class Reader extends React.Component {
     }
 
     saveEditedText = () => {
-        console.log(this.state.userTextInput)
         if (this.state.userTextInput === '') {
             this.setState(
                 {showBlankAlert: true}
@@ -163,132 +163,153 @@ class Reader extends React.Component {
 
     render() {
 
-        const textAreaStyles = {
-            fontSize: 20,
-            marginBottom: '20px',
-            margin: 'auto',
-            display: 'block',
-            width: '60%'
-        }
-        
-        const mainAreaStyles = {
-            display: 'block'
-        }
-
-        const textBoxStyle = {
-            border: '2px solid black',
-            fontSize: 20,
-            marginBottom: '20px',
-            marginTop: '100px',
-            margin: 'auto',
-            padding: 20,
-            display: 'block',
-            width: '60%',
-            textAlign: 'left'
-        }
-
-        const buttonStyles = {
-            display: 'inline-block',
-            fontSize: '20px',
-            margin: '0 auto',
-            marginBottom: '100px',
-            marginTop: '20px',
-            marginLeft: 5,
-            marginRight: 5
-        }
-
-        const alertStyle = {
-                position: 'fixed',
-                bottom: '5px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                backgroundColor: '#28a745',
-                fontSize: 15
-        }
-
         if (this.props.mode === 'paste' && this.state.showBlankAlert === false){
 
             return (
-
-                <div id='main-area' style={mainAreaStyles} className="form-group">
-                    <input className="form-control" ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
-                    <textarea className="form-control" id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
-                    <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
+                <div className='wrapper'>
+                    <div className='row flex-nowrap'> 
+                        <div className='col-lg-3 button-area'>
+                            <div className='btn-group-vertical'>
+                                <Button variant='primary' onClick={this.saveText} className='button btn-lg'>Save</Button>
+                            </div>
+                        </div>
+                        <div id='main-area' className="form-group main-area col-lg-6">
+                            <input className="form-control text-area" ref="myTitleArea" placeholder='Enter title...' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
+                            <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='15' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                    </div>
                 </div>
 
     )} else if (this.props.mode === 'paste' && this.state.showBlankAlert === true){
 
         return (
-
-            <div id='main-area' style={mainAreaStyles} className="form-group">
-                <input className="form-control" ref='myTitleArea' placeholder='Enter title...' style={textAreaStyles} onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
-                <textarea className="form-control" id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} style={textAreaStyles} onChange={this.handleChangeText}></textarea>
-                <Button variant='primary' onClick={this.saveText} style={buttonStyles}>Save</Button>
-                <Toast style={alertStyle} onClose={this.handleCloseBlankAlert} delay={3000} autohide>
-                    <Toast.Body>Enter some text!</Toast.Body>
-                </Toast>
-
+            <div className='wrapper'>
+                <div className='row flex-nowrap'>
+                    <div className='col-lg-3 button-area'>
+                        <div className='btn-group-vertical'>
+                            <Button variant='primary' onClick={this.saveText} className='button btn-lg'>Save</Button>
+                        </div>
+                    </div>
+                    <div id='main-area' className="form-group main-area col-lg-6">
+                        <input className="form-control text-area" ref='myTitleArea' placeholder='Enter title...' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
+                        <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='20' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
+                        <Toast className='alert' onClose={this.handleCloseBlankAlert} delay={3000} autohide>
+                            <Toast.Body>Enter some text!</Toast.Body>
+                        </Toast>
+                    </div>
+                    <div className='col-lg-3'>
+                            
+                    </div>
+                </div>
             </div>
 
 )} else if (this.props.mode === 'read' && this.state.showSaveAlert === false){
 
             return (
-                <div>
-                    <h2>{this.props.title}</h2>
-                    <div style={textBoxStyle}>{this.props.text}</div>
-                    <Button variant='primary' style={buttonStyles} onClick={this.editSavedText}>Edit</Button>
-                    <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
-                    <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
-                    <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
+                <div className='wrapper'>
+                    <div className='row flex-nowrap'>
+                        <div className='col-lg-3 button-area'>
+                            <div className='btn-group-vertical'>
+                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
+                            </div>
+                        </div>
+                        <div className='col-lg-6 main-area'>
+                            <h2 className='text-title'>{this.props.title}</h2>
+                            <div className='text-box'>{this.props.text}</div>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                    </div>
                 </div>
             )
 
     } else if (this.props.mode === 'read' && this.state.showSaveAlert === true){
 
         return (
-            <div>
-                <h2>{this.props.title}</h2>
-                <div style={textBoxStyle}>{this.props.text}</div>
-                <Button variant='primary' style={buttonStyles} onClick={this.editSavedText}>Edit</Button>
-                <Button variant='primary' style={buttonStyles} onClick={this.goToStudyMode}>Study</Button>
-                <Button variant='primary' style={buttonStyles} onClick={this.addNewText}>Add new text</Button>
-                <Button variant='primary' style={buttonStyles} onClick={this.deleteText}>Delete</Button>
-                <Toast style={alertStyle} onClose={this.handleClose} delay={3000} autohide>
-                    <Toast.Body>Your text has been saved!</Toast.Body>
-                </Toast>
+            <div className='wrapper'>
+                <div className='row  flex-nowrap'>
+                        <div className='col-lg-3 button-area'>
+                            <div className='btn-group-vertical'>
+                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
+                                <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
+                            </div>
+                        </div>
+                        <div className='col-lg-6'>
+                            <h2 className='text-title'>{this.props.title}</h2>
+                            <div className='text-box'>{this.props.text}</div>
+                            <Toast className='alert' onClose={this.handleClose} delay={3000} autohide>
+                                <Toast.Body>Saved!</Toast.Body>
+                            </Toast>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                </div>
             </div>
         )
 
-} else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === false){
+} else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === false) {
 
             return (
-                <div style={mainAreaStyles}>
-                    <input style={textAreaStyles} value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
-                    <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
-                    <Button variant='primary' style={buttonStyles} onClick={this.saveEditedText}>Save</Button>
+                <div className='wrapper'>
+                    <div className='row  flex-nowrap'>
+                        <div className='col-lg-3 button-area'>
+                            <div className='btn-group-vertical'>
+                                <Button variant='primary' className='button btn-lg' onClick={this.saveEditedText}>Save</Button>
+                            </div>
+                        </div>
+                        <div className='main-area col-lg-6'>
+                            <input className='form-control text-area' value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
+                            <textarea className='form-control text-area' rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea> 
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                    </div>
                 </div>
                 )
 
-    } else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === true){
+    } else if (this.props.mode === 'edit-saved' && this.state.showBlankAlert === true) {
 
         return (
-            <div style={mainAreaStyles}>
-                <input style={textAreaStyles} value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
-                <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} style={textAreaStyles}></textarea>
-                <Button variant='primary' style={buttonStyles} onClick={this.saveEditedText}>Save</Button>
-                <Toast style={alertStyle} onClose={this.handleCloseBlankAlert} delay={3000} autohide>
-                    <Toast.Body>Enter some text!</Toast.Body>
-                </Toast>
+            <div className='wrapper'>
+                <div className='row flex-nowrap'>
+                        <div className='col-lg-3 button-area'>
+                            <div className= 'btn-group-vertical'>
+                                <Button variant='primary' className='button btn-lg' onClick={this.saveEditedText}>Save</Button>
+                            </div>
+                        </div>
+                        <div className='main-area col-lg-6'>
+                            <input className='text-area' value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
+                            <textarea rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText} className='text-area'></textarea>
+                            <Toast className='alert' onClose={this.handleCloseBlankAlert} delay={3000} autohide>
+                                <Toast.Body>Enter some text!</Toast.Body>
+                            </Toast>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                </div>
             </div>
             )
 
 } else if (this.props.mode === 'study') {
 
             return (
-
-                <div>
-                    <div style={textBoxStyle}>
-                        <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
+                <div className='wrapper'>
+                    <div>
+                        <div className='text-box'>
+                            <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
+                        </div>
                     </div>
                 </div>
             )

@@ -1,3 +1,16 @@
 .App {
   text-align: center;
 }
+
+.header {
+  background: #007bff;
+  min-height: 50px;
+}
+
+.App-header {
+  padding: 20px;
+}
+
+.tabs {
+  font-size: 22px;
+}
