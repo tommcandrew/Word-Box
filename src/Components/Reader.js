@@ -220,7 +220,7 @@ class Reader extends React.Component {
                             </div>
                         </div>
                         <div className='col-lg-6 main-area'>
-                            <h2>{this.props.title}</h2>
+                            <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
                         </div>
                         <div className='col-lg-3'>
@@ -244,7 +244,7 @@ class Reader extends React.Component {
                             </div>
                         </div>
                         <div className='col-lg-6'>
-                            <h2>{this.props.title}</h2>
+                            <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
                             <Toast className='alert' onClose={this.handleClose} delay={3000} autohide>
                                 <Toast.Body>Saved!</Toast.Body>

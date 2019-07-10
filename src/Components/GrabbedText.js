@@ -44,41 +44,15 @@ const GrabbedText = (props) => {
             return word.toUpperCase()
         })
 
-        const divStyle = {
-            fontSize: 20,
-            marginBottom: '20px',
-            margin: 'auto',
-            display: 'block',
-            width: '100%',
-            padding: '20px'
-        }
-
-        const titleStyle = {
-            fontSize: 30,
-            textAlign: 'center',
-            paddingTop: 20,
-            width: '100%'
-        }
-
-        const buttonStyles = {
-            display: 'inline-block',
-            fontSize: '20px',
-            margin: '0 auto',
-            marginBottom: '100px',
-            marginTop: '20px',
-            marginLeft: 5,
-            marginRight: 5
-        }
+        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         const knownWordStyle = {
             color: 'green'
         }
-
+        
         const unknownWordStyle = {
             color: 'red'
         }
-
-        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         let newWordArray = splitText.map(function (word, index) {
             if (!word.match(/\w+[^\0-9]/g)) {
@@ -88,7 +62,7 @@ const GrabbedText = (props) => {
             if (allKnownWords.includes(word) || allKnownWordsUpperFirstChar.includes(word) || allKnownWordsUpperAll.includes(word)) {
             
             return (
-                <span key={word+index} style = {knownWordStyle}>{word}</span>
+                <span key={word+index} style={knownWordStyle}>{word}</span>
             )
 
         } else {
@@ -99,10 +73,6 @@ const GrabbedText = (props) => {
     }
     }
     )
-
-     
-
-     
 
         return (
             
@@ -115,16 +85,14 @@ const GrabbedText = (props) => {
                             </div>
                         </div>
                         <div id='main-area' className="main-area col-lg-6">
-                        <h2 style={titleStyle}>{props.title}</h2>
-                            <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
+                        <h2 className='text-title'>{props.title}</h2>
+                            <div id='grabbedText' className='text-box'>{newWordArray}</div>
                         </div>
                         <div className='col-lg-3'>
                             
                         </div>
                     </div>
                 </div>
- 
-  
         )
 }
 
