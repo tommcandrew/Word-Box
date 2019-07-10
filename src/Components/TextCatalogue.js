@@ -1,4 +1,5 @@
 import React from 'react'
+import './TextCatalogue.css'
 
 const TextCatalogue = (props) => {
 
@@ -29,7 +30,8 @@ if (props.savedTexts !== '') {
 }
 
 return (
-   
+    
+    <div className='main-content'>
     <table className='table'>
         <thead>
             <tr>
@@ -42,6 +44,7 @@ return (
             {textsArray}
         </tbody>
     </table>
+    </div>
 
 )
 }
