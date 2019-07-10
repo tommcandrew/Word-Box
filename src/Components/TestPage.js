@@ -42,7 +42,7 @@ const TestPage = (props) => {
         <p></p>
         <div id='answer'>{markedAns}</div>
         <p>If your translation matches what I'm thinking of, then your words will be green. 
-          If a word is red, then that is not what I am thinking of. <br />
+          If a word is red, then your translation is different to mine. <br />
           If you get the complete sentence, I will reward you with a new question!</p>
         <Toast 
           id='answerToast' 
