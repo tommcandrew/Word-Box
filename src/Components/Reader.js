@@ -210,7 +210,7 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row  flex-nowrap'>
+                    <div className='row flex-nowrap'>
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
                                 <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
@@ -247,7 +247,7 @@ class Reader extends React.Component {
                             <h2>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
                             <Toast className='alert' onClose={this.handleClose} delay={3000} autohide>
-                                <Toast.Body>Your text has been saved!</Toast.Body>
+                                <Toast.Body>Saved!</Toast.Body>
                             </Toast>
                         </div>
                         <div className='col-lg-3'>

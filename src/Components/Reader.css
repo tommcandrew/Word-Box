@@ -38,5 +38,8 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: #28a745;
-    font-size: 15;
+    width: 10%;
+    height: 55px;
+    padding: 5px;
+   
 }
