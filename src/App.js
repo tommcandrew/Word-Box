@@ -197,7 +197,9 @@ updateTitle = (title) => {
 render() {
   return (
     <div className="App">
-      <h1 className="App-header">Word Box</h1>
+      <div className='header'>
+        <h1 className="App-header">Word Box</h1>
+      </div>
       <Tabs
         activeKey={this.state.tabToShow}
         onSelect={key => this.setState({tabToShow:key})}
