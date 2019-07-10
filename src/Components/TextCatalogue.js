@@ -25,7 +25,7 @@ if (props.savedTexts !== '') {
 
 return (
     
-    <div className='main-content'>
+    <div className='wrapper'>
     <table className='table'>
         <thead>
             <tr>
