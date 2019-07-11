@@ -54,5 +54,31 @@ Provide the english when first creating your noun. It is then accessed with
 The word then also gets the property:
 > beer.wordType // returns 'noun'
 
-Gender needs to be: 'male', 'female' or 'neuter'
+Gender needs to be: 'male', 'female' or 'neuter'.
+
 Though Czech, and other languages, use noun cases (such as nominative and accusative) this has not been implemented yet.
+
+### verbs
+These have the wordType 'verb'.
+
+Currently only the present tense is defined in vocab. Example definition:
+> var toBe = new Verb('to be');
+
+> toBe.infinitive = 'byt';
+
+> toBe.present = ['am', 'are', 'is', 'are', 'are', 'are'];
+
+> toBe.presentForeign = ['jsem', 'jsi', 'je', 'jsme', 'jste', 'jsou'];
+
+The getter toBe.present also returns an array. Adjectives do not behave this way.
+
+### adjectives
+The setter for the translation of an adjective requires an array, of up to 3 elements. If the array is smaller, then the later genders will be undefined and appear as --- in the modal. The setter creates an object with properties: male, female and neuter. Example:
+> var blue = new Adjective('blue');
+
+> blue.foreign = ['modry', 'modra', 'modre'];
+
+And the data is retrieved via:
+> blue.english //returns 'blue'
+
+> blue.foreign.neuter // returns 'modre'
