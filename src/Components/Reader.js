@@ -109,10 +109,15 @@ class Reader extends React.Component {
             title = this.refs.myTitleArea.value
             this.props.updateTitle(title)
         } else {
+            var defaultTitle = ''
             let splitUpText = this.refs.myTextArea.value.split(' ')
-            if (splitUpText.length < 6) {
+            if (splitUpText[0].length > 30) {
+                defaultTitle = splitUpText[0].slice(0, 30) + '...'
+                title = defaultTitle
+                this.props.updateTitle(title)
+            } else if (splitUpText.length < 6) {
                 var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
-                var defaultTitle = ''
+                defaultTitle = ''
                 for (let i = 0; i < splitUpText.length; i++){
                     defaultTitle = defaultTitle + firstFiveWords[i] + ' '
                     }
