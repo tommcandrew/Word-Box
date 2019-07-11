@@ -105,18 +105,30 @@ class Reader extends React.Component {
 
 
         var title
+        var firstFiveWords
+        //needs a limit
         if (this.refs.myTitleArea.value !== '') {
             title = this.refs.myTitleArea.value
             this.props.updateTitle(title)
         } else {
             var defaultTitle = ''
             let splitUpText = this.refs.myTextArea.value.split(' ')
-            if (splitUpText[0].length > 30) {
-                defaultTitle = splitUpText[0].slice(0, 30) + '...'
+            if (splitUpText.length < 6) {
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+            } else {
+                firstFiveWords = splitUpText.slice(0, 6)   
+            }
+            console.log(firstFiveWords)
+            
+            var firstFiveWordsString = firstFiveWords.join(' ')
+            
+            
+            if (firstFiveWordsString.length > 60) {
+                defaultTitle = firstFiveWordsString.substr(0, 30) + '...'
                 title = defaultTitle
                 this.props.updateTitle(title)
             } else if (splitUpText.length < 6) {
-                var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
                 defaultTitle = ''
                 for (let i = 0; i < splitUpText.length; i++){
                     defaultTitle = defaultTitle + firstFiveWords[i] + ' '
