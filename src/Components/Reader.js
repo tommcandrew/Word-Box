@@ -106,7 +106,6 @@ class Reader extends React.Component {
 
         var title
         var firstFiveWords
-        //needs a limit
         if (this.refs.myTitleArea.value !== '') {
             title = this.refs.myTitleArea.value
             this.props.updateTitle(title)
@@ -118,7 +117,6 @@ class Reader extends React.Component {
             } else {
                 firstFiveWords = splitUpText.slice(0, 6)   
             }
-            console.log(firstFiveWords)
             
             var firstFiveWordsString = firstFiveWords.join(' ')
             
@@ -206,7 +204,7 @@ class Reader extends React.Component {
                             </div>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
-                            <input className="form-control text-area" ref="myTitleArea" placeholder='Enter title...' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
+                            <input maxLength='30' className="form-control text-area" ref="myTitleArea" placeholder='Enter title...' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                             <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='15' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
                             {blankAlert}
                         </div>
