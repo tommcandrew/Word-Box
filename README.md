@@ -99,7 +99,7 @@ You can search for words here by looking through the alphabetical list or typing
 
 ### Test Your Knowledge
 Word-Box will use its vocab to make up a sentence. (Apologies for any rudeness: Word-Box knows not the meaning of what it says). Type your answer where prompted. As you type, each word is compared to the translation Word-Box has in mind. Obviously: there are many ways to say the same thing. But Word-Box is only thinking of one of these. Words gets marked according to their position and spelling (case insensitive). eg:
-![cold hospital translation](cold-hospital-test-eg.PNG)
+![cold hospital translation](/screenshots/cold-hospital-test-eg.PNG)
 
 'nemocnice' is correct and in green. But it shouldn't be 'ten'. (hint: what gender is a hospital?)
 
