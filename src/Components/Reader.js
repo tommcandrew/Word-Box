@@ -105,14 +105,29 @@ class Reader extends React.Component {
 
 
         var title
+        var firstFiveWords
         if (this.refs.myTitleArea.value !== '') {
             title = this.refs.myTitleArea.value
             this.props.updateTitle(title)
         } else {
+            var defaultTitle = ''
             let splitUpText = this.refs.myTextArea.value.split(' ')
             if (splitUpText.length < 6) {
-                var firstFiveWords = splitUpText.slice(0, splitUpText.length) 
-                var defaultTitle = ''
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+            } else {
+                firstFiveWords = splitUpText.slice(0, 6)   
+            }
+            
+            var firstFiveWordsString = firstFiveWords.join(' ')
+            
+            
+            if (firstFiveWordsString.length > 60) {
+                defaultTitle = firstFiveWordsString.substr(0, 30) + '...'
+                title = defaultTitle
+                this.props.updateTitle(title)
+            } else if (splitUpText.length < 6) {
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+                defaultTitle = ''
                 for (let i = 0; i < splitUpText.length; i++){
                     defaultTitle = defaultTitle + firstFiveWords[i] + ' '
                     }
@@ -189,7 +204,7 @@ class Reader extends React.Component {
                             </div>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
-                            <input className="form-control text-area" ref="myTitleArea" placeholder='Enter title...' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
+                            <input maxLength='50' className="form-control text-area" ref="myTitleArea" placeholder='Enter title... (max 50 characters)' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                             <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='15' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
                             {blankAlert}
                         </div>
