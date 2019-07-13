@@ -197,7 +197,7 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex-nowrap'> 
+                    <div className='row flex'> 
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
                                 <Button variant='primary' onClick={this.saveText} className='button btn-lg'>Save</Button>
@@ -218,7 +218,7 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex-nowrap'>
+                    <div className='row flex'>
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
                                 <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
@@ -243,7 +243,7 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row  flex-nowrap'>
+                    <div className='row  flex'>
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
                                 <Button variant='primary' className='button btn-lg' onClick={this.saveEditedText}>Save</Button>

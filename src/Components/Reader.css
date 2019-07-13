@@ -2,10 +2,22 @@
     display: 'block';
 }
 
+@media (max-width: 990px) {
+    .main-area {
+        width: 80%;
+        margin: auto;
+    }
+}
+
 .white {
     background: white;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-top: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .form-control {
