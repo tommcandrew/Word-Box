@@ -219,7 +219,7 @@ render() {
         className='tabs'
         fill
         >
-        <Tab eventKey='Reader' title='Analyse text'>
+        <Tab eventKey='Reader' title='Analyse text' className='blueBackground' >
           <Reader 
             knownWords={this.state.knownWords} 
             saveText={this.saveText} 
@@ -233,10 +233,10 @@ render() {
             clearStateTextInfo={this.clearStateTextInfo} 
             deleteText={this.deleteText} />
         </Tab>
-        <Tab eventKey='TextCatalogue' title='Saved Texts'>
+        <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
         </Tab>
-        <Tab eventKey='WordList' title='Known Words'>
+        <Tab eventKey='WordList' title='Known Words' className='blueBackground' >
           <WordListDisplay 
             words={this.state.knownWords} 
             types={this.state.typesToShow}
@@ -247,10 +247,9 @@ render() {
             changeCheckBox={this.changeStartChecked}
 
             wordClick={this.wordClicked}
-          />          
-
+          />
         </Tab>
-        <Tab eventKey='testPage' title='Test Your knowledge'>
+        <Tab eventKey='testPage' title='Test Your knowledge' className='blueBackground' >
           <TestPage 
             language={this.state.knownWords.foreignLang}
             transMode={this.state.translationMode}

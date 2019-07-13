@@ -17,3 +17,11 @@
   font-family: 'Alex Brush', cursive;
   font-size: 30px;
 }
+
+.blueBackground {
+  background: lightblue;
+  width: 90vw;
+  margin: 2px auto;
+  padding: 2px;
+  border: 1px solid blue;
+}
