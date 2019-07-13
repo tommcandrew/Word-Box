@@ -163,7 +163,8 @@ saveEditedText = (editedTitle, editedText) => {
   
 }
 
-//why does this method not work if I pass App's state values (title & text) rather than the same as vars from Reader?
+//why does this method not work if I pass App's state values (title & text) 
+//rather than the same as vars from Reader?
 saveText = (timeAndDate, title, text) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
