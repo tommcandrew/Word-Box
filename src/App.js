@@ -212,6 +212,7 @@ render() {
       <div className='header'>
         <h1 className="App-header">Word-Box</h1>
       </div>
+      <div id='tabs-div'>
       <Tabs
         activeKey={this.state.tabToShow}
         onSelect={key => this.setState({tabToShow:key})}
@@ -263,6 +264,7 @@ render() {
             />          
         </Tab>
         </Tabs>
+        </div>
         <WordModal 
           show={this.state.showWordModal}
           onHide={this.modalClose}

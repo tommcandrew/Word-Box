@@ -20,10 +20,15 @@
 }
 
 .blueBackground {
-  background: rgb(219, 231, 231);
+  background: rgb(237, 245, 245);
   width: 90vw;
   margin: 2px auto;
   padding: 2px;
   border: 1px solid blue;
   min-height: 70vh;
+}
+
+#tabs-div {
+  width: 90vw;
+  margin: 2px auto;
 }
