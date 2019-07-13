@@ -24,4 +24,5 @@
   margin: 2px auto;
   padding: 2px;
   border: 1px solid blue;
+  min-height: 70vh;
 }
