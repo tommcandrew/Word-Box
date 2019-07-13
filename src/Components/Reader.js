@@ -227,7 +227,7 @@ class Reader extends React.Component {
                                 <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
                             </div>
                         </div>
-                        <div className='col-lg-6 main-area'>
+                        <div className='col-lg-6 main-area white'>
                             <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
                             {saveAlert}
