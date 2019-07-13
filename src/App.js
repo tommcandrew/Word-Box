@@ -210,7 +210,7 @@ render() {
   return (
     <div className="App">
       <div className='header'>
-        <h1 className="App-header">Word Box</h1>
+        <h1 className="App-header">Word - Box</h1>
       </div>
       <Tabs
         activeKey={this.state.tabToShow}

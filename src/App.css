@@ -8,9 +8,12 @@
 }
 
 .App-header {
-  padding: 20px;
+  font-family: 'Alex Brush', cursive;
+  font-size: 60px;
+  color: white;
 }
 
 .tabs {
-  font-size: 22px;
+  font-family: 'Alex Brush', cursive;
+  font-size: 30px;
 }
