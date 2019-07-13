@@ -1,5 +1,5 @@
 .table {
-    width: 65%;
+    width: 80%;
     margin: auto;
     font-size: 20px;
 }
@@ -26,4 +26,12 @@
 
 a {
     text-decoration: none !important
+}
+
+td {
+    text-align: left !important;
+}
+
+h3 {
+    margin-bottom: 20px;
 }
