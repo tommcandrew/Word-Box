@@ -5,6 +5,7 @@
 .white {
     background: white;
     border-radius: 10px;
+    padding-top: 10px;
 }
 
 .form-control {
