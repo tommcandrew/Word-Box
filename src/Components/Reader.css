@@ -1,5 +1,6 @@
 .main-area {
     display: 'block';
+
 }
 
 @media (max-width: 990px) {
@@ -35,11 +36,11 @@
     margin-bottom: 20px;
     margin-top: 100px;
     margin: auto;
-    padding: 20;
+    padding: 20px;
     display: block;
     width: 100%;
     text-align: left;
-    font-size: 25px;
+    font-size: 22px;
     word-wrap: break-word;
 }
 
