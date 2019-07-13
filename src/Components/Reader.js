@@ -266,9 +266,9 @@ class Reader extends React.Component {
             return (
                 <div className='wrapper'>
                     <div>
-                        <div className='text-box'>
+                        
                             <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
-                        </div>
+                        
                     </div>
                 </div>
             )

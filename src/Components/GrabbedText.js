@@ -76,7 +76,7 @@ const GrabbedText = (props) => {
 
         return (
             
-            <div className='wrapper'>
+            <div>
                     <div className='row flex'> 
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
@@ -84,7 +84,7 @@ const GrabbedText = (props) => {
                                 <Button variant='primary' className='button btn-lg' onClick={props.deleteText}>Delete</Button>                             
                             </div>
                         </div>
-                        <div id='main-area' className="main-area white col-lg-6">
+                        <div className="main-area white col-lg-6">
                         <h2 className='text-title'>{props.title}</h2>
                             <div id='grabbedText' className='text-box'>{newWordArray}</div>
                         </div>

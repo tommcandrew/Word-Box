@@ -2,10 +2,6 @@
     display: 'block';
 }
 
-/* #main-area {
-    height: 200px;
-} */
-
 @media (max-width: 990px) {
     .main-area {
         width: 80%;
