@@ -200,7 +200,7 @@ class Reader extends React.Component {
                     <div className='row flex'> 
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
-                                <Button variant='primary' onClick={this.saveText} className='button btn-lg'>Save</Button>
+                                <Button variant='primary' onClick={this.saveText} className='button button-top btn-lg'>Save</Button>
                             </div>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
@@ -221,7 +221,7 @@ class Reader extends React.Component {
                     <div className='row flex'>
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
+                                <Button variant='primary' className='button btn-lg button-top' onClick={this.editSavedText}>Edit</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
@@ -246,7 +246,7 @@ class Reader extends React.Component {
                     <div className='row  flex'>
                         <div className='col-lg-3 button-area'>
                             <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg' onClick={this.saveEditedText}>Save</Button>
+                                <Button variant='primary' className='button btn-lg button-top' onClick={this.saveEditedText}>Save</Button>
                             </div>
                         </div>
                         <div className='main-area col-lg-6'>
