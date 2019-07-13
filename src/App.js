@@ -163,7 +163,8 @@ saveEditedText = (editedTitle, editedText) => {
   
 }
 
-//why does this method not work if I pass App's state values (title & text) rather than the same as vars from Reader?
+//why does this method not work if I pass App's state values (title & text) 
+//rather than the same as vars from Reader?
 saveText = (timeAndDate, title, text) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
@@ -209,7 +210,7 @@ render() {
   return (
     <div className="App">
       <div className='header'>
-        <h1 className="App-header">Word Box</h1>
+        <h1 className="App-header">Word - Box</h1>
       </div>
       <Tabs
         activeKey={this.state.tabToShow}
@@ -218,7 +219,7 @@ render() {
         className='tabs'
         fill
         >
-        <Tab eventKey='Reader' title='Analyse text'>
+        <Tab eventKey='Reader' title='Add Text' className='blueBackground' >
           <Reader 
             knownWords={this.state.knownWords} 
             saveText={this.saveText} 
@@ -232,10 +233,10 @@ render() {
             clearStateTextInfo={this.clearStateTextInfo} 
             deleteText={this.deleteText} />
         </Tab>
-        <Tab eventKey='TextCatalogue' title='Saved Texts'>
+        <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
           <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
         </Tab>
-        <Tab eventKey='WordList' title='Known Words'>
+        <Tab eventKey='WordList' title='Known Words' className='blueBackground' >
           <WordListDisplay 
             words={this.state.knownWords} 
             types={this.state.typesToShow}
@@ -246,10 +247,9 @@ render() {
             changeCheckBox={this.changeStartChecked}
 
             wordClick={this.wordClicked}
-          />          
-
+          />
         </Tab>
-        <Tab eventKey='testPage' title='Test Your knowledge'>
+        <Tab eventKey='testPage' title='Test Page' className='blueBackground' >
           <TestPage 
             language={this.state.knownWords.foreignLang}
             transMode={this.state.translationMode}
