@@ -219,7 +219,7 @@ render() {
         className='tabs'
         fill
         >
-        <Tab eventKey='Reader' title='Analyse text' className='blueBackground' >
+        <Tab eventKey='Reader' title='Add Text' className='blueBackground' >
           <Reader 
             knownWords={this.state.knownWords} 
             saveText={this.saveText} 
@@ -249,7 +249,7 @@ render() {
             wordClick={this.wordClicked}
           />
         </Tab>
-        <Tab eventKey='testPage' title='Test Your knowledge' className='blueBackground' >
+        <Tab eventKey='testPage' title='Test Page' className='blueBackground' >
           <TestPage 
             language={this.state.knownWords.foreignLang}
             transMode={this.state.translationMode}
