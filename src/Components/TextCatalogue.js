@@ -26,7 +26,7 @@ if (props.savedTexts !== '') {
 return (
     
     <div className='wrapper'>
-    <h3>Your saved texts </h3>
+    <h2>Your saved texts </h2>
     <table className='table'>
         <tbody>
             {textsArray}
