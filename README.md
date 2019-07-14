@@ -84,7 +84,7 @@ And the data is retrieved via:
 > blue.foreign.neuter // returns 'modre'
 
 ## Using Word-Box
-Starting on the the 'analyse' tab, you can paste some text and click save. If you don't give a title, saving will create a default title from your text.
+Starting on the 'New Text' tab, you can paste some text and click save. If you don't give a title, saving will create a default title from your text.
 ![Some edited text](/screenshots/velky-strom-text.PNG)
 
 Then click on 'study' and Word-Box will analyse your text:
@@ -92,16 +92,18 @@ Then click on 'study' and Word-Box will analyse your text:
 
 The green words are the ones Word-Box has recognised. 'pampeliska' is mis-spelt, so appears red -- like the other words which are not recognised. 
 
-Currently: your text is saved in local storage, so should be accessable when you return to the page. (But not all browsers allow this). You can see your catalogue on the 'saved texts' tab. 
+Currently: your text is saved in local storage, so should be accessable when you return to the page. (But not all browsers allow this). You can see your catalogue on the 'My Texts' tab. 
 
-### Known Words tab
+### My Words tab
 You can search for words here by looking through the alphabetical list or typing in the search box. If you want to see the translation of a word: click on it in the list. Verbs are conjugated, and all gender forms of adjectives are given.
 
-### Test Your Knowledge
-Word-Box will use its vocab to make up a sentence. (Apologies for any rudeness: None of the words I have put into the vocab are individually rude. But the combinations come up at random and Word-Box knows not the meaning of what it says). Type your answer where prompted. As you type, each word is compared to the translation Word-Box has in mind. Obviously: there are many ways to say the same thing. But Word-Box is only thinking of one of these. Words gets marked according to their position and spelling (case insensitive). eg:
+### Test tab
+Word-Box will use its vocab to make up a sentence. (Apologies for any rudeness: None of the words I have put into the vocab are individually rude. But the combinations come up at random and Word-Box knows not the meaning of what it says). 
+
+Type your answer where prompted. Each word is compared to the translation Word-Box has in mind. Obviously: there are many ways to say the same thing. But Word-Box is only thinking of one of these. Words gets marked according to their position and spelling (case insensitive). eg:
 ![cold hospital translation](/screenshots/cold-hospital-test-eg.PNG)
 
-'nemocnice' is correctly spelled and should be the second word. And so it is marked green. Why are the other words wrong and marked red? (hint: what gender is a hospital?) 
+'nemocnice' is correctly spelled and should be the second word. And so it is marked green. Why are some words marked red? (hint: what gender is a hospital?) 
 
 If you don't know how to translate the sentence: there is a hack! Click the 'Translate the other way' button. This swaps question and answer. You will now be given the same sentence in Czech, and be asked for the English translation. You can copy and paste, but you will learn more slowly if you do! (Teacher voice: 'You're only cheating yourself!'). Once you've read the answer, click the button again and type in the translation.
 
