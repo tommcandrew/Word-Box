@@ -198,11 +198,9 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex'> 
+                    <div className='flex'> 
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' onClick={this.saveText} className='button button-top btn-lg'>Save</Button>
-                            </div>
+                            <Button variant='primary' block onClick={this.saveText} >Save</Button>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
                             <input maxLength='50' className="form-control text-area" ref="myTitleArea" placeholder='Enter title... (max 50 characters)' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
@@ -262,11 +260,13 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div>
-                        
-                            <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
-                        
-                    </div>
+                    <GrabbedText 
+                      title={this.props.title} 
+                      text={this.props.text} 
+                      knownWords={this.props.knownWords} 
+                      editText={this.editSavedText} 
+                      deleteText={this.deleteText}
+                    />
                 </div>
             )
     } 
