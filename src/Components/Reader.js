@@ -265,7 +265,7 @@ class Reader extends React.Component {
                       text={this.props.text} 
                       knownWords={this.props.knownWords} 
                       editText={this.editSavedText} 
-                      deleteText={this.deleteText}
+                      deleteText={this.props.deleteButtonClicked}
                     />
                 </div>
             )
