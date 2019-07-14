@@ -38,7 +38,7 @@ Form {
 
 #answerToast {
     position: absolute;
-    top: 10px;
+    top: 30vh;
     right: 10px;
     min-width: 35vmin;
     background: rgba(175, 219, 54, 0.95);
