@@ -258,7 +258,14 @@ render() {
             deleteText={this.deleteText} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue} activateDeleteModal={this.activateDeleteModal} showDeleteModal={this.state.showDeleteModal} hideDeleteModal={this.hideDeleteModal} deleteButtonClicked={this.deleteButtonClicked}/>
+          <TextCatalogue 
+            savedTexts={this.state.savedTexts} 
+            goToReader={this.goToReader} 
+            deleteFromCatalogue={this.deleteFromCatalogue} 
+            activateDeleteModal={this.activateDeleteModal} 
+            showDeleteModal={this.state.showDeleteModal} 
+            hideDeleteModal={this.hideDeleteModal} 
+            deleteButtonClicked={this.deleteButtonClicked}/>
         </Tab>
         <Tab eventKey='WordList' title='My Words' className='blueBackground' >
           <WordListDisplay 
