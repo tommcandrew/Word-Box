@@ -93,12 +93,6 @@ class App extends React.Component {
 
   //methods related to reader and text catalogue are below (in alphabetical order)
 
- /* activateDeleteModal = () => {
-    this.setState(
-      {showDeleteModal: true}
-    )
-  } */
-
   clearStateTextInfo = () => {
     this.setState(
       {title: '', text: ''}
@@ -123,7 +117,6 @@ class App extends React.Component {
     this.setState(
       {textForDeletion: textId, showDeleteModal: true}
     )
-    //this.activateDeleteModal()
   }
 
   deleteFromCatalogue = () => {
