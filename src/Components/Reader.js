@@ -79,36 +79,18 @@ class Reader extends React.Component {
             )
             return
         } else {
-            this.props.saveEditedText(this.state.currentTitle, this.state.userTextInput)
-            this.setState(
-                {showSaveAlert: true}
-            )
-            this.props.updateMode('read')
-    }
-    }
 
-    saveText = () => {
-        if (this.refs.myTextArea.value === '') {
-            this.setState(
-                {showBlankAlert: true}
-            )
-            return
-        } else {
-            this.setState(
-                {showBlankAlert: false}
-            )
-        var pastedText = this.refs.myTextArea.value
-        this.props.updateText(pastedText)
-
+        /*the following code is almsot identical to that in the saveText method below - 
+        not very DRY but I was unable to get a separate createDeafultTitle method working*/
 
         var title
         var firstFiveWords
-        if (this.refs.myTitleArea.value !== '') {
-            title = this.refs.myTitleArea.value
+        if (this.refs.myEditedTitleArea.value !== '') {
+            title = this.refs.myEditedTitleArea.value
             this.props.updateTitle(title)
         } else {
             var defaultTitle = ''
-            let splitUpText = this.refs.myTextArea.value.split(' ')
+            let splitUpText = this.refs.myEditedTextArea.value.split(' ')
             if (splitUpText.length < 6) {
                 firstFiveWords = splitUpText.slice(0, splitUpText.length) 
             } else {
@@ -116,7 +98,6 @@ class Reader extends React.Component {
             }
             
             var firstFiveWordsString = firstFiveWords.join(' ')
-            
             
             if (firstFiveWordsString.length > 60) {
                 defaultTitle = firstFiveWordsString.substr(0, 30) + '...'
@@ -143,6 +124,70 @@ class Reader extends React.Component {
                     title = defaultTitle
                     this.props.updateTitle(title)
                 }
+            }
+            
+            this.props.saveEditedText(defaultTitle, this.state.userTextInput)
+            this.setState(
+                {showSaveAlert: true}
+            )
+            this.props.updateMode('read')
+    }
+    }
+
+    saveText = () => {
+        if (this.refs.myTextArea.value === '') {
+            this.setState(
+                {showBlankAlert: true}
+            )
+            return
+        } else {
+            this.setState(
+                {showBlankAlert: false}
+            )
+        var pastedText = this.refs.myTextArea.value
+        this.props.updateText(pastedText)
+
+        var title
+        var firstFiveWords
+        if (this.refs.myTitleArea.value !== '') {
+            title = this.refs.myTitleArea.value
+            this.props.updateTitle(title)
+        } else {
+            var defaultTitle = ''
+            let splitUpText = this.refs.myTextArea.value.split(' ')
+            if (splitUpText.length < 6) {
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+            } else {
+                firstFiveWords = splitUpText.slice(0, 6)   
+            }
+            
+            var firstFiveWordsString = firstFiveWords.join(' ')
+            
+            if (firstFiveWordsString.length > 60) {
+                defaultTitle = firstFiveWordsString.substr(0, 30) + '...'
+                title = defaultTitle
+                this.props.updateTitle(title)
+            } else if (splitUpText.length < 6) {
+                firstFiveWords = splitUpText.slice(0, splitUpText.length) 
+                defaultTitle = ''
+                for (let i = 0; i < splitUpText.length; i++){
+                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                    }
+                    defaultTitle = defaultTitle.slice(0, -1)
+                    defaultTitle = defaultTitle + '...'
+                    title = defaultTitle
+                    this.props.updateTitle(title)
+            } else {
+                firstFiveWords = splitUpText.slice(0, 6) 
+                defaultTitle = ''
+                for (let i = 0; i < 6; i++ ){
+                    defaultTitle = defaultTitle + firstFiveWords[i] + ' '
+                }
+                defaultTitle = defaultTitle.slice(0, -1)
+                defaultTitle = defaultTitle + '...'
+                title = defaultTitle
+                this.props.updateTitle(title)
+            }
             }
 
         let d = new Date()
@@ -196,7 +241,7 @@ class Reader extends React.Component {
                 <div className='wrapper'>
                     <div className='flex'> 
                         <div className='col-lg-3 button-area'>
-                            <Button variant='primary' block onClick={this.saveText} >Save</Button>
+                            <Button variant='primary' block onClick={this.saveText}>Save</Button>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
                             <input maxLength='50' className="form-control text-area" ref="myTitleArea" placeholder='Enter title... (max 50 characters)' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
@@ -241,8 +286,8 @@ class Reader extends React.Component {
                             <Button variant='primary' block onClick={this.saveEditedText}>Save</Button>
                         </div>
                         <div className='main-area col-lg-6'>
-                            <input className='form-control text-area' value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
-                            <textarea className='form-control text-area' rows='20' cols='80' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea> 
+                            <input className='form-control text-area' ref="myEditedTitleArea" value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
+                            <textarea className='form-control text-area' rows='20' cols='80' ref="myEditedTextArea" value={this.state.userTextInput} onChange={this.handleChangeText}></textarea> 
                             {blankAlert}
                         </div>
                         <div className='col-lg-3'>
