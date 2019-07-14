@@ -34,10 +34,6 @@ class Reader extends React.Component {
         )
     }
 
-    deleteText = () => {
-        this.props.deleteButtonClicked()
-    }
-
     editSavedText = () => {
         this.props.updateMode('edit-saved')
     }
