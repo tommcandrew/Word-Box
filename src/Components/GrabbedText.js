@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button} from  'react-bootstrap'
+import {Button, ButtonGroup} from  'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Reader.css'
 
@@ -76,15 +76,13 @@ const GrabbedText = (props) => {
 
         return (
             
-            <div className='wrapper'>
-                    <div className='row flex-nowrap'> 
-                        <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg' onClick={props.editText}>Edit</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={props.deleteText}>Delete</Button>                             
-                            </div>
-                        </div>
-                        <div id='main-area' className="main-area col-lg-6">
+            <div>
+                    <div className='flex'> 
+                        <ButtonGroup vertical className='col-lg-3 button-area'>
+                            <Button variant='primary' onClick={props.editText}>Edit</Button>
+                            <Button variant='danger'  onClick={props.deleteText}>Delete</Button>                             
+                        </ButtonGroup>
+                        <div className="main-area white col-lg-6">
                         <h2 className='text-title'>{props.title}</h2>
                             <div id='grabbedText' className='text-box'>{newWordArray}</div>
                         </div>

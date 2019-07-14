@@ -8,21 +8,25 @@
 }
 
 .App-header {
-  font-family: 'Alex Brush', cursive;
-  font-size: 60px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 55px;
   color: white;
+  padding-bottom: 5px;
 }
 
 .tabs {
   font-family: Tahoma, cursive;
   font-size: 22px;
+  width: 90vw;
+  margin: auto;
 }
 
 .blueBackground {
-  background: lightblue;
+  background: rgb(237, 245, 245);
   width: 90vw;
   margin: 2px auto;
   padding: 2px;
   border: 1px solid blue;
-  min-height: 70vh;
+  min-height: 75vh;
 }
+

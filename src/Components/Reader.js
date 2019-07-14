@@ -1,6 +1,6 @@
 import React from 'react'
 import GrabbedText from './GrabbedText'
-import {Button} from  'react-bootstrap';
+import {Button, ButtonGroup} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Toast from 'react-bootstrap/Toast'
 import './Reader.css'
@@ -22,8 +22,9 @@ class Reader extends React.Component {
         this.props.clearStateTextInfo()
     }
 
-    /*this is included for when edit-saved-text mode is opened and the initial values of the input fields need to be the 
-    same as the title and text values of App's state. They have to be in Reader's state to allow the user to use the input
+    /*this is included for when edit-saved-text mode is opened and the initial values 
+    of the input fields need to be the same as the title and text values of App's state. 
+    They have to be in Reader's state to allow the user to use the input
     elements on the page*/ 
     componentWillReceiveProps = (nextProps) => {
         this.setState(
@@ -197,15 +198,13 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex-nowrap'> 
+                    <div className='flex'> 
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' onClick={this.saveText} className='button btn-lg'>Save</Button>
-                            </div>
+                            <Button variant='primary' block onClick={this.saveText} >Save</Button>
                         </div>
                         <div id='main-area' className="form-group main-area col-lg-6">
                             <input maxLength='50' className="form-control text-area" ref="myTitleArea" placeholder='Enter title... (max 50 characters)' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
-                            <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='15' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
+                            <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='12' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
                             {blankAlert}
                         </div>
                         <div className='col-lg-3'>
@@ -218,16 +217,14 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex-nowrap'>
-                        <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
-                            </div>
-                        </div>
-                        <div className='col-lg-6 main-area'>
+                    <div className='flex'>
+                        <ButtonGroup vertical className='col-lg-3 button-area'>                            
+                                <Button variant='primary' onClick={this.editSavedText}>Edit</Button>
+                                <Button variant='primary' onClick={this.goToStudyMode}>Study</Button>
+                                <Button variant='primary' onClick={this.addNewText}>Add new text</Button>
+                                <Button variant='danger' onClick={this.deleteText}>Delete</Button>                            
+                        </ButtonGroup>
+                        <div className='col-lg-6 main-area white'>
                             <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
                             {saveAlert}
@@ -243,11 +240,9 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row  flex-nowrap'>
+                    <div className='flex'>
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg' onClick={this.saveEditedText}>Save</Button>
-                            </div>
+                            <Button variant='primary' block onClick={this.saveEditedText}>Save</Button>
                         </div>
                         <div className='main-area col-lg-6'>
                             <input className='form-control text-area' value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
@@ -265,11 +260,13 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div>
-                        <div className='text-box'>
-                            <GrabbedText title={this.props.title} text={this.props.text} knownWords={this.props.knownWords} editText={this.editSavedText} deleteText={this.deleteText}/>
-                        </div>
-                    </div>
+                    <GrabbedText 
+                      title={this.props.title} 
+                      text={this.props.text} 
+                      knownWords={this.props.knownWords} 
+                      editText={this.editSavedText} 
+                      deleteText={this.deleteText}
+                    />
                 </div>
             )
     } 

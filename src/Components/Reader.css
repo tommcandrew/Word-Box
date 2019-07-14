@@ -2,6 +2,24 @@
     display: 'block';
 }
 
+@media (max-width: 990px) {
+    .main-area {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+.white {
+    background: white;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
 .form-control {
     font-size: 20px;
 }
@@ -17,11 +35,11 @@
     margin-bottom: 20px;
     margin-top: 100px;
     margin: auto;
-    padding: 20;
+    padding: 20px;
     display: block;
     width: 100%;
     text-align: left;
-    font-size: 25px;
+    font-size: 22px;
     word-wrap: break-word;
 }
 
@@ -29,12 +47,23 @@
     text-align: center;
 }
 
-.button {
-    margin-top: 100px;
-}
+
 
 .button-area {
+    margin: 30vh auto;
     text-align: center;
+}
+
+@media (max-width: 990px) {
+    .button-area {
+        margin: 10vh auto;
+    }
+}
+
+@media (max-width: 990px) {
+    .button-top {
+        margin-top: 20px;
+    }
 }
 
 .alert {
