@@ -22,11 +22,12 @@
 }
 
 .blueBackground {
-  background: rgb(237, 245, 245);
+  background: rgb(243, 247, 253);
   width: 90vw;
   margin: 2px auto;
   padding: 2px;
-  border: 1px solid blue;
+  border: 2px solid #007bff;
   min-height: 75vh;
+  border-radius: 5px;
 }
 
