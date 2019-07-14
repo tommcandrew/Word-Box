@@ -5,6 +5,7 @@ import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
 import WordModal from './Components/WordModal';
+import DeleteModal from './Components/DeleteModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 import {Tabs, Tab} from  'react-bootstrap';
@@ -92,11 +93,11 @@ class App extends React.Component {
 
   //methods related to reader and text catalogue are below (in alphabetical order)
 
-  activateDeleteModal = () => {
+ /* activateDeleteModal = () => {
     this.setState(
       {showDeleteModal: true}
     )
-  }
+  } */
 
   clearStateTextInfo = () => {
     this.setState(
@@ -120,9 +121,9 @@ class App extends React.Component {
   deleteButtonClicked = (e) => {
     let textId = e.target.parentElement.parentElement.id
     this.setState(
-      {textForDeletion: textId}
+      {textForDeletion: textId, showDeleteModal: true}
     )
-    this.activateDeleteModal()
+    //this.activateDeleteModal()
   }
 
   deleteFromCatalogue = () => {
@@ -261,10 +262,6 @@ render() {
           <TextCatalogue 
             savedTexts={this.state.savedTexts} 
             goToReader={this.goToReader} 
-            deleteFromCatalogue={this.deleteFromCatalogue} 
-            activateDeleteModal={this.activateDeleteModal} 
-            showDeleteModal={this.state.showDeleteModal} 
-            hideDeleteModal={this.hideDeleteModal} 
             deleteButtonClicked={this.deleteButtonClicked}/>
         </Tab>
         <Tab eventKey='WordList' title='My Words' className='blueBackground' >
@@ -299,6 +296,10 @@ render() {
           onHide={this.modalClose}
           word={this.state.modalWord}
           wList={this.state.knownWords} />
+        <DeleteModal           
+          deleteFromCatalogue={this.deleteFromCatalogue} 
+          showDeleteModal={this.state.showDeleteModal} 
+          hideDeleteModal={this.hideDeleteModal}  />
       </div>
     );
   } 

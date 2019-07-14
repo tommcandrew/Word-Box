@@ -1,17 +1,9 @@
 import React from 'react'
 import './TextCatalogue.css'
-import {Button, Modal, ModalBody, ModalFooter} from  'react-bootstrap';
 
 const TextCatalogue = (props) => {
 
-let deleteModal = 
-<Modal show={props.showDeleteModal}>
-    <ModalBody>Are you sure you want to delete this text?</ModalBody>
-    <ModalFooter>
-        <Button variant='info' onClick={props.hideDeleteModal}>Cancel</Button>
-        <Button variant='danger' onClick={props.deleteFromCatalogue}>Delete</Button>
-    </ModalFooter>
-</Modal>
+
 
 let del = document.createElement("span");
 	del.innerHTML = "x";
@@ -27,7 +19,7 @@ if (props.savedTexts !== '') {
                 <td><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></td>
                 <td className='text-date'>{textDate}</td>
                 <td className='text-time'>{textTime}</td>
-                <td><span onClick={props.deleteFromCatalogue} title='Delete' className='close-button'>      &times;</span></td>
+                <td><span onClick={props.deleteButtonClicked} title='Delete' className='close-button'>      &times;</span></td>
             </tr>
         )
     })
@@ -42,7 +34,6 @@ return (
             {textsArray}
         </tbody>
     </table>
-    {deleteModal}
     </div>
 
 )
