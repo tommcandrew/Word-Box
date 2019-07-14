@@ -17,6 +17,8 @@
 .tabs {
   font-family: Tahoma, cursive;
   font-size: 22px;
+  width: 90vw;
+  margin: auto;
 }
 
 .blueBackground {
@@ -28,7 +30,3 @@
   min-height: 75vh;
 }
 
-#tabs-div {
-  width: 90vw;
-  margin: 2px auto;
-}
