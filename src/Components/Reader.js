@@ -22,8 +22,9 @@ class Reader extends React.Component {
         this.props.clearStateTextInfo()
     }
 
-    /*this is included for when edit-saved-text mode is opened and the initial values of the input fields need to be the 
-    same as the title and text values of App's state. They have to be in Reader's state to allow the user to use the input
+    /*this is included for when edit-saved-text mode is opened and the initial values 
+    of the input fields need to be the same as the title and text values of App's state. 
+    They have to be in Reader's state to allow the user to use the input
     elements on the page*/ 
     componentWillReceiveProps = (nextProps) => {
         this.setState(
@@ -220,8 +221,8 @@ class Reader extends React.Component {
                 <div className='wrapper'>
                     <div className='row flex'>
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg button-top' onClick={this.editSavedText}>Edit</Button>
+                            <div className='btn-group'>
+                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
