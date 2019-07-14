@@ -1,6 +1,6 @@
 import React from 'react'
 import GrabbedText from './GrabbedText'
-import {Button} from  'react-bootstrap';
+import {Button, ButtonGroup} from  'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Toast from 'react-bootstrap/Toast'
 import './Reader.css'
@@ -219,15 +219,13 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row flex'>
-                        <div className='col-lg-3 button-area'>
-                            <div >
-                                <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>
-                                <Button variant='primary' className='button btn-lg' onClick={this.deleteText}>Delete</Button>
-                            </div>
-                        </div>
+                    <div className='flex'>
+                        <ButtonGroup vertical className='col-lg-3 button-area'>                            
+                                <Button variant='primary' onClick={this.editSavedText}>Edit</Button>
+                                <Button variant='primary' onClick={this.goToStudyMode}>Study</Button>
+                                <Button variant='primary' onClick={this.addNewText}>Add new text</Button>
+                                <Button variant='danger' onClick={this.deleteText}>Delete</Button>                            
+                        </ButtonGroup>
                         <div className='col-lg-6 main-area white'>
                             <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
