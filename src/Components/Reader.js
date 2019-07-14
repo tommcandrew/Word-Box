@@ -242,11 +242,9 @@ class Reader extends React.Component {
 
             return (
                 <div className='wrapper'>
-                    <div className='row  flex'>
+                    <div className='flex'>
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg button-top' onClick={this.saveEditedText}>Save</Button>
-                            </div>
+                            <Button variant='primary' block onClick={this.saveEditedText}>Save</Button>
                         </div>
                         <div className='main-area col-lg-6'>
                             <input className='form-control text-area' value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
