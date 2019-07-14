@@ -4,13 +4,14 @@ import {Button, Modal, ModalBody, ModalFooter} from  'react-bootstrap';
 
 const TextCatalogue = (props) => {
 
-let deleteModal
-if (props.showDeleteModal === false) {
-    deleteModal = ''
-} else {
-    deleteModal = <Modal show='true'><ModalBody>This is the body</ModalBody><ModalFooter><Button>Cancel</Button><Button>Delete</Button></ModalFooter></Modal>
-}
-
+let deleteModal = 
+<Modal show={props.showDeleteModal}>
+    <ModalBody>Are you sure you want to delete this text?</ModalBody>
+    <ModalFooter>
+        <Button variant='info' onClick={props.hideDeleteModal}>Cancel</Button>
+        <Button variant='danger'>Delete</Button>
+    </ModalFooter>
+</Modal>
 
 let del = document.createElement("span");
 	del.innerHTML = "x";
@@ -26,7 +27,7 @@ if (props.savedTexts !== '') {
                 <th><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></th>
                 <th>{textDate}</th>
                 <th>{textTime}</th>
-                <th><span onClick={props.deleteFromCatalogue} title='Delete' className='close-button'>      &times;</span></th>
+                <th><span onClick={props.activateDeleteModal} title='Delete' className='close-button'>      &times;</span></th>
             </tr>
         )
     })

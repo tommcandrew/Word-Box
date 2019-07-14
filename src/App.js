@@ -28,7 +28,7 @@ class App extends React.Component {
     searchFromStart: false,
     showWordModal: false, 
     modalWord: 'the',
-    showDeleteModal: 'false'
+    showDeleteModal: false
   }
 
   changeToShow = (category) => {
@@ -91,6 +91,12 @@ class App extends React.Component {
 
   //methods related to reader and text catalogue are below (in alphabetical order)
 
+  activateDeleteModal = () => {
+    this.setState(
+      {showDeleteModal: true}
+    )
+  }
+
   clearStateTextInfo = () => {
     this.setState(
       {title: '', text: ''}
@@ -148,6 +154,12 @@ goToReader = (e) => {
   e.preventDefault()
 }
 
+hideDeleteModal = () => {
+  this.setState(
+    {showDeleteModal: false}
+  )
+}
+
 saveEditedText = (editedTitle, editedText) => {
   var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
   for (let i = 0; i < savedTexts.length; i++) {
@@ -188,6 +200,7 @@ saveToLocalStorage = (textObj) => {
     localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
     this.componentWillMount()
   }
+
 
 updateReaderMode = (mode) => {
   this.setState(
@@ -235,7 +248,7 @@ render() {
             deleteText={this.deleteText} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
+          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue} activateDeleteModal={this.activateDeleteModal} showDeleteModal={this.state.showDeleteModal} hideDeleteModal={this.hideDeleteModal}/>
         </Tab>
         <Tab eventKey='WordList' title='Known Words' className='blueBackground' >
           <WordListDisplay 
