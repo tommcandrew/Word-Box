@@ -1,7 +1,16 @@
 import React from 'react'
 import './TextCatalogue.css'
+import {Button, Modal, ModalBody, ModalFooter} from  'react-bootstrap';
 
 const TextCatalogue = (props) => {
+
+let deleteModal
+if (props.showDeleteModal === false) {
+    deleteModal = ''
+} else {
+    deleteModal = <Modal show='true'><ModalBody>This is the body</ModalBody><ModalFooter><Button>Cancel</Button><Button>Delete</Button></ModalFooter></Modal>
+}
+
 
 let del = document.createElement("span");
 	del.innerHTML = "x";
@@ -38,6 +47,7 @@ return (
             {textsArray}
         </tbody>
     </table>
+    {deleteModal}
     </div>
 
 )
