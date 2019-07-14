@@ -221,7 +221,7 @@ class Reader extends React.Component {
                 <div className='wrapper'>
                     <div className='row flex'>
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group'>
+                            <div >
                                 <Button variant='primary' className='button btn-lg' onClick={this.editSavedText}>Edit</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.goToStudyMode}>Study</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={this.addNewText}>Add new text</Button>

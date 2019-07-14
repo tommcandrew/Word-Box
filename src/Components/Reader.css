@@ -47,17 +47,16 @@
     text-align: center;
 }
 
-.button {
-    margin-top: 100px;
-}
+
 
 .button-area {
+    margin: 30vh auto;
     text-align: center;
 }
 
 @media (max-width: 990px) {
     .button-area {
-        margin-bottom: 20px;
+        margin: 10vh auto;
     }
 }
 

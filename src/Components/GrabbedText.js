@@ -79,8 +79,8 @@ const GrabbedText = (props) => {
             <div>
                     <div className='row flex'> 
                         <div className='col-lg-3 button-area'>
-                            <div className='btn-group-vertical'>
-                                <Button variant='primary' className='button btn-lg button-top' onClick={props.editText}>Edit</Button>
+                            <div className='btn-group'>
+                                <Button variant='primary' className='button btn-lg' onClick={props.editText}>Edit</Button>
                                 <Button variant='primary' className='button btn-lg' onClick={props.deleteText}>Delete</Button>                             
                             </div>
                         </div>
