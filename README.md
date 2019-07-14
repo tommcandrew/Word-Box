@@ -97,6 +97,8 @@ Currently: your text is saved in local storage, so should be accessable when you
 ### My Words tab
 You can search for words here by looking through the alphabetical list or typing in the search box. If you want to see the translation of a word: click on it in the list. Verbs are conjugated, and all gender forms of adjectives are given.
 
+If you search for a word that isn't known by Word-Box, you will get a link to an online dictionary.
+
 ### Test tab
 Word-Box will use its vocab to make up a sentence. (Apologies for any rudeness: None of the words I have put into the vocab are individually rude. But the combinations come up at random and Word-Box knows not the meaning of what it says). 
 
