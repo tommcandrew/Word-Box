@@ -27,7 +27,8 @@ class App extends React.Component {
     wordToSearchFor: '',
     searchFromStart: false,
     showWordModal: false, 
-    modalWord: 'the'
+    modalWord: 'the',
+    showDeleteModal: 'false'
   }
 
   changeToShow = (category) => {
