@@ -61,7 +61,7 @@ Though Czech, and other languages, use noun cases (such as nominative and accusa
 ### verbs
 These have the wordType 'verb'.
 
-Currently only the present tense is defined in vocab. Example definition:
+Currently: only the present tense is defined in vocab. Example definition:
 > var toBe = new Verb('to be');
 
 > toBe.infinitive = 'byt';
@@ -100,7 +100,7 @@ You can search for words here by looking through the alphabetical list or typing
 ### Test tab
 Word-Box will use its vocab to make up a sentence. (Apologies for any rudeness: None of the words I have put into the vocab are individually rude. But the combinations come up at random and Word-Box knows not the meaning of what it says). 
 
-Type your answer where prompted. Each word is compared to the translation Word-Box has in mind. Obviously: there are many ways to say the same thing. But Word-Box is only thinking of one of these. Words gets marked according to their position and spelling (case insensitive). eg:
+Type your answer where prompted. Each word is compared to the translation Word-Box has in mind. Obviously: there are many ways to say the same thing. But Word-Box is only thinking of one of these. Words get marked according to their position and spelling (case-insensitive). eg:
 ![cold hospital translation](/screenshots/cold-hospital-test-eg.PNG)
 
 'nemocnice' is correctly spelled and should be the second word. And so it is marked green. Why are some words marked red? (hint: what gender is a hospital?) 
