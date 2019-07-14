@@ -12,6 +12,10 @@ const WordListCheckbox = (props) => {
       else {verbsBtn = offBtn}
     if (props.selection.includes('Adjectives')) { var adjBtn = onBtn }
       else {adjBtn = offBtn}
+    const handleSubmit = (event) => {
+      event.preventDefault();
+    }
+    
     return (
         <div>
             <h2>Types of words</h2>
@@ -21,9 +25,9 @@ const WordListCheckbox = (props) => {
               <Button variant={verbsBtn} onClick={()=>props.click('Verbs')} >Verbs</Button>
               <Button variant={adjBtn}  onClick={()=>props.click('Adjectives')}>Adjectives</Button>
             </ButtonGroup>
-            <p>Pronouns are not included. But, if you a click a verb, you will see them listed there</p>
+            <p>Pronouns are not included. But, if you click a verb, you will see them listed there</p>
             <p></p>
-            <Form>
+            <Form onSubmit={handleSubmit} >
               <Form.Group>
                 <Form.Control type='text' placeholder='Search for a word' onChange={props.changeSearch} />
               </Form.Group>

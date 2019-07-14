@@ -5,6 +5,7 @@ import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
 import WordModal from './Components/WordModal';
+import DeleteModal from './Components/DeleteModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 import {Tabs, Tab} from  'react-bootstrap';
@@ -16,6 +17,8 @@ class App extends React.Component {
     typesToShow : ['Nouns', 'Verbs', 'Adjectives'], 
     translationMode : 'fromEng', 
     userAnswer: '',
+    showAnswerToast: false,
+    correctAnswerCount: 0,
     sentences: rndSentence(wordList), 
     tabToShow: 'testPage',
     savedTexts: '',
@@ -25,7 +28,9 @@ class App extends React.Component {
     wordToSearchFor: '',
     searchFromStart: false,
     showWordModal: false, 
-    modalWord: 'the'
+    modalWord: 'the',
+    showDeleteModal: false,
+    textForDeletion: ''
   }
 
   changeToShow = (category) => {
@@ -49,8 +54,17 @@ class App extends React.Component {
     } else {ans = this.state.sentences.english}
     
     if (event.target.value.toLowerCase() === ans.toLowerCase()) {
-      this.setState({sentences: rndSentence(this.state.knownWords), userAnswer:''})
+      this.setState({
+        sentences: rndSentence(this.state.knownWords), 
+        userAnswer:'',
+        showAnswerToast: true,
+        correctAnswerCount: this.state.correctAnswerCount+1
+      })
     } else { this.setState({userAnswer:event.target.value}) }
+  }
+
+  closeToast = () => {
+    this.setState({showAnswerToast: false})
   }
 
 
@@ -98,6 +112,32 @@ class App extends React.Component {
     }
   }
 
+  deleteButtonClicked = (e) => {
+    let textId = e.target.parentElement.parentElement.id;
+    if (textId === '') {this.setState({textForDeletion: 'use deleteText', showDeleteModal: true})}
+      else {
+        this.setState(
+          {textForDeletion: textId, showDeleteModal: true}
+        )
+      }
+  }
+
+  deleteFromCatalogue = () => {
+    let textId = this.state.textForDeletion;
+    if (textId === 'use deleteText') {this.deleteText()}
+      else {
+        let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+        for (let i = 0; i < savedTexts.length; i++) {
+          if (savedTexts[i].timeAndDate === textId) {
+            savedTexts.splice(i, 1)
+          }
+          localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+          this.componentWillMount()
+        }
+      }
+    this.hideDeleteModal()
+  }
+
   deleteText = () => {
 
   let textTitle = this.state.title
@@ -124,6 +164,12 @@ goToReader = (e) => {
   e.preventDefault()
 }
 
+hideDeleteModal = () => {
+  this.setState(
+    {showDeleteModal: false}
+  )
+}
+
 saveEditedText = (editedTitle, editedText) => {
   var savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
   for (let i = 0; i < savedTexts.length; i++) {
@@ -140,7 +186,8 @@ saveEditedText = (editedTitle, editedText) => {
   
 }
 
-//why does this method not work if I pass App's state values (title & text) rather than the same as vars from Reader?
+//why does this method not work if I pass App's state values (title & text) 
+//rather than the same as vars from Reader?
 saveText = (timeAndDate, title, text) => {
   var newTextObj = {
     timeAndDate: timeAndDate,
@@ -164,6 +211,7 @@ saveToLocalStorage = (textObj) => {
     this.componentWillMount()
   }
 
+
 updateReaderMode = (mode) => {
   this.setState(
     {readerMode: mode}
@@ -185,14 +233,17 @@ updateTitle = (title) => {
 render() {
   return (
     <div className="App">
-      <h1 className="App-header">Word Box</h1>
+      <div className='header'>
+        <h1 className="App-header">Word-Box</h1>
+      </div>
       <Tabs
         activeKey={this.state.tabToShow}
         onSelect={key => this.setState({tabToShow:key})}
         variant = 'pills'
+        className='tabs'
         fill
         >
-        <Tab eventKey='Reader' title='Analyse text'>
+        <Tab eventKey='Reader' title='New Text' className='blueBackground' >
           <Reader 
             knownWords={this.state.knownWords} 
             saveText={this.saveText} 
@@ -204,12 +255,15 @@ render() {
             title={this.state.title} 
             saveEditedText={this.saveEditedText} 
             clearStateTextInfo={this.clearStateTextInfo} 
-            deleteText={this.deleteText} />
+            deleteButtonClicked={this.deleteButtonClicked} />
         </Tab>
-        <Tab eventKey='TextCatalogue' title='Saved Texts'>
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader}/>
+        <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
+          <TextCatalogue 
+            savedTexts={this.state.savedTexts} 
+            goToReader={this.goToReader} 
+            deleteButtonClicked={this.deleteButtonClicked}/>
         </Tab>
-        <Tab eventKey='WordList' title='Known Words'>
+        <Tab eventKey='WordList' title='My Words' className='blueBackground' >
           <WordListDisplay 
             words={this.state.knownWords} 
             types={this.state.typesToShow}
@@ -220,10 +274,9 @@ render() {
             changeCheckBox={this.changeStartChecked}
 
             wordClick={this.wordClicked}
-          />          
-
+          />
         </Tab>
-        <Tab eventKey='testPage' title='Test Your knowledge'>
+        <Tab eventKey='testPage' title='Test' className='blueBackground' >
           <TestPage 
             language={this.state.knownWords.foreignLang}
             transMode={this.state.translationMode}
@@ -231,6 +284,9 @@ render() {
             userAns={this.state.userAnswer}
             testQ={this.state.sentences}
             changeAns={this.ChangeAnswerHandler}
+            showAnswerToast={this.state.showAnswerToast}
+            correctAnswerCount={this.state.correctAnswerCount}
+            closeToast={this.closeToast}
             />          
         </Tab>
         </Tabs>
@@ -239,6 +295,10 @@ render() {
           onHide={this.modalClose}
           word={this.state.modalWord}
           wList={this.state.knownWords} />
+        <DeleteModal           
+          deleteFromCatalogue={this.deleteFromCatalogue} 
+          showDeleteModal={this.state.showDeleteModal} 
+          hideDeleteModal={this.hideDeleteModal}  />
       </div>
     );
   } 

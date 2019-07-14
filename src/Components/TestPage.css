@@ -1,6 +1,7 @@
 #testpage {
     margin: auto;
-    width: 90vmin;
+    padding: 10px;
+    max-width: 600px;
 }
 
 #question {
@@ -8,7 +9,7 @@
     color: white;
     font-size: 20px;
     margin: auto;
-    width: 80vmin;
+    max-width: 80vw;
     border: 2px solid black;
     border-radius: 25%;
 }
@@ -17,15 +18,15 @@
     background: lightgray;
     font-size: 20px;
     margin: auto;
-    width: 80vmin;
+    max-width: 80vw;
     border: 2px solid black;
     border-radius: 25%;
 }
 
 Form {
-    width: 80vmin;
+    max-width: 80vw;
     margin: auto;
-    padding: 10px;
+    padding: 10px 0px;
 }
 
 .goodWord {
@@ -33,4 +34,19 @@ Form {
 }
 .badWord {
     color:red;
+}
+
+#answerToast {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    min-width: 35vmin;
+    background: rgba(175, 219, 54, 0.95);
+
+}
+
+#answerHeader {
+    background: rgba(141, 175, 46, 0.95);
+    color: white;
+    justify-content: space-between;
 }

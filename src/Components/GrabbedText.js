@@ -1,6 +1,7 @@
 import React from 'react'
-import {Button} from  'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import {Button, ButtonGroup} from  'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
+import './Reader.css'
 
 const GrabbedText = (props) => {
 
@@ -43,51 +44,25 @@ const GrabbedText = (props) => {
             return word.toUpperCase()
         })
 
-        const divStyle = {
-            fontSize: 20,
-            marginBottom: '20px',
-            margin: 'auto',
-            display: 'block',
-            width: '100%',
-            padding: '20px'
-        }
-
-        const titleStyle = {
-            fontSize: 30,
-            textAlign: 'center',
-            paddingTop: 20,
-            width: '100%'
-        }
-
-        const buttonStyles = {
-            display: 'inline-block',
-            fontSize: '20px',
-            margin: '0 auto',
-            marginBottom: '100px',
-            marginTop: '20px',
-            marginLeft: 5,
-            marginRight: 5
-        }
+        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
 
         const knownWordStyle = {
             color: 'green'
         }
-
+        
         const unknownWordStyle = {
             color: 'red'
         }
 
-        let splitText = props.text.match(/\w+|\s+|[^\s\w]+/g)
-
         let newWordArray = splitText.map(function (word, index) {
-            if (!word.match(/\w+/g)) {
+            if (!word.match(/\w+[^\0-9]/g)) {
                 return word
             } else {
                 
             if (allKnownWords.includes(word) || allKnownWordsUpperFirstChar.includes(word) || allKnownWordsUpperAll.includes(word)) {
             
             return (
-                <span key={word+index} style = {knownWordStyle}>{word}</span>
+                <span key={word+index} style={knownWordStyle}>{word}</span>
             )
 
         } else {
@@ -100,12 +75,22 @@ const GrabbedText = (props) => {
     )
 
         return (
+            
             <div>
-                <h2 style={titleStyle}>{props.title}</h2>
-                <div id='grabbedText' style = {divStyle}>{newWordArray}</div>
-                <Button style={buttonStyles} onClick={props.editText}>Edit</Button>
-                <Button style={buttonStyles} onClick={props.deleteText}>Delete</Button>
-            </div>
+                    <div className='flex'> 
+                        <ButtonGroup vertical className='col-lg-3 button-area'>
+                            <Button variant='primary' onClick={props.editText}>Edit</Button>
+                            <Button variant='danger'  onClick={props.deleteText}>Delete</Button>                             
+                        </ButtonGroup>
+                        <div className="main-area white col-lg-6">
+                        <h2 className='text-title'>{props.title}</h2>
+                            <div id='grabbedText' className='text-box'>{newWordArray}</div>
+                        </div>
+                        <div className='col-lg-3'>
+                            
+                        </div>
+                    </div>
+                </div>
         )
 }
 
