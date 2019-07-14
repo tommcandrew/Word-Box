@@ -9,7 +9,7 @@ let deleteModal =
     <ModalBody>Are you sure you want to delete this text?</ModalBody>
     <ModalFooter>
         <Button variant='info' onClick={props.hideDeleteModal}>Cancel</Button>
-        <Button variant='danger'>Delete</Button>
+        <Button variant='danger' onClick={props.deleteFromCatalogue}>Delete</Button>
     </ModalFooter>
 </Modal>
 
@@ -27,7 +27,7 @@ if (props.savedTexts !== '') {
                 <th><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></th>
                 <th>{textDate}</th>
                 <th>{textTime}</th>
-                <th><span onClick={props.activateDeleteModal} title='Delete' className='close-button'>      &times;</span></th>
+                <th><span onClick={props.deleteButtonClicked} title='Delete' className='close-button'>      &times;</span></th>
             </tr>
         )
     })
