@@ -126,7 +126,7 @@ class Reader extends React.Component {
                 }
             }
             
-            this.props.saveEditedText(defaultTitle, this.state.userTextInput)
+            this.props.saveEditedText(title, this.refs.myEditedTextArea.value)
             this.setState(
                 {showSaveAlert: true}
             )
