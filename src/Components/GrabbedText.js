@@ -80,7 +80,8 @@ const GrabbedText = (props) => {
                     <div className='flex'> 
                         <ButtonGroup vertical className='col-lg-3 button-area'>
                             <Button variant='primary' onClick={props.editText}>Edit</Button>
-                            <Button variant='danger'  onClick={props.deleteText}>Delete</Button>                             
+                            <Button variant='primary' onClick={props.newText}>Add new text</Button>                            
+                            <Button variant='danger'  onClick={props.deleteText}>Delete</Button> 
                         </ButtonGroup>
                         <div className="main-area white col-lg-6">
                         <h2 className='text-title'>{props.title}</h2>
