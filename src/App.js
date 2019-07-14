@@ -5,6 +5,7 @@ import WordListDisplay from './Components/WordListDisplay';
 import TestPage from './Components/TestPage';
 import {rndSentence} from './Components/TestMaker';
 import WordModal from './Components/WordModal';
+import DeleteModal from './Components/DeleteModal';
 import {wordList} from './Assets/Vocab';
 import './App.css';
 import {Tabs, Tab} from  'react-bootstrap';
@@ -27,7 +28,9 @@ class App extends React.Component {
     wordToSearchFor: '',
     searchFromStart: false,
     showWordModal: false, 
-    modalWord: 'the'
+    modalWord: 'the',
+    showDeleteModal: false,
+    textForDeletion: ''
   }
 
   changeToShow = (category) => {
@@ -109,16 +112,30 @@ class App extends React.Component {
     }
   }
 
-  deleteFromCatalogue = (e) => {
-    let textId = e.target.parentElement.parentElement.id
-    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-    for (let i = 0; i < savedTexts.length; i++) {
-      if (savedTexts[i].timeAndDate === textId) {
-        savedTexts.splice(i, 1)
+  deleteButtonClicked = (e) => {
+    let textId = e.target.parentElement.parentElement.id;
+    if (textId === '') {this.setState({textForDeletion: 'use deleteText', showDeleteModal: true})}
+      else {
+        this.setState(
+          {textForDeletion: textId, showDeleteModal: true}
+        )
       }
-      localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-      this.componentWillMount()
-    }
+  }
+
+  deleteFromCatalogue = () => {
+    let textId = this.state.textForDeletion;
+    if (textId === 'use deleteText') {this.deleteText()}
+      else {
+        let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+        for (let i = 0; i < savedTexts.length; i++) {
+          if (savedTexts[i].timeAndDate === textId) {
+            savedTexts.splice(i, 1)
+          }
+          localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+          this.componentWillMount()
+        }
+      }
+    this.hideDeleteModal()
   }
 
   deleteText = () => {
@@ -145,6 +162,12 @@ goToReader = (e) => {
   var matchingText = matchingTextArray[0].text
   this.setState({tabToShow: 'Reader', readerMode: 'read', text: matchingText, title: textTitle})
   e.preventDefault()
+}
+
+hideDeleteModal = () => {
+  this.setState(
+    {showDeleteModal: false}
+  )
 }
 
 saveEditedText = (editedTitle, editedText) => {
@@ -187,6 +210,7 @@ saveToLocalStorage = (textObj) => {
     localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
     this.componentWillMount()
   }
+
 
 updateReaderMode = (mode) => {
   this.setState(
@@ -231,10 +255,13 @@ render() {
             title={this.state.title} 
             saveEditedText={this.saveEditedText} 
             clearStateTextInfo={this.clearStateTextInfo} 
-            deleteText={this.deleteText} />
+            deleteButtonClicked={this.deleteButtonClicked} />
         </Tab>
-        <Tab eventKey='TextCatalogue' title='My Texts' className='blueBackground' >
-          <TextCatalogue savedTexts={this.state.savedTexts} goToReader={this.goToReader} deleteFromCatalogue={this.deleteFromCatalogue}/>
+        <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
+          <TextCatalogue 
+            savedTexts={this.state.savedTexts} 
+            goToReader={this.goToReader} 
+            deleteButtonClicked={this.deleteButtonClicked}/>
         </Tab>
         <Tab eventKey='WordList' title='My Words' className='blueBackground' >
           <WordListDisplay 
@@ -268,6 +295,10 @@ render() {
           onHide={this.modalClose}
           word={this.state.modalWord}
           wList={this.state.knownWords} />
+        <DeleteModal           
+          deleteFromCatalogue={this.deleteFromCatalogue} 
+          showDeleteModal={this.state.showDeleteModal} 
+          hideDeleteModal={this.hideDeleteModal}  />
       </div>
     );
   } 

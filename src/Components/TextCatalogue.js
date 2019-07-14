@@ -3,6 +3,8 @@ import './TextCatalogue.css'
 
 const TextCatalogue = (props) => {
 
+
+
 let del = document.createElement("span");
 	del.innerHTML = "x";
 	del.setAttribute("title", "Remove item")
@@ -17,7 +19,7 @@ if (props.savedTexts !== '') {
                 <td><a href='#/' onClick={props.goToReader} id={item.title}>{item.title}</a></td>
                 <td className='text-date'>{textDate}</td>
                 <td className='text-time'>{textTime}</td>
-                <td><span onClick={props.deleteFromCatalogue} title='Delete' className='close-button'>      &times;</span></td>
+                <td><span onClick={props.deleteButtonClicked} title='Delete' className='close-button'>      &times;</span></td>
             </tr>
         )
     })
