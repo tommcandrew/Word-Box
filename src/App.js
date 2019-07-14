@@ -113,22 +113,28 @@ class App extends React.Component {
   }
 
   deleteButtonClicked = (e) => {
-    let textId = e.target.parentElement.parentElement.id
-    this.setState(
-      {textForDeletion: textId, showDeleteModal: true}
-    )
+    let textId = e.target.parentElement.parentElement.id;
+    if (textId === '') {this.setState({textForDeletion: 'use deleteText', showDeleteModal: true})}
+      else {
+        this.setState(
+          {textForDeletion: textId, showDeleteModal: true}
+        )
+      }
   }
 
   deleteFromCatalogue = () => {
-    let textId = this.state.textForDeletion
-    let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
-    for (let i = 0; i < savedTexts.length; i++) {
-      if (savedTexts[i].timeAndDate === textId) {
-        savedTexts.splice(i, 1)
+    let textId = this.state.textForDeletion;
+    if (textId === 'use deleteText') {this.deleteText()}
+      else {
+        let savedTexts = JSON.parse(localStorage.getItem('savedTexts'))
+        for (let i = 0; i < savedTexts.length; i++) {
+          if (savedTexts[i].timeAndDate === textId) {
+            savedTexts.splice(i, 1)
+          }
+          localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
+          this.componentWillMount()
+        }
       }
-      localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-      this.componentWillMount()
-    }
     this.hideDeleteModal()
   }
 
@@ -249,7 +255,7 @@ render() {
             title={this.state.title} 
             saveEditedText={this.saveEditedText} 
             clearStateTextInfo={this.clearStateTextInfo} 
-            deleteText={this.deleteText} />
+            deleteButtonClicked={this.deleteButtonClicked} />
         </Tab>
         <Tab eventKey='TextCatalogue' title='Saved Texts' className='blueBackground' >
           <TextCatalogue 

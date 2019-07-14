@@ -35,7 +35,7 @@ class Reader extends React.Component {
     }
 
     deleteText = () => {
-        this.props.deleteText()
+        this.props.deleteButtonClicked()
     }
 
     editSavedText = () => {
@@ -222,7 +222,7 @@ class Reader extends React.Component {
                                 <Button variant='primary' onClick={this.editSavedText}>Edit</Button>
                                 <Button variant='primary' onClick={this.goToStudyMode}>Study</Button>
                                 <Button variant='primary' onClick={this.addNewText}>Add new text</Button>
-                                <Button variant='danger' onClick={this.deleteText}>Delete</Button>                            
+                                <Button variant='danger' onClick={this.props.deleteButtonClicked}>Delete</Button>                            
                         </ButtonGroup>
                         <div className='col-lg-6 main-area white'>
                             <h2 className='text-title'>{this.props.title}</h2>
