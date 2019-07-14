@@ -246,12 +246,12 @@ class Reader extends React.Component {
                         <div id='main-area' className="form-group main-area col-lg-6">
                             <input maxLength='50' className="form-control text-area" ref="myTitleArea" placeholder='Enter title... (max 50 characters)' onChange={this.handleChangeTitle} value={this.state.currentTitle}></input>
                             <textarea className="form-control text-area" id='textArea' ref='myTextArea' rows='12' cols='80' placeholder='Paste your text here...' value={this.state.userTextInput} onChange={this.handleChangeText}></textarea>
-                            {blankAlert}
                         </div>
                         <div className='col-lg-3'>
                             
                         </div>
                     </div>
+                    {blankAlert}
                 </div>
 
     )} else if (this.props.mode === 'read'){
@@ -268,12 +268,12 @@ class Reader extends React.Component {
                         <div className='col-lg-6 main-area white'>
                             <h2 className='text-title'>{this.props.title}</h2>
                             <div className='text-box'>{this.props.text}</div>
-                            {saveAlert}
                         </div>
                         <div className='col-lg-3'>
                             
                         </div>
                     </div>
+                    {saveAlert}
                 </div>
             )
 
@@ -288,12 +288,12 @@ class Reader extends React.Component {
                         <div className='main-area col-lg-6'>
                             <input className='form-control text-area' ref="myEditedTitleArea" value={this.state.currentTitle} onChange={this.handleChangeTitle}></input>
                             <textarea className='form-control text-area' rows='20' cols='80' ref="myEditedTextArea" value={this.state.userTextInput} onChange={this.handleChangeText}></textarea> 
-                            {blankAlert}
                         </div>
                         <div className='col-lg-3'>
                             
                         </div>
                     </div>
+                    {blankAlert}
                 </div>
                 )
 

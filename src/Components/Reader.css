@@ -67,10 +67,9 @@
 }
 
 .alert {
-    position: fixed;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+    top: 50vh;
+    left: 40vw;
     background-color: #28a745;
     min-width: 70px;
     min-height: 55px;
